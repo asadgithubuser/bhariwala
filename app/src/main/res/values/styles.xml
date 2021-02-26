@@ -17,5 +17,27 @@
     <style name="click_custom_style">
         <item name="selectableItemBackground">@color/purple_200</item>
     </style>
-
+    <style name="cardView_top_custom_radius">
+        <item name="android:topLeftRadius">15dp</item>
+        <item name="android:topRightRadius">15dp</item>
+        <item name="background">@color/purple_200</item>
+    </style>
+    <style name="CustomCardViewStyle" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/cardView_top_custom_radius2</item>
+    </style>
+    <style name="cardView_top_custom_radius2" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">4dp</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="background">@color/teal_700</item>
+    </style>
+    <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+        <item name="cornerSizeBottomLeft">16dp</item>
+    </style>
 </resources>
