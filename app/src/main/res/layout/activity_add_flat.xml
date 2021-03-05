@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="15dp"
+    tools:context=".AddFlatActivity">
+
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="fill_parent"
+       android:fillViewport="true">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+           <com.google.android.material.card.MaterialCardView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="20dp"
+               app:cardBackgroundColor="#F6F5F5"
+               app:cardCornerRadius="6dp"
+              app:contentPadding="10dp">
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:text="Flat Details :"
+                       android:textColor="@color/teal_700"
+                       android:textSize="18dp"
+                       android:textStyle="bold"
+                       android:layout_marginBottom="5dp"/>
+                   <com.google.android.material.textfield.TextInputLayout
+                       android:layout_width="match_parent"
+                       android:layout_marginTop="10dp"
+                       android:layout_height="wrap_content"
+                       style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+                       <AutoCompleteTextView
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:hint="Select Building"
+                           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                           android:inputType="none"/>
+                   </com.google.android.material.textfield.TextInputLayout>
+                   <com.google.android.material.textfield.TextInputLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                       <com.google.android.material.textfield.TextInputEditText
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:hint="Flat Name"
+                           android:textColorHint="@color/black"/>
+                   </com.google.android.material.textfield.TextInputLayout>
+               </LinearLayout>
+           </com.google.android.material.card.MaterialCardView>
+
+           <com.google.android.material.card.MaterialCardView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:contentPadding="10dp"
+               app:cardBackgroundColor="#F6F5F5"
+               app:cardCornerRadius="6dp"
+               android:layout_marginTop="20dp">
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+                   <TextView
+                       android:id="@+id/flat_basic_details_text"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:text="Flat Basic Details :"
+                       android:textColor="@color/teal_700"
+                       android:textSize="18dp"
+                       android:textStyle="bold"
+                       android:layout_marginBottom="10dp"/>
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:weightSum="2"
+                       android:layout_marginBottom="9dp"
+                       android:orientation="horizontal">
+                       <com.google.android.material.textfield.TextInputLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="1"
+                           android:layout_marginRight="5dp"
+                           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                           <com.google.android.material.textfield.TextInputEditText
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:hint="Square Feet"
+                               android:inputType="numberDecimal"
+                               android:textColorHint="@color/black"/>
+                       </com.google.android.material.textfield.TextInputLayout>
+                       <com.google.android.material.textfield.TextInputLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="1"
+                           android:layout_marginLeft="5dp"
+                           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                           <com.google.android.material.textfield.TextInputEditText
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:hint="Persion Available"
+                               android:inputType="numberDecimal"
+                               android:textColorHint="@color/black"/>
+                       </com.google.android.material.textfield.TextInputLayout>
+                   </LinearLayout>
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:weightSum="2"
+                       android:layout_marginBottom="9dp"
+                       android:orientation="horizontal">
+                       <com.google.android.material.textfield.TextInputLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="1"
+                           android:layout_marginRight="5dp"
+                           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                           <com.google.android.material.textfield.TextInputEditText
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:hint="Total Rooms"
+                               android:inputType="numberDecimal"
+                               android:textColorHint="@color/black"/>
+                       </com.google.android.material.textfield.TextInputLayout>
+                       <com.google.android.material.textfield.TextInputLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="1"
+                           android:layout_marginLeft="5dp"
+                           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                           <com.google.android.material.textfield.TextInputEditText
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:hint="Total Baths"
+                               android:inputType="numberDecimal"
+                               android:textColorHint="@color/black"/>
+                       </com.google.android.material.textfield.TextInputLayout>
+                   </LinearLayout>
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:weightSum="2"
+                       android:layout_marginBottom="9dp"
+                       android:orientation="horizontal">
+                       <com.google.android.material.textfield.TextInputLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="1"
+                           android:inputType="numberDecimal"
+                           android:layout_marginRight="5dp"
+                           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                           <EditText
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:hint="Attached Bath"
+                               android:inputType="numberDecimal"
+                               android:textColorHint="@color/black"/>
+
+                       </com.google.android.material.textfield.TextInputLayout>
+                       <com.google.android.material.textfield.TextInputLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="1"
+                           android:inputType="numberDecimal"
+                           android:layout_marginLeft="5dp"
+                           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                           <EditText
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:hint="Balcony"
+                               android:inputType="numberDecimal"
+                               android:textColorHint="@color/black"/>
+                       </com.google.android.material.textfield.TextInputLayout>
+
+                   </LinearLayout>
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:weightSum="2"
+                       android:layout_marginBottom="9dp"
+                       android:orientation="horizontal">
+
+                       <com.google.android.material.textfield.TextInputLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="1"
+                           android:layout_marginTop="10dp"
+                           android:layout_marginRight="5dp"
+                           style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+                           <AutoCompleteTextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:hint="Furnisted"
+                               android:inputType="none"/>
+                       </com.google.android.material.textfield.TextInputLayout>
+                       <com.google.android.material.textfield.TextInputLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="1"
+                           android:layout_marginTop="10dp"
+                           android:layout_marginLeft="5dp"
+                           style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+                           <AutoCompleteTextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:hint="Floor Type"
+                               android:inputType="none"/>
+                       </com.google.android.material.textfield.TextInputLayout>
+
+                   </LinearLayout>
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:weightSum="2"
+                       android:layout_marginBottom="9dp"
+                       android:orientation="horizontal">
+                       <com.google.android.material.textfield.TextInputLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="1"
+                           android:layout_marginTop="6dp"
+                           style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+                           <AutoCompleteTextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:hint="Furnisted"
+                               android:inputType="none"/>
+                       </com.google.android.material.textfield.TextInputLayout>
+
+                   </LinearLayout>
+
+                   <!--                <Spinner-->
+                   <!--                    android:id="@+id/division_spinner"-->
+                   <!--                    android:layout_weight="1"-->
+                   <!--                    android:layout_marginVertical="3dp"-->
+                   <!--                    android:layout_width="match_parent"-->
+                   <!--                    android:layout_height="wrap_content"-->
+                   <!--                    android:entries="@array/divisions_name"-->
+                   <!--                    android:prompt="@string/division_prompt"/>-->
+
+
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:weightSum="2"
+                   android:layout_marginBottom="9dp"
+                   android:orientation="horizontal">
+                   <com.google.android.material.textfield.TextInputLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:inputType="numberDecimal"
+                       android:layout_marginRight="5dp"
+                       style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                       <EditText
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:hint="Rent available for month"
+                           android:inputType="date"
+                           android:textColorHint="@color/black"/>
+
+                   </com.google.android.material.textfield.TextInputLayout>
+               </LinearLayout>
+
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:weightSum="2"
+                   android:layout_marginBottom="9dp"
+                   android:orientation="horizontal">
+                   <com.google.android.material.textfield.TextInputLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:inputType="numberDecimal"
+                       android:layout_marginRight="5dp"
+                       style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+                       <AutoCompleteTextView
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:hint="Electricity"
+                           android:inputType="none"/>
+                   </com.google.android.material.textfield.TextInputLayout>
+                   <com.google.android.material.textfield.TextInputLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                       android:layout_weight="1">
+                       <AutoCompleteTextView
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:hint="Maintanence"/>
+                   </com.google.android.material.textfield.TextInputLayout>
+
+               </LinearLayout>
+               </LinearLayout>
+           </com.google.android.material.card.MaterialCardView>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:weightSum="2"
+               android:layout_marginHorizontal="10dp"
+               android:layout_marginVertical="40dp"
+               android:orientation="horizontal">
+
+               <androidx.appcompat.widget.AppCompatButton
+                   android:id="@+id/add_tenant_o"
+                   android:layout_width="0dp"
+                   android:layout_height="37dp"
+                   android:layout_weight="1"
+                   android:text="Add Flat"
+                   android:layout_marginRight="7dp"
+                   android:textAllCaps="false"
+                   android:textSize="17dp"
+                   android:backgroundTint="@color/teal_700"
+                   android:textColor="@color/white"
+                   android:background="@drawable/rounded_button_style"
+                   android:paddingHorizontal="7dp" />
+
+               <androidx.appcompat.widget.AppCompatButton
+                   android:id="@+id/add_teked_btn"
+                   android:layout_width="0dp"
+                   android:layout_height="37dp"
+                   android:layout_marginLeft="7dp"
+                   android:text="Cancel"
+                   android:layout_weight="1"
+                   android:textAllCaps="false"
+                   android:textSize="17dp"
+                   android:backgroundTint="@color/teal_700"
+                   android:textColor="@color/white"
+                   android:background="@drawable/rounded_button_style"
+                   android:paddingHorizontal="7dp" />
+
+           </LinearLayout>
+       </LinearLayout>
+   </ScrollView>
+</LinearLayout>

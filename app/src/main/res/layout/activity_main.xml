@@ -48,12 +48,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/profile"
-                android:padding="6dp"
-                android:background="@drawable/custom_outline_bg"/>
+                android:padding="6dp"/>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,7 +85,7 @@
                             android:layout_width="100dp"
                             android:layout_height="50dp"
                             android:textSize="14dp"
-                            android:scaleType="fitCenter"
+                            android:scaleType="centerInside"
                             android:src="@drawable/ribbon2"
                             android:textColor="@color/teal_700"/>
                     </RelativeLayout>
@@ -225,6 +226,7 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/properties_area_btn"
                     android:layout_width="120dp"
                     android:layout_height="100dp"
                     android:layout_gravity="fill"
@@ -245,17 +247,18 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Visitors"
+                                android:text="Proprety"
                                 style="@style/cardHeading_text_style"/>
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/visitors"/>
+                                android:src="@drawable/property"/>
                         </LinearLayout>
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/parcel_btn"
                     android:layout_width="120dp"
                     android:layout_height="100dp"
                     android:layout_gravity="fill"

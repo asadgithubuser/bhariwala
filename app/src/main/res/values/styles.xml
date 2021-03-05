@@ -33,11 +33,25 @@
         <item name="cornerSizeBottomLeft">0dp</item>
         <item name="background">@color/teal_700</item>
     </style>
+    <style name="round_solid_color_button_style">
+        <item name="background">@color/teal_700</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="android:paddingHorizontal">8dp</item>
+        <item name="android:paddingVertical">4dp</item>
+    </style>
     <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">0dp</item>
         <item name="cornerSizeTopLeft">16dp</item>
         <item name="cornerSizeBottomRight">16dp</item>
         <item name="cornerSizeBottomLeft">16dp</item>
+    </style>
+    <style name="DropdownItemPadding" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
+        <item name="android:paddingVertical">6dp</item>
+    </style>
+    <style name="Custom_Dialog" parent="ThemeOverlay.AppCompat.Light" >
+        <item name="windowMinWidthMajor">100%</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:layout_marginTop">40dp</item>
     </style>
 </resources>
