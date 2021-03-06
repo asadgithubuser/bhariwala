@@ -24,6 +24,18 @@ class MainActivity : AppCompatActivity() {
         parcel_btn.setOnClickListener {
             startActivity(Intent(this, AddFlatActivity::class.java))
         }
+        homelord_message.setOnClickListener {
+            startActivity(Intent(this, MessgeAcitivity::class.java))
+        }
+        homelord_bill.setOnClickListener {
+            startActivity(Intent(this, BillsActivity::class.java))
+        }
+        homelord_serviceman.setOnClickListener {
+            startActivity(Intent(this, ServiceManActivity::class.java))
+        }
+        homelord_car_parking.setOnClickListener {
+            startActivity(Intent(this, CarParkingActivity::class.java))
+        }
 
     }
 

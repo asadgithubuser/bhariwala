@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginHorizontal="15dp"
+    android:backgroundTint="#EFF1F1"
+    android:layout_marginTop="20dp"
+    tools:context=".BillsActivity">
+
+
+    <LinearLayout
+        android:id="@+id/property_area_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="6dp"
+            android:layout_height="match_parent"
+            android:background="#70E9F4"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/messae_sender_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Md. Bellal Ahmed"
+                            android:textAllCaps="false"
+                            android:textSize="18dp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_height="28dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tenant"
+                                android:elevation="1dp"
+                                android:textStyle="bold"
+                                android:layout_marginLeft="3dp"
+                                android:layout_centerVertical="true"
+                                android:textColor="@color/white"/>
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="50dp"
+                                android:textSize="14dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ribbon2"
+                                android:textColor="@color/teal_700"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="-4dp"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10:32 PM"
+                            android:textAllCaps="false"
+                            android:textSize="13dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginVertical="6dp"
+                            android:textColor="#040404"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Jan 4, 2021"
+                            android:textAllCaps="false"
+                            android:textSize="14dp"
+                            android:layout_marginVertical="6dp"
+                            android:textColor="#292424"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:orientation="horizontal">
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mr. Bellal Hossain sent 5,000 tk for monthly bill at Jan 5, 2021"
+                            android:textAllCaps="false"
+                            android:textSize="15dp"
+                            android:inputType="textMultiLine"
+                            android:lineHeight="19dp"
+                            android:layout_marginVertical="6dp"
+                            android:textColor="#4C4B4B"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="40dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Amount: "
+                            android:textAllCaps="false"
+                            android:textSize="16dp"
+                            android:layout_marginVertical="6dp"
+                            android:textColor="#040404"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="5,000 tk"
+                            android:textAllCaps="false"
+                            android:textSize="16dp"
+                            android:layout_marginVertical="6dp"
+                            android:textColor="#292424"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="40dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Month : "
+                            android:textAllCaps="false"
+                            android:textSize="16dp"
+                            android:layout_marginVertical="6dp"
+                            android:textColor="#040404"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Jan 5, 2021"
+                            android:textAllCaps="false"
+                            android:textSize="16dp"
+                            android:layout_marginVertical="6dp"
+                            android:textColor="#292424"/>
+                    </LinearLayout>
+                    <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                        android:layout_marginLeft="40dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Via : "
+                        android:textAllCaps="false"
+                        android:textSize="16dp"
+                        android:layout_marginVertical="6dp"
+                        android:textColor="#040404"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BKash"
+                        android:textAllCaps="false"
+                        android:textSize="16dp"
+                        android:layout_marginVertical="6dp"
+                        android:textColor="#292424"/>
+                </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="15dp"
+                android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/tenant_detailf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Receive"
+                    android:layout_marginRight="7dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textAllCaps="false"
+                    android:textSize="16dp"
+                    android:textColor="@color/teal_700"
+                    android:background="@drawable/button_outlinebox_style"
+                    android:paddingHorizontal="27dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/tenant_details_show_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Delete"
+                    android:layout_gravity="center_horizontal"
+                    android:textAllCaps="false"
+                    android:textSize="16dp"
+                    android:textColor="#DF3131"
+                    android:background="@drawable/button_outlinebox_style"
+                    android:paddingHorizontal="19dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

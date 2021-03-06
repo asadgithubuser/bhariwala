@@ -136,6 +136,7 @@
                         android:layout_margin="10dp"
                         app:cardElevation="1dp">
                         <RelativeLayout
+                            android:id="@+id/homelord_message"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -148,7 +149,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Notice"
+                                    android:text="Messages"
                                     style="@style/cardHeading_text_style"/>
                                 <ImageView
                                     android:layout_width="wrap_content"
@@ -159,6 +160,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/homelord_bill"
                         android:layout_width="120dp"
                         android:layout_height="100dp"
                         android:layout_gravity="fill"
@@ -189,6 +191,7 @@
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/homelord_serviceman"
                         android:layout_width="120dp"
                         android:layout_height="100dp"
                         android:layout_gravity="fill"
@@ -341,6 +344,7 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/homelord_car_parking"
                     android:layout_width="120dp"
                     android:layout_height="100dp"
                     android:layout_gravity="fill"

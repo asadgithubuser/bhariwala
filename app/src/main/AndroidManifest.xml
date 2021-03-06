@@ -13,28 +13,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bhariwala">
-        <activity android:name=".TenantListActivity"></activity>
-        <activity android:name=".RentManagementActivity"
-            android:theme="@style/Theme.Design"/>
-        <activity android:name=".FlatActivity"
+        <activity android:name=".PayRentActivity"></activity>
+        <activity android:name=".FlatAdsDetailsActivity" />
+        <activity android:name=".FlatAddsActivity" />
+        <activity android:name=".CarParkingActivity" />
+        <activity android:name=".ServiceManActivity" />
+        <activity android:name=".BillsActivity" />
+        <activity android:name=".MessgeAcitivity" />
+        <activity android:name=".TenantListActivity" />
+        <activity
+            android:name=".RentManagementActivity"
+            android:theme="@style/Theme.Design" />
+        <activity
+            android:name=".FlatActivity"
             android:parentActivityName=".PropertyAcitivity"
             android:theme="@style/Theme.Design.Light" />
-        <activity android:name=".PropertyAcitivity"
+        <activity
+            android:name=".PropertyAcitivity"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.Design.Light"/>
-
-        <activity android:name=".AddPropertyActivity"
-            android:theme="@style/ActionBarApptheme"/>
-
-        <activity android:name=".SendMessageActivity"
+            android:theme="@style/Theme.Design.Light" />
+        <activity
+            android:name=".AddPropertyActivity"
+            android:theme="@style/ActionBarApptheme" />
+        <activity
+            android:name=".SendMessageActivity"
             android:parentActivityName=".PropertyAcitivity"
-            android:theme="@style/ActionBarApptheme"/>
-        <activity android:name=".AddFlatActivity"
+            android:theme="@style/ActionBarApptheme" />
+        <activity
+            android:name=".AddFlatActivity"
             android:parentActivityName=".FlatActivity"
             android:theme="@style/ActionBarApptheme" />
         <activity android:name=".SignUPActivity" />
         <activity android:name=".SignInAcitvity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,8 +52,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".TenantActivity" />
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
