@@ -18,24 +18,23 @@ class AddPropertyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         setContentView(R.layout.activity_add_property)
 
         //setSupportActionBar(property_toolbar_id)
-        var actionBar = getSupportActionBar()
-        if(actionBar != null){
-            actionBar.setTitle("Add Property")
-            actionBar.setHomeAsUpIndicator(R.drawable.arrow_left)
-        }
-
-
-//        var actionbar = supportActionBar
-//        if(actionbar != null) {
-//            supportActionBar!!.title = "go home"
-//            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+//        var actionBar = getSupportActionBar()
+//        if(actionBar != null){
+//            actionBar.setTitle("Add Property")
+//            actionBar.setHomeAsUpIndicator(R.drawable.arrow_left)
 //        }
 
-//        spinner = this.division_spinner
-//        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, divisions)
-//        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//        spinner!!.setAdapter(arrayAdapter)
-//        spinner!!.setOnItemSelectedListener(this)
+        var actionbar = supportActionBar
+        if(actionbar != null) {
+            supportActionBar!!.title = "go home"
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        }
+
+        spinner = findViewById(R.id.district_fds)
+        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, divisions)
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner!!.setAdapter(arrayAdapter)
+        spinner!!.setOnItemSelectedListener(this)
 
 
 

@@ -10,9 +10,9 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_add_flat.*
 
-class AddFlatActivity : AppCompatActivity() {
+class AddFlatActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
-    var persionForSelectItem = arrayOf("Specific Persion", "Not Specific")
+    var building_types = arrayOf("Building one", "Building two")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_flat)
@@ -24,12 +24,22 @@ class AddFlatActivity : AppCompatActivity() {
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
 
-//        val autocompleteTextField = persions_for_select_textFeild
-//        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, persionForSelectItem)
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//        autocompleteTextField.setAdapter(adapter)
+        val autocompleteTextField = findViewById<AutoCompleteTextView>(R.id.select_building_type)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, building_types)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        autocompleteTextField.setAdapter(adapter)
+        autocompleteTextField.onItemSelectedListener = this
 
 
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        Log.d("item",  building_types[position])
+        Toast.makeText(this, "selected: "+ building_types[position], Toast.LENGTH_LONG).show()
     }
 
 }

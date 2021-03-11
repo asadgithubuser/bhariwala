@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "989087202715",
+    "project_id": "bhariwala-f7aa6",
+    "storage_bucket": "bhariwala-f7aa6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989087202715:android:697d6ed3322bfc2ef2353e",
+        "android_client_info": {
+          "package_name": "com.example.bhariwala"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989087202715-5svl13dp9qj2g2ebhr62cgtovres53dt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-AV6uEay7YCs_O3LOg87sTDv1r27zrHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989087202715-5svl13dp9qj2g2ebhr62cgtovres53dt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

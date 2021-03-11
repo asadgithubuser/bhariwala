@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:title="Home"
+            android:icon="@drawable/home"/>
+        <item
+            android:id="@+id/property"
+            android:title="Profile"
+            android:icon="@drawable/property"/>
+        <item
+            android:id="@+id/message"
+            android:title="Message"
+            android:icon="@drawable/home"/>
+        <item
+            android:id="@+id/hosfme"
+            android:title="Reports"
+            android:icon="@drawable/home"/>
+
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item android:title="Account Setting">
+            <menu>
+                <item
+                    android:id="@+id/hofdsme"
+                    android:title="Update Account"
+                    android:icon="@drawable/home"/>
+                <item
+                    android:id="@+id/propderty"
+                    android:title="Not Verified"
+                    android:icon="@drawable/property"/>
+                <item
+                    android:id="@+id/ffds"
+                    android:title="Subscription plan"
+                    android:icon="@drawable/home"/>
+                <item
+                    android:id="@+id/hosfdfme"
+                    android:title="Reports"
+                    android:icon="@drawable/home"/>
+            </menu>
+        </item>
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item android:title="About App Info">
+            <menu>
+                <item
+                    android:id="@+id/hoffdsme"
+                    android:title="About Us"
+                    android:icon="@drawable/home"/>
+                <item
+                    android:id="@+id/propdderty"
+                    android:title="Contact Us"
+                    android:icon="@drawable/property"/>
+                <item
+                    android:id="@+id/ffdafds"
+                    android:title="Privacy Policy"
+                    android:icon="@drawable/home"/>
+                <item
+                    android:id="@+id/ffdfgds"
+                    android:title="Share"
+                    android:icon="@drawable/home"/>
+                <item
+                    android:id="@+id/ffdfds"
+                    android:title="Rate Us"
+                    android:icon="@drawable/home"/>
+                <item
+                    android:id="@+id/fds"
+                    android:title="Notice From App"
+                    android:icon="@drawable/home"/>
+            </menu>
+        </item>
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/hoffdsfdsme"
+            android:title="Logout"
+            android:icon="@drawable/home"/>
+
+    </group>
+</menu>

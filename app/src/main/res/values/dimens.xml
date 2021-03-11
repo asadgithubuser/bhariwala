@@ -5,6 +5,11 @@
     to square screens.
     -->
     <dimen name="box_inset_layout_padding">0dp</dimen>
+    <dimen name="standard_45">55dp</dimen>
+    <dimen name="standard_105">105dp</dimen>
+    <dimen name="standard_21">21dp</dimen>
+    <dimen name="standard_155">155dp</dimen>
+    <dimen name="fab_margin">15dp</dimen>
 
     <!--
     This padding applies to both square and round screens. The total padding between the buttons
