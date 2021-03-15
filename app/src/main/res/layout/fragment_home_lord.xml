@@ -54,35 +54,41 @@
             android:orientation="vertical">
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/hl_user_image"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:src="@drawable/profile"
                     android:padding="6dp"/>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="7dp"
+                    android:layout_toRightOf="@+id/hl_user_image"
                     android:layout_gravity="center_vertical"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/hl_user_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Bellal Ahmed"
-                        android:textSize="20dp"
+                        android:maxWidth="160dp"
+                        android:maxLines="3"
+                        android:textSize="18dp"
                         android:textColor="@color/teal_700"/>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <TextView
+                            android:id="@+id/hl_user_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Homelord"
@@ -102,22 +108,19 @@
                     </RelativeLayout>
 
                 </LinearLayout>
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:gravity="right">
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/tenant_details_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
                         android:text="Tanants"
                         android:textColor="@color/white"
                         app:cornerRadius="6dp"
                         android:layout_centerVertical="true"
                         android:backgroundTint="@color/design_default_color_primary"
                         android:textAllCaps="false"/>
-                </RelativeLayout>
-            </LinearLayout>
+            </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -139,6 +142,7 @@
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/hl_message_cardView"
                         android:layout_width="120dp"
                         android:layout_height="100dp"
                         android:layout_gravity="fill"

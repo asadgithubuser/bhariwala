@@ -85,6 +85,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"/>
                             <TextView
+                                android:id="@+id/d_rent_month"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Jan 5, 2020"
@@ -147,6 +148,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"/>
                             <TextView
+                                android:id="@+id/d_total_room"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Total rooms 3"
@@ -165,6 +167,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"/>
                             <TextView
+                                android:id="@+id/d_total_bath"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Total baths 2"
@@ -183,6 +186,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"/>
                             <TextView
+                                android:id="@+id/d_attached_bath"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Attached bath 1"
@@ -243,6 +247,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"/>
                             <TextView
+                                android:id="@+id/d_eletricity_bill"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Electricity - 900tk"
@@ -261,6 +266,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"/>
                             <TextView
+                                android:id="@+id/d_water_bill"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Water - 600 tk"
@@ -287,6 +293,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"/>
                             <TextView
+                                android:id="@+id/d_gas_bill"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Gas - 1200 tk"
@@ -305,6 +312,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"/>
                             <TextView
+                                android:id="@+id/d_service_bill"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Service Charge 500 tk"

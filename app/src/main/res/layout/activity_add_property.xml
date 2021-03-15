@@ -38,6 +38,7 @@
                         android:layout_height="wrap_content"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/pro_building_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Building Name"
@@ -48,6 +49,7 @@
                         android:layout_height="wrap_content"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/pro_total_floor_of_building"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Total Floor"
@@ -79,6 +81,7 @@
                         android:layout_marginBottom="9dp"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/pro_leaf_address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Address"
@@ -97,6 +100,7 @@
                             android:layout_marginRight="5dp"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/pro_road_no"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="Road Number"
@@ -109,6 +113,7 @@
                             android:layout_marginLeft="5dp"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/pro_house_no"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="House Number"
@@ -128,6 +133,7 @@
                             android:layout_marginRight="5dp"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/pro_section_a"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="Section / Area"
@@ -140,6 +146,7 @@
                             android:layout_marginLeft="5dp"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/pro_thana"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="Thana"
@@ -159,6 +166,7 @@
                             android:layout_marginRight="5dp"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                             <EditText
+                                android:id="@+id/pro_postCode"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="Post Code"
@@ -174,6 +182,7 @@
                             android:layout_marginLeft="5dp"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                             <EditText
+                                android:id="@+id/pro_city"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="City"
@@ -195,27 +204,15 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:layout_marginRight="5dp"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                            <Spinner
-                                android:id="@+id/district_fds"
-                                android:layout_weight="1"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+                            <AutoCompleteTextView
+                                android:id="@+id/add_property_divisions"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:prompt="@string/division_prompt"
-                                android:entries="@array/divisions_name" />
-
+                                android:hint="select division"
+                                android:inputType="none"
+                                android:textSize="15dp"/>
                         </com.google.android.material.textfield.TextInputLayout>
-
-<!--                        <Spinner-->
-<!--                            android:id="@+id/division_spinner"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:layout_marginVertical="3dp"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"/>-->
-                        <!--                  //  android:entries="@array/divisions_name"-->
-                        <!--                    //android:prompt="@string/division_prompt"-->
-
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -228,7 +225,7 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/add_tenant_o"
+                    android:id="@+id/add_property_btn"
                     android:layout_width="0dp"
                     android:layout_height="37dp"
                     android:layout_weight="1"

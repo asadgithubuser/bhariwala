@@ -2,47 +2,12 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginHorizontal="15dp"
+    android:layout_marginVertical="10dp"
+    android:backgroundTint="#F1F3F3"
     tools:context=".AddFlatActivity">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:orientation="horizontal"
-        android:elevation="10dp"
-        android:layout_gravity="bottom|right"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_add_my_album_ng"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:backgroundTint="@color/teal_700"
-            app:tint="@color/white"
-            android:src="@drawable/plus_ic_icon"/>
-
-
-        <TextView
-            android:layout_toRightOf="@+id/fab_add_my_album_listing"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="-20dp"
-            android:background="@drawable/button_outlinebox_style"
-            android:paddingTop="5dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="5dp"
-            android:text="Property"
-            android:backgroundTint="@color/teal_700"
-            android:paddingLeft="20dp"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:textColor="#FFFCFC"
-            android:layout_gravity="center_vertical"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
     <LinearLayout
         android:id="@+id/property_area_id"
         android:layout_width="match_parent"
@@ -60,6 +25,7 @@
             android:layout_marginLeft="10dp"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/pp_buildingName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mayer Dua Ghar"
@@ -67,14 +33,17 @@
                 android:textSize="20dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="house-2, road-15, section-6, mirpur,Dhaka"
-                android:textAllCaps="false"
-                android:textSize="18dp"
-                android:layout_marginVertical="6dp"
-                android:textColor="#685959"/>
+
+                <TextView
+                    android:id="@+id/pp_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="address..."
+                    android:textAllCaps="false"
+                    android:maxLines="4"
+                    android:textSize="18dp"
+                    android:layout_marginVertical="6dp"
+                    android:textColor="#685959"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -83,6 +52,7 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/property_flats_btn"
                     android:layout_width="80dp"
                     android:layout_height="33dp"
                     android:drawableLeft="@drawable/flat"
@@ -94,6 +64,7 @@
                     android:background="@drawable/button_outlinebox_style" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/property_rentmanagemtn_btn"
                     android:layout_width="187dp"
                     android:layout_height="33dp"
                     android:drawableLeft="@drawable/money"
@@ -110,7 +81,7 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/send_message_from_property_item"
+                    android:id="@+id/property_sendmessage_btn"
                     android:layout_width="155dp"
                     android:layout_height="33dp"
                     android:drawableLeft="@drawable/message"
@@ -122,6 +93,7 @@
                     android:background="@drawable/button_outlinebox_style" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/property_tenants_btn"
                     android:layout_width="110dp"
                     android:layout_height="33dp"
                     android:drawableLeft="@drawable/tenant"
@@ -140,6 +112,7 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/property_delete_btn"
                     android:layout_width="180dp"
                     android:layout_height="35dp"
                     android:text="Delete Property"
@@ -156,6 +129,5 @@
                 android:background="#7F8787"/>
         </LinearLayout>
     </LinearLayout>
-
 
 </androidx.cardview.widget.CardView>

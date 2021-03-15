@@ -9,7 +9,6 @@
     -->
     <string name="message">Sir, I have told you i need to leave for 5 days.
 So i minded you for my leave. May i leave for 5 days? I will come to your room for this cause.
-
 thank you</string>
 
     <array name="autosize_text_sizes">
@@ -41,6 +40,28 @@ thank you</string>
         <item>Building 2</item>
         <item>Building 3</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="electricity_bills">
+        <item>Meter</item>
+        <item>Fixed</item>
+        <item>Include In Rent</item>
+    </string-array>
+    <string-array name="maintanence_bill">
+        <item>Fixed</item>
+        <item>No Bill</item>
+    </string-array>
+    <string-array name="floor_types">
+        <item>Tiles</item>
+        <item>Mujaek</item>
+        <item>Normal</item>
+    </string-array>
+    <string-array name="gas_bills">
+        <item>Fixed</item>
+        <item>Include In Rent</item>
+    </string-array>
+    <string-array name="water_bills">
+        <item>Fixed</item>
+        <item>Include In Rent</item>
+    </string-array>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

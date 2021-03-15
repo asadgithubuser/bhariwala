@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home"
+        android:id="@+id/home_nav_menu"
         android:title="Home"
         android:icon="@drawable/home"/>
     <item
-        android:id="@+id/add_property"
+        android:id="@+id/adds_nav_menu"
         android:title="My Ads"
         android:icon="@drawable/add"/>
     <item
-        android:id="@+id/message"
+        android:id="@+id/message_nav_menu"
         android:title="Message"
         android:icon="@drawable/heart"/>
     <item
-        android:id="@+id/setting"
+        android:id="@+id/setting_nav_menu"
         android:title="Setting"
         android:icon="@drawable/setting"/>
 </menu>

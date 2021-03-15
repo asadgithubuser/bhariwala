@@ -1,6 +1,8 @@
 package com.example.bhariwala
 
+import android.app.Activity
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,10 +10,17 @@ import android.text.TextUtils
 import android.util.Log
 import android.util.TimeUtils
 import android.widget.Toast
+import com.example.bhariwala.Models.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_sign_in.*
+import java.util.*
 
 class SignInAcitvity : AppCompatActivity() {
+
 
     override fun onStart() {
         super.onStart()
@@ -24,16 +33,13 @@ class SignInAcitvity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
+
         go_login_to_register_btn.setOnClickListener {
             var intent = Intent(this, SignUPActivity::class.java)
             startActivity(intent)
         }
         login_btn.setOnClickListener {
-            if(FirebaseAuth.getInstance().currentUser != null){
                 loginUserMethod()
-            }else{
-                Toast.makeText(this, "User NOT Found!!. Please register first.", Toast.LENGTH_LONG).show()
-            }
         }
     }
 
@@ -56,7 +62,7 @@ class SignInAcitvity : AppCompatActivity() {
                         progressDialog.dismiss()
                         Toast.makeText(this, "You are logged in successfully", Toast.LENGTH_LONG).show()
                         startActivity(Intent(this, MainActivity::class.java))
-                        finish()
+                        //redirectHomeActivity(email)
                     }else{
                         progressDialog.dismiss()
                         var eMessage = task.exception
@@ -66,4 +72,39 @@ class SignInAcitvity : AppCompatActivity() {
             }
         }
     }
+
+    private fun redirectHomeActivity(email: String) {
+        var mAuth = FirebaseAuth.getInstance().currentUser!!
+        var userRef = FirebaseDatabase.getInstance().reference.child("Users")
+        userRef.addValueEventListener( object : ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for(user in snapshot.children){
+                        var user = user.getValue(User::class.java)
+                            if(user!!.getEmail() == email){
+                                redirectActivity(user!!.getUid())
+                               //var intent = Intent(this, MainActivity::class.java)
+                            }
+                    }
+                }
+            }
+        })
+    }
+
+    private fun redirectActivity(uid: String) {
+        var intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("uid", uid)
+
+
+        startActivity(intent)
+    }
+    private fun redirectActivity2(java: Class<TenantActivity>) {
+        startActivity(Intent(this, TenantActivity::class.java))
+    }
+
+
 }

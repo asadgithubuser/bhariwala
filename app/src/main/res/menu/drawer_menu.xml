@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/home"
             android:title="Home"
-            android:icon="@drawable/home"/>
+            android:icon="@drawable/home_icon"/>
         <item
             android:id="@+id/property"
             android:title="Profile"
-            android:icon="@drawable/property"/>
+            android:icon="@drawable/person_icon"/>
         <item
-            android:id="@+id/message"
+            android:id="@+id/drawer_message"
             android:title="Message"
-            android:icon="@drawable/home"/>
-        <item
-            android:id="@+id/hosfme"
-            android:title="Reports"
-            android:icon="@drawable/home"/>
+            android:icon="@drawable/message_icon"/>
 
     </group>
 
@@ -26,19 +23,19 @@
                 <item
                     android:id="@+id/hofdsme"
                     android:title="Update Account"
-                    android:icon="@drawable/home"/>
+                    android:icon="@drawable/update_acc_icon"/>
                 <item
                     android:id="@+id/propderty"
                     android:title="Not Verified"
-                    android:icon="@drawable/property"/>
+                    android:icon="@drawable/verified_icon"/>
                 <item
                     android:id="@+id/ffds"
                     android:title="Subscription plan"
-                    android:icon="@drawable/home"/>
+                    android:icon="@drawable/subscription_icon"/>
                 <item
                     android:id="@+id/hosfdfme"
                     android:title="Reports"
-                    android:icon="@drawable/home"/>
+                    android:icon="@drawable/report_icon"/>
             </menu>
         </item>
     </group>
@@ -49,35 +46,36 @@
                 <item
                     android:id="@+id/hoffdsme"
                     android:title="About Us"
-                    android:icon="@drawable/home"/>
+                    android:icon="@drawable/about_us_icon"/>
                 <item
                     android:id="@+id/propdderty"
                     android:title="Contact Us"
-                    android:icon="@drawable/property"/>
+                    android:icon="@drawable/contact_us_icon"/>
                 <item
                     android:id="@+id/ffdafds"
                     android:title="Privacy Policy"
-                    android:icon="@drawable/home"/>
+                    android:icon="@drawable/privacy_icon"/>
                 <item
                     android:id="@+id/ffdfgds"
                     android:title="Share"
-                    android:icon="@drawable/home"/>
+                    android:icon="@drawable/share_icon"/>
                 <item
                     android:id="@+id/ffdfds"
                     android:title="Rate Us"
-                    android:icon="@drawable/home"/>
+                    android:iconTint="@color/teal_700"
+                    android:icon="@drawable/rate_icon"/>
                 <item
                     android:id="@+id/fds"
                     android:title="Notice From App"
-                    android:icon="@drawable/home"/>
+                    android:icon="@drawable/notifications_icon"/>
             </menu>
         </item>
     </group>
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/hoffdsfdsme"
+            android:id="@+id/drawerSignOut"
             android:title="Logout"
-            android:icon="@drawable/home"/>
+            android:icon="@drawable/logout_icon"/>
 
     </group>
 </menu>
