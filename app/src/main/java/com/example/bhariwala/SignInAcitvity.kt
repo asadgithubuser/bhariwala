@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.util.TimeUtils
+import android.widget.Button
 import android.widget.Toast
 import com.example.bhariwala.Models.User
 import com.google.firebase.auth.FirebaseAuth
@@ -21,6 +22,7 @@ import java.util.*
 
 class SignInAcitvity : AppCompatActivity() {
 
+    private lateinit var logintoregister: Button
 
     override fun onStart() {
         super.onStart()
@@ -34,12 +36,14 @@ class SignInAcitvity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_in)
 
 
-        go_login_to_register_btn.setOnClickListener {
+
+        logintoregister = findViewById<Button>(R.id.go_login_to_register_btn)
+        logintoregister!!.setOnClickListener {
             var intent = Intent(this, SignUPActivity::class.java)
             startActivity(intent)
         }
         login_btn.setOnClickListener {
-                loginUserMethod()
+            loginUserMethod()
         }
     }
 
@@ -85,10 +89,10 @@ class SignInAcitvity : AppCompatActivity() {
                 if(snapshot.exists()){
                     for(user in snapshot.children){
                         var user = user.getValue(User::class.java)
-                            if(user!!.getEmail() == email){
-                                redirectActivity(user!!.getUid())
-                               //var intent = Intent(this, MainActivity::class.java)
-                            }
+                        if(user!!.getEmail() == email){
+                            redirectActivity(user!!.getUid())
+                            //var intent = Intent(this, MainActivity::class.java)
+                        }
                     }
                 }
             }
@@ -97,7 +101,7 @@ class SignInAcitvity : AppCompatActivity() {
 
     private fun redirectActivity(uid: String) {
         var intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("uid", uid)
+        intent.putExtra("uid", uid)
 
 
         startActivity(intent)

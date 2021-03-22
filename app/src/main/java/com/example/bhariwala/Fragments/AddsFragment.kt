@@ -16,8 +16,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bhariwala.Adapter.AddsAdapter
+import com.example.bhariwala.AddAdsActivity
 import com.example.bhariwala.AddFlatActivity
-import com.example.bhariwala.Models.Flat
+import com.example.bhariwala.Models.Ad
 import com.example.bhariwala.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -27,17 +28,10 @@ import kotlinx.android.synthetic.main.activity_add_flat.*
 import kotlinx.android.synthetic.main.activity_add_flat.view.*
 import kotlinx.android.synthetic.main.fragment_adds.view.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-/**
- * A simple [Fragment] subclass.
- * Use the [AddsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AddsFragment : Fragment() {
     private var recyclerView: RecyclerView? = null
     private var adsAdapter: AddsAdapter? = null
-    private var mAdsList: MutableList<Flat>? = null
+    private var mAdsList: MutableList<Ad>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +42,7 @@ class AddsFragment : Fragment() {
 
 
         view.ads_Addflat_fab_btn.setOnClickListener {
-            startActivity(Intent(context, AddFlatActivity::class.java))
+            startActivity(Intent(context, AddAdsActivity::class.java))
         }
 
 
@@ -61,7 +55,7 @@ class AddsFragment : Fragment() {
         recyclerView?.layoutManager = LinearLayoutManager(context)
 
         mAdsList = ArrayList()
-        adsAdapter = context?.let{AddsAdapter(it, mAdsList as ArrayList<Flat>)}
+        adsAdapter = context?.let{AddsAdapter(it, mAdsList as ArrayList<Ad>)}
         recyclerView?.adapter = adsAdapter
 
 
@@ -71,7 +65,7 @@ class AddsFragment : Fragment() {
     }
 
     private fun retribeAllAds() {
-        var adsRef = FirebaseDatabase.getInstance().getReference().child("Flats")
+        var adsRef = FirebaseDatabase.getInstance().getReference().child("Ads")
         adsRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -80,7 +74,7 @@ class AddsFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     for (ads in snapshot.children){
-                        var adsItem = ads.getValue(Flat::class.java)
+                        var adsItem = ads.getValue(Ad::class.java)
                             mAdsList?.add(adsItem!!)
                     }
                     adsAdapter?.notifyDataSetChanged()

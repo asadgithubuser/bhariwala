@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bhariwala.AssignTenantActivity
 import com.example.bhariwala.FlatDetailsActivity
 import com.example.bhariwala.Models.Flat
 import com.example.bhariwala.R
@@ -35,6 +36,12 @@ class FlatAdapter(private var mContext: Context, private var flatList: List<Flat
             mContext.startActivity(intent)
         }
 
+//        holder.flat_add_OR_details.setOnClickListener {
+//            var intent = Intent(mContext, AssignTenantActivity::class.java)
+//            intent.putExtra("flatId", flat!!.getFlatId())
+//            mContext.startActivity(intent)
+//        }
+
     }
 
 
@@ -42,5 +49,6 @@ class FlatAdapter(private var mContext: Context, private var flatList: List<Flat
         var flat_name : TextView = itemView.flat_flat_name
         var building_name : TextView = itemView.flat_building_name
         var flat_details :AppCompatButton = itemView.flat_details_show_btn
+        var flat_add_OR_details :AppCompatButton = itemView.add_tenant_or_details_btn
     }
 }

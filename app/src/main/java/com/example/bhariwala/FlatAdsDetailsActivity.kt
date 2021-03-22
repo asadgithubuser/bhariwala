@@ -2,6 +2,7 @@ package com.example.bhariwala
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.bhariwala.Models.Ad
 import com.example.bhariwala.Models.Flat
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -32,7 +33,7 @@ class FlatAdsDetailsActivity : AppCompatActivity() {
     }
 
     private fun retribeFlatData(flatId: String?) {
-        var flatRef = FirebaseDatabase.getInstance().reference.child("Flats").child(flatId!!)
+        var flatRef = FirebaseDatabase.getInstance().reference.child("Ads").child(flatId!!)
             flatRef.addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -40,7 +41,7 @@ class FlatAdsDetailsActivity : AppCompatActivity() {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.exists()){
-                        var flat = snapshot.getValue(Flat::class.java)
+                        var flat = snapshot.getValue(Ad::class.java)
 
                         flat_name_in_details.text = flat!!.getFlatName()
                         d_rent_month.text = flat!!.getRentForMonth()

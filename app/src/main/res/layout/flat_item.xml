@@ -34,14 +34,14 @@
                     android:layout_height="wrap_content"
                     android:text="F5-Front Flat"
                     android:textAllCaps="false"
-                    android:layout_toLeftOf="@+id/add_tenant_or_boked_btn"
+                    android:layout_toLeftOf="@+id/add_tenant_or_details_btn"
                     android:textSize="20dp"
                     android:layout_alignParentLeft="true"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/add_tenant_or_boked_btn"
+                    android:id="@+id/add_tenant_or_details_btn"
                     android:layout_width="170dp"
                     android:layout_height="37dp"
                     android:text="Add Tenant/details"

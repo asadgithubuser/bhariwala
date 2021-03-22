@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="15dp"
+    android:backgroundTint="@color/white"
+    tools:context=".AssignTenantActivity">
+
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="50dp">-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:padding="10dp">-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:paddingBottom="16dp"-->
+<!--                    android:paddingLeft="5dp"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Assign Tennant To A Flat :"-->
+<!--                        android:textColor="@color/teal_700"-->
+<!--                        android:textSize="18dp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:layout_marginBottom="15dp"/>-->
+
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal">-->
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Selected Flat : "-->
+<!--                                android:layout_gravity="center_vertical"-->
+<!--                                android:textStyle="bold"-->
+<!--                                android:layout_marginRight="20dp"-->
+<!--                                android:textSize="16dp"/>-->
+
+<!--                            <com.google.android.material.button.MaterialButton-->
+<!--                                android:id="@+id/ass_tnt_flat_name"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="F5-A flat"-->
+<!--                                android:insetRight="10dp"-->
+<!--                                android:textColor="@color/teal_700"-->
+<!--                                android:textAllCaps="false"-->
+<!--                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>-->
+
+<!--                        </LinearLayout>-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal">-->
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Building : "-->
+<!--                                android:layout_gravity="center_vertical"-->
+<!--                                android:textStyle="bold"-->
+<!--                                android:layout_marginRight="20dp"-->
+<!--                                android:textSize="16dp"/>-->
+
+<!--                            <com.google.android.material.button.MaterialButton-->
+<!--                                android:id="@+id/ass_tnt_building_name"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Mayer Dua Ghar"-->
+<!--                                android:insetRight="10dp"-->
+<!--                                android:textColor="@color/teal_700"-->
+<!--                                android:textAllCaps="false"-->
+<!--                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>-->
+
+<!--                        </LinearLayout>-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal">-->
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Rent : "-->
+<!--                                android:layout_gravity="center_vertical"-->
+<!--                                android:textStyle="bold"-->
+<!--                                android:layout_marginRight="20dp"-->
+<!--                                android:textSize="16dp"/>-->
+
+<!--                            <com.google.android.material.button.MaterialButton-->
+<!--                                android:id="@+id/ass_tnt_rent"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="12,000/= monthly"-->
+<!--                                android:insetRight="10dp"-->
+<!--                                android:textColor="@color/teal_700"-->
+<!--                                android:textAllCaps="false"-->
+<!--                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>-->
+
+<!--                        </LinearLayout>-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal">-->
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Rent From Month: "-->
+<!--                                android:layout_gravity="center_vertical"-->
+<!--                                android:textStyle="bold"-->
+<!--                                android:layout_marginRight="20dp"-->
+<!--                                android:textSize="16dp"/>-->
+
+<!--                            <com.google.android.material.textfield.TextInputLayout-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="40dp"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:layout_marginRight="5dp"-->
+<!--                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">-->
+<!--                                <AutoCompleteTextView-->
+<!--                                    android:id="@+id/ass_tnt_rent_month"-->
+<!--                                    android:layout_width="fill_parent"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:hint="select date"-->
+<!--                                    android:inputType="none"-->
+<!--                                    android:textSize="15dp"/>-->
+<!--                            </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--                        </LinearLayout>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Select Tennant :"-->
+<!--                        android:textColor="@color/teal_700"-->
+<!--                        android:textSize="18dp"-->
+<!--                        android:layout_marginTop="40dp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:layout_marginBottom="15dp"/>-->
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_marginRight="5dp"-->
+<!--                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">-->
+<!--                        <AutoCompleteTextView-->
+<!--                            android:id="@+id/ass_tnt_select_tenant"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:hint="Search Tenant"-->
+<!--                            android:textSize="15dp"/>-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
+<!--                </LinearLayout>-->
+<!--            </com.google.android.material.card.MaterialCardView>-->
+
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:weightSum="2"-->
+<!--                android:layout_marginVertical="40dp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <androidx.appcompat.widget.AppCompatButton-->
+<!--                    android:id="@+id/ass_tnt_add_tenant"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="37dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="Add Tenant"-->
+<!--                    android:layout_marginRight="7dp"-->
+<!--                    android:textAllCaps="false"-->
+<!--                    android:textSize="17dp"-->
+<!--                    android:backgroundTint="@color/teal_700"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:background="@drawable/rounded_button_style"-->
+<!--                    android:paddingHorizontal="7dp" />-->
+
+<!--                <androidx.appcompat.widget.AppCompatButton-->
+<!--                    android:id="@+id/add_teked_btn"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="37dp"-->
+<!--                    android:layout_marginLeft="7dp"-->
+<!--                    android:text="Cancel"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:textAllCaps="false"-->
+<!--                    android:textSize="17dp"-->
+<!--                    android:backgroundTint="@color/teal_700"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:background="@drawable/rounded_button_style"-->
+<!--                    android:paddingHorizontal="7dp" />-->
+
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+<!--    </ScrollView>-->
+</LinearLayout>

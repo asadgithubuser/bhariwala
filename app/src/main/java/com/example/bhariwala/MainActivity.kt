@@ -81,7 +81,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // ======= drawer toggole layout on action bar
 
         mDrawerToggle = ActionBarDrawerToggle(this, drawer_layout, top_main_toolbar, R.string.dOpen, R.string.dClose)
-
         drawer_layout.bringToFront()
         drawer_layout.addDrawerListener(mDrawerToggle!!)
         mDrawerToggle!!.syncState()

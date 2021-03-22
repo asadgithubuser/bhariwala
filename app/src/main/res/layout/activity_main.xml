@@ -88,11 +88,13 @@
                   android:id="@+id/top_main_toolbar2"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
+                  app:contentInsetLeft="0dp"
                   android:background="@color/white">
                   <com.google.android.material.bottomnavigation.BottomNavigationView
                       android:id="@+id/bottom_nav_menu"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
+                      android:layoutMode="opticalBounds"
                       app:menu="@menu/bottom_nav_menu"
                       app:labelVisibilityMode="labeled"/>
               </androidx.appcompat.widget.Toolbar>
