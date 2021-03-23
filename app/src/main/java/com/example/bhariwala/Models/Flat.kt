@@ -6,6 +6,7 @@ class Flat {
     private var propertyId: String = ""
     private var propertyName: String = ""
     private var flatName: String = ""
+    private var isBooked: String = ""
     private var squareFeet: String = ""
     private var persons: String = ""
     private var totalRooms: String = ""
@@ -28,6 +29,7 @@ class Flat {
         propertyId: String,
         propertyName: String,
         flatName: String,
+        isBooked: String,
         squareFeet: String,
         persons: String,
         totalRooms: String,
@@ -48,6 +50,7 @@ class Flat {
         this.propertyId = propertyId
         this.propertyName = propertyName
         this.flatName = flatName
+        this.isBooked = isBooked
         this.squareFeet = squareFeet
         this.persons = persons
         this.totalRooms = totalRooms
@@ -101,6 +104,14 @@ class Flat {
 
     fun setFlatName(flatName: String){
         this.flatName = flatName
+    }
+
+    fun getIsBooked():String{
+        return isBooked
+    }
+
+    fun setIsBooked(isBooked: String){
+        this.isBooked = isBooked
     }
 
 

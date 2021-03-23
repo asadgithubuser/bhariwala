@@ -22,14 +22,6 @@ import kotlinx.android.synthetic.main.drawer_menu_header.view.*
 import kotlinx.android.synthetic.main.fragment_home_lord.*
 import kotlinx.android.synthetic.main.fragment_home_lord.view.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeLordFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeLordFragment : Fragment() {
     // TODO: Rename and change types of parameters
 
@@ -44,15 +36,14 @@ class HomeLordFragment : Fragment() {
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
 
-        view.tenant_details_btn.setOnClickListener{
-            var intent = Intent(context, TenantActivity::class.java)
+        view.all_tenants_for_homelord.setOnClickListener{
+            var intent = Intent(context, HomeLordTenantsActivity::class.java)
             startActivity(intent)
         }
         view.hl_message_cardView.setOnClickListener{
             var intent = Intent(context, MessageMainAcitivity::class.java)
             startActivity(intent)
         }
-
 
         view.properties_area_btn.setOnClickListener{
             var intent = Intent(context, PropertyAcitivity::class.java)
@@ -62,7 +53,7 @@ class HomeLordFragment : Fragment() {
             startActivity(Intent(context, AddFlatActivity::class.java))
         }
         view.homelord_message.setOnClickListener {
-            startActivity(Intent(context, MessgeAcitivity::class.java))
+            startActivity(Intent(context, MessageMainAcitivity::class.java))
         }
         view.homelord_bill.setOnClickListener {
             startActivity(Intent(context, BillsActivity::class.java))

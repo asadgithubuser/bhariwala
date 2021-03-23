@@ -13,7 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bhariwala">
-        <activity android:name=".AssignTenantActivity"></activity>
+        <activity android:name=".HomeLordTenantsActivity"></activity>
+        <activity android:name=".TenantDetailsActivity" />
+        <activity
+            android:name=".AssignTenantActivity"
+            android:parentActivityName=".FlatActivity"
+            android:theme="@style/ActionBarApptheme" />
         <activity android:name=".AdsDetailsActivity" />
         <activity
             android:name=".AddAdsActivity"
@@ -55,11 +60,12 @@
         <activity android:name=".SignInAcitvity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".TenantActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

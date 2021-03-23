@@ -42,9 +42,9 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/add_tenant_or_details_btn"
-                    android:layout_width="170dp"
+                    android:layout_width="150dp"
                     android:layout_height="37dp"
-                    android:text="Add Tenant/details"
+                    android:text=""
                     android:textAllCaps="false"
                     android:textSize="17dp"
                     android:layout_alignParentRight="true"

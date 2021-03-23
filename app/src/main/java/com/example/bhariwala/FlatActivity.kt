@@ -3,8 +3,6 @@ package com.example.bhariwala
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bhariwala.Adapter.FlatAdapter
@@ -61,7 +59,7 @@ class FlatActivity : AppCompatActivity() {
                     for(flat in snapshot.children){
                         var flatItem = flat.getValue(Flat::class.java)
                         if(flatItem!!.getPropertyId() == propertyId){
-                            flatList!!.add(flatItem)
+                            flatList!!.add(flatItem!!)
                         }
                     }
                     flatAdapter!!.notifyDataSetChanged()

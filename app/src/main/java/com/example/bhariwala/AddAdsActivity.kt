@@ -276,9 +276,6 @@ class AddAdsActivity : AppCompatActivity() {
 
     private fun retribeFlatObject(selectedFlatName: String) {
 
-        var test = "test data"
-        showToast(selectedFlatName.toString())
-
         var flatRef = FirebaseDatabase.getInstance().reference.child("Flats")
         flatRef.addValueEventListener( object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {

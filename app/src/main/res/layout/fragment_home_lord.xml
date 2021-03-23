@@ -110,7 +110,7 @@
                 </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/tenant_details_btn"
+                        android:id="@+id/all_tenants_for_homelord"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"

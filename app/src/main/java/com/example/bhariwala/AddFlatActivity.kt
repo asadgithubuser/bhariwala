@@ -249,6 +249,7 @@ class AddFlatActivity : AppCompatActivity(){
                         flatMap["propertyId"] =  propertyId!!
                         flatMap["propertyName"] = buildingName
                         flatMap["flatName"] = flat_name
+                        flatMap["isBooked"] = "0"
                         flatMap["squareFeet"] = sq_feet
                         flatMap["persons"] = av_persons
                         flatMap["totalRooms"] = t_rooms
