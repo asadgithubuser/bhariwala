@@ -9,6 +9,8 @@ import com.example.bhariwala.Fragments.SentMessageFragment
 import kotlinx.android.synthetic.main.activity_message_main.*
 
 class MessageMainAcitivity : AppCompatActivity() {
+    //private var userCurrentStatus: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_message_main)
@@ -21,6 +23,8 @@ class MessageMainAcitivity : AppCompatActivity() {
             actinnBar.setDisplayHomeAsUpEnabled(true)
         }
 
+        var userCurrentStatus = intent.getStringExtra("userStatus")
+        var myHomeLordId = intent.getStringExtra("myHomeLordId")
 
         var adapter = MessagesPageAdapter(supportFragmentManager)
         adapter.addFragment(SentMessageFragment(), "SENT MESSAGE")
@@ -31,7 +35,13 @@ class MessageMainAcitivity : AppCompatActivity() {
 
         // ====== send message fab
         fab_send_msg_from_ama.setOnClickListener {
-            startActivity(Intent(this, SendMessageActivity::class.java))
+            if(userCurrentStatus == "Homelord"){
+                startActivity(Intent(this, SendMessageActivity::class.java))
+            }else{
+                var intent = Intent(this, TenantMsgSendActivity::class.java)
+                intent.putExtra("myHomeLordId", myHomeLordId)
+                startActivity(intent)
+            }
         }
     }
 }

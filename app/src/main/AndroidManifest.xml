@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bhariwala">
-        <activity android:name=".HomeLordTenantsActivity"></activity>
+        <activity android:name=".TenantMsgSendActivity"></activity>
+        <activity android:name=".TenantActivity" />
+        <activity android:name=".HomeLordProfileActivity" />
+        <activity android:name=".HomeLordTenantsActivity" />
         <activity android:name=".TenantDetailsActivity" />
         <activity
             android:name=".AssignTenantActivity"
@@ -64,7 +67,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TenantActivity" />
         <activity android:name=".MainActivity" />
     </application>
 

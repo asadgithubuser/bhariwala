@@ -182,9 +182,6 @@ class AddAdsActivity : AppCompatActivity() {
 
         //============= add new ad operation =============
         addads_add_ad_button.setOnClickListener {
-
-
-
             var ad_title = addads_ad_title.text.toString()
             var ad_boutHome = addads_ad_about_home.text.toString()
 //            var homeType = homeType

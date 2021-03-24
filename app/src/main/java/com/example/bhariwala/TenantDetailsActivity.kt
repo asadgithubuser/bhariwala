@@ -18,8 +18,10 @@ class TenantDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tenant_details)
+
         var tenantUserName = intent.getStringExtra("tenantUserName")
         retrieveTenantDetails(tenantUserName)
+
     }
 
     private fun retrieveTenantDetails(tenantUserName: String?) {

@@ -7,6 +7,7 @@ import android.provider.CalendarContract
 import android.text.TextUtils
 import android.widget.*
 import com.example.bhariwala.Models.Flat
+import com.example.bhariwala.Models.Tenant
 import com.example.bhariwala.Models.User
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -22,6 +23,7 @@ import kotlin.collections.HashMap
 class AssignTenantActivity : AppCompatActivity() {
 
     var flatId :String? = null
+    var tenantId :String? = null
     var todayDate :String? = null
     var tenantUserList: ArrayList<String>? = null
     var flaAdapter: ArrayAdapter<String>? = null
@@ -53,6 +55,7 @@ class AssignTenantActivity : AppCompatActivity() {
         ass_tnt_select_tenant.onItemClickListener = AdapterView.OnItemClickListener{parent, view, position, id ->
             selectedTenant = parent.getItemAtPosition(position).toString()
 
+           // getAlsoTenantId(selectedTenant)
         }
 
         flatId = intent.getStringExtra("flatId")
@@ -64,6 +67,26 @@ class AssignTenantActivity : AppCompatActivity() {
             saveAssignedTenant()
         }
 
+    }
+
+    private fun getAlsoTenantId(selectedTenant: String) {
+        var tenantRef = FirebaseDatabase.getInstance().reference.child("Tenants")
+        tenantRef.addValueEventListener( object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for(item in snapshot.children){
+                        var tenantUser = item.getValue(Tenant::class.java)
+                        if(tenantUser!!.getTenantUserName().equals(selectedTenant)){
+                            tenantId = tenantUser.getTenantId()
+                        }
+                    }
+                }
+            }
+        })
     }
 
     private fun saveAssignedTenant() {

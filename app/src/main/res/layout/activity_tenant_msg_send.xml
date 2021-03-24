@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_marginTop="50dp"
+    android:layout_marginHorizontal="15dp"
+    tools:context=".TenantMsgSendActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:text="Send to HomeLord:"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/black"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sm_myHomelordName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/white"
+            android:text="fdslf f"
+            android:textColor="@color/teal_700"
+            android:paddingVertical="0dp"
+            android:textSize="15dp"
+            android:textAllCaps="false"/>
+
+
+    </LinearLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <EditText
+            android:id="@+id/tsm_msg_subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:text=""
+            android:hint="message subject"
+            android:gravity="left|top"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <EditText
+            android:id="@+id/tsm_msg_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="5"
+            android:text=""
+            android:hint="Enter message"
+            android:gravity="left|top"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/tsm_tenantSentMessage_btn"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:text="Send Message"
+        app:cornerRadius="20dp"
+        app:icon="@drawable/send_ic_icon"
+        app:iconGravity="textStart"
+        app:iconTint="@color/white"
+        android:textAllCaps="false"
+        android:textSize="18dp"
+        android:backgroundTint="@color/teal_700"
+        android:textColor="@color/white"
+        android:paddingVertical="7dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/add_tena"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="Cancel"
+        android:textAllCaps="false"
+        android:textSize="18dp"
+        app:iconTint="@color/teal_700"
+        app:icon="@drawable/cancel_ic_icon"
+        app:iconGravity="textStart"
+        app:strokeColor="@color/teal_700"
+        app:strokeWidth="2dp"
+        app:cornerRadius="20dp"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/teal_700"/>
+
+</LinearLayout>

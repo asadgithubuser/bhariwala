@@ -14,6 +14,7 @@ import com.example.bhariwala.Fragments.AddsFragment
 import com.example.bhariwala.Fragments.HomeLordFragment
 import com.example.bhariwala.Fragments.MessageFragment
 import com.example.bhariwala.Fragments.TenantFragment
+import com.example.bhariwala.Models.Tenant
 import com.example.bhariwala.Models.User
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -26,6 +27,7 @@ import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.drawer_menu_header.*
+import kotlinx.android.synthetic.main.fragment_tenant.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private var isFABopen : Boolean = false
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var firebaseUser: FirebaseUser? = null
     private var msgCount = 4
     private var currentUserStatus = ""
+    private var myHomeLordId: String? = null
 
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -45,15 +48,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }else{
                     selectedFramnetItem(TenantFragment())
                 }
-
                 return@OnNavigationItemSelectedListener true
             }
             R.id.adds_nav_menu -> {
-                selectedFramnetItem(AddsFragment())
+                var adsFragment = AddsFragment()
+                var bundle = Bundle()
+                bundle.putString("currentUserStatus", currentUserStatus)
+                adsFragment.arguments = bundle
+                supportFragmentManager.beginTransaction().replace(R.id.main_container_frameLayout, adsFragment).commit()
+
                 return@OnNavigationItemSelectedListener true
             }
             R.id.message_nav_menu -> {
-                startActivity(Intent(this, MessageMainAcitivity::class.java))
+                var intent = Intent(this, MessageMainAcitivity::class.java)
+                intent.putExtra("userStatus", currentUserStatus)
+                intent.putExtra("myHomeLordId", myHomeLordId)
+                startActivity(intent)
+
+                //startActivity(Intent(this, MessageMainAcitivity::class.java))
                // selectedFramnetItem(MessageFragment())
                 return@OnNavigationItemSelectedListener true
             }
@@ -98,6 +110,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         redirectHomelordORTenant()
         showUserInformation()
 
+        //=======
+
+
+
+        getHomeLordNameById(firebaseUser!!.uid)
 
         //======== bottom floating operation
 
@@ -118,6 +135,70 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     }
+
+    //=======find out homelord id
+    private fun getHomeLordNameById(currentTenantId: String?) {
+        var userRef = FirebaseDatabase.getInstance().reference.child("Users").child(currentTenantId!!)
+        userRef.addValueEventListener( object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    var user = snapshot.getValue(User::class.java)
+                    getHomeLordByTenantName(user!!.getName())
+                }
+            }
+        })
+    }
+
+    private fun getHomeLordByTenantName(tenantName: String?) {
+        var tenantRef = FirebaseDatabase.getInstance().reference.child("Tenants")
+        tenantRef.addValueEventListener( object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for (item in snapshot.children){
+                        var tenant = item.getValue(Tenant::class.java)
+                        if(tenant!!.getTenantUserName().equals(tenantName)){
+                            getHomeLordDetails(tenant!!.getHomeLordId())
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+    private fun getHomeLordDetails(homeLordId: String) {
+        var userRef = FirebaseDatabase.getInstance().reference.child("Users").child(homeLordId)
+        userRef.addValueEventListener( object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    var user = snapshot.getValue(User::class.java)
+                    myHomeLordId = user!!.getUid()
+
+                }
+            }
+        })
+    }
+
+    //========= finout fomelord id
+
+
+
+
+
+
+
+
+
 
     private fun showUserInformation() {
         var userRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUser!!.uid)
