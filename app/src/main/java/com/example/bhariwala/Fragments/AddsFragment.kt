@@ -36,6 +36,7 @@ class AddsFragment : Fragment() {
     private var mAdsList: MutableList<Ad>? = null
     private var currentUserId : FirebaseUser? = null
 
+    var status = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,9 +49,6 @@ class AddsFragment : Fragment() {
         view.ads_Addflat_fab_btn.setOnClickListener {
             startActivity(Intent(context, AddAdsActivity::class.java))
         }
-
-
-
 
 //        /// =============== adds fragment operations =============
 
@@ -86,6 +84,7 @@ class AddsFragment : Fragment() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                    mAdsList!!.clear()
                     for (ads in snapshot.children){
                         var adsItem = ads.getValue(Ad::class.java)
                         mAdsList?.add(adsItem!!)

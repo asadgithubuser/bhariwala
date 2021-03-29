@@ -5,19 +5,172 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bhariwala.Adapter.HomeLordSentAdapter
+import com.example.bhariwala.Adapter.TenantSendMsgAdapter
+import com.example.bhariwala.Models.HomeLordSent
+import com.example.bhariwala.Models.Tenant
+import com.example.bhariwala.Models.TenantSentMsg
+import com.example.bhariwala.Models.User
 import com.example.bhariwala.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.fragment_received_message.view.*
+import kotlinx.android.synthetic.main.fragment_sent_message.view.*
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ReceivedMessageFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class ReceivedMessageFragment : Fragment() {
+    private var firebaseUser: FirebaseUser? = null
+    private var userStatus:String = ""
+
+    private var homelordMsgList: MutableList<TenantSentMsg>? = null
+    private var tenantMsgList: MutableList<HomeLordSent>? = null
+
+    private var tenantMsgAdapter: TenantSendMsgAdapter? = null
+    private var homelordMsgAdapter: HomeLordSentAdapter? = null
+
+    var passFromFragment : String? = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_received_message, container, false)
+        var view = inflater.inflate(R.layout.fragment_received_message, container, false)
+
+        firebaseUser = FirebaseAuth.getInstance().currentUser
+        checkUserStatus()
+
+        passFromFragment = arguments?.getString("message")
+        Toast.makeText(context, passFromFragment, Toast.LENGTH_SHORT).show()
+
+        Toast.makeText(context, userStatus, Toast.LENGTH_SHORT).show()
+
+        if(userStatus == "Homelord"){
+            homelordMsgList = ArrayList()
+            tenantMsgAdapter = context?.let { TenantSendMsgAdapter(it, homelordMsgList as MutableList<TenantSentMsg>) }
+            view.homlordTenant_received_msg_recyclerView.setHasFixedSize(true)
+
+            view.homlordTenant_received_msg_recyclerView.layoutManager = LinearLayoutManager(context)
+            view.homlordTenant_received_msg_recyclerView.adapter = tenantMsgAdapter
+        }else{
+            tenantMsgList = ArrayList()
+            homelordMsgAdapter = context?.let { HomeLordSentAdapter(it, tenantMsgList as MutableList<HomeLordSent>) }
+            view.homlordTenant_received_msg_recyclerView.setHasFixedSize(true)
+
+            view.homlordTenant_received_msg_recyclerView.layoutManager = LinearLayoutManager(context)
+            view.homlordTenant_received_msg_recyclerView.adapter = homelordMsgAdapter
+        }
+
+
+
+
+        if(userStatus == "Homelord"){
+            fetchMessagesForHomeLord()
+        }else{
+            getTeantNameById()
+        }
+
+
+
+        return view
+    }
+
+    private fun getTeantNameById() {
+        var userRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUser!!.uid)
+        userRef.addValueEventListener( object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    var user = snapshot.getValue(User::class.java)
+                     getTenantByName(user!!.getName())
+                }
+            }
+        })
+    }
+
+    private fun getTenantByName(userName: String) {
+        var tenantRef = FirebaseDatabase.getInstance().reference.child("Tenants")
+        tenantRef.addValueEventListener( object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for(item in snapshot.children){
+                        var tenant = item.getValue(Tenant::class.java)
+                        if(tenant!!.getTenantUserName().equals(userName)){
+                            getHomeLordMsgByFlatName(tenant.getFlatName())
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+    private fun getHomeLordMsgByFlatName(flatName: String) {
+        var hlMsgRef = FirebaseDatabase.getInstance().reference.child("HomeLordSentMsg")
+        hlMsgRef.addValueEventListener( object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for(item in snapshot.children){
+                        var hlSentMsg = item.getValue(HomeLordSent::class.java)
+                        if(hlSentMsg!!.getFlatName().equals(flatName)){
+                            tenantMsgList!!.add(hlSentMsg)
+                        }
+                    }
+                    homelordMsgAdapter!!.notifyDataSetChanged()
+                }
+            }
+        })
+    }
+
+    private fun fetchMessagesForHomeLord() {
+        var tenantRef = FirebaseDatabase.getInstance().reference.child("TenantSendMsg")
+        tenantRef.addValueEventListener( object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for(msgitem in snapshot.children){
+                        var tenantMsg = msgitem.getValue(TenantSentMsg::class.java)
+                        if(tenantMsg!!.getHomeLrdId().equals(firebaseUser!!.uid)){
+                            homelordMsgList!!.add(tenantMsg)
+                        }
+                    }
+                    tenantMsgAdapter!!.notifyDataSetChanged()
+                }
+            }
+        })
+    }
+
+    private fun checkUserStatus() {
+        var userref = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUser!!.uid)
+        userref.addValueEventListener( object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    var user = snapshot.getValue(User::class.java)
+                    userStatus = user!!.getUser()
+                }
+            }
+        })
     }
 
 }

@@ -26,11 +26,12 @@
                 android:padding="10dp"
                 android:orientation="vertical">
                 <TextView
+                    android:id="@+id/fad_flat_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="17dp"
                     android:textStyle="bold"
-                    android:text="Flat rent for family. 3 rooms, 2 baths"/>
+                    android:text=""/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -67,9 +68,10 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"/>
                             <TextView
+                                android:id="@+id/fad_home_type"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Flat Vara"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -85,10 +87,10 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"/>
                             <TextView
-                                android:id="@+id/d_rent_month"
+                                android:id="@+id/fad_rent_available_for_month"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Jan 5, 2020"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -148,10 +150,10 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"/>
                             <TextView
-                                android:id="@+id/d_total_room"
+                                android:id="@+id/fad_total_rms"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Total rooms 3"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -167,10 +169,10 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"/>
                             <TextView
-                                android:id="@+id/d_total_bath"
+                                android:id="@+id/fad_total_baths"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Total baths 2"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -186,10 +188,10 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"/>
                             <TextView
-                                android:id="@+id/d_attached_bath"
+                                android:id="@+id/fad_attached_bath"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Attached bath 1"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -247,10 +249,10 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"/>
                             <TextView
-                                android:id="@+id/d_eletricity_bill"
+                                android:id="@+id/fad_electricity_bill"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Electricity - 900tk"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -266,10 +268,10 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"/>
                             <TextView
-                                android:id="@+id/d_water_bill"
+                                android:id="@+id/fad_water_bill"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Water - 600 tk"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -293,10 +295,10 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"/>
                             <TextView
-                                android:id="@+id/d_gas_bill"
+                                android:id="@+id/fad_gas_bill"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Gas - 1200 tk"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -312,10 +314,10 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/location"/>
                             <TextView
-                                android:id="@+id/d_service_bill"
+                                android:id="@+id/fad_service_charge_bill"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Service Charge 500 tk"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -339,11 +341,10 @@
                         android:textSize="16dp"
                         android:textColor="#7C7C7C"/>
                     <TextView
+                        android:id="@+id/fad_about_home"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="This is the best resident for student, job holder and family
-. Because this area very quite and secure. This is the best resident for student, job holder and family
-. Because this area very quite and secure."
+                        android:text=""
                         android:layout_gravity="center_vertical"
                         android:textSize="16dp"
                         android:textColor="@color/black"/>
@@ -392,9 +393,10 @@
                                     android:textSize="15dp"
                                     android:textColor="@color/teal_700"/>
                                 <TextView
+                                    android:id="@+id/fad_genarator_service"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="YES"
+                                    android:text=""
                                     android:gravity="center_horizontal"
                                     android:textSize="15dp"
                                     android:textColor="@color/black"/>
@@ -421,9 +423,10 @@
                                     android:textSize="15dp"
                                     android:textColor="@color/teal_700"/>
                                 <TextView
+                                    android:id="@+id/fad_Lift_service"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="YES"
+                                    android:text=""
                                     android:gravity="center_horizontal"
                                     android:textSize="15dp"
                                     android:textColor="@color/black"/>
@@ -451,9 +454,10 @@
                                     android:textSize="15dp"
                                     android:textColor="@color/teal_700"/>
                                 <TextView
+                                    android:id="@+id/fad_security_service"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="NO"
+                                    android:text=""
                                     android:gravity="center_horizontal"
                                     android:textSize="15dp"
                                     android:textColor="#E91E63"/>
@@ -481,9 +485,10 @@
                                     android:textSize="15dp"
                                     android:textColor="@color/teal_700"/>
                                 <TextView
+                                    android:id="@+id/fad_gas_service"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="YES"
+                                    android:text=""
                                     android:gravity="center_horizontal"
                                     android:textSize="15dp"
                                     android:textColor="@color/black"/>

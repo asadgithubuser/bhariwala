@@ -9,7 +9,10 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import com.example.bhariwala.Models.Flat
+import com.example.bhariwala.Models.Property
 import com.google.android.material.button.MaterialButtonToggleGroup
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -30,6 +33,8 @@ class AddAdsActivity : AppCompatActivity() {
     private var gas:String? = null
     private var lift:String? = null
     private var generator:String? = null
+
+    var status = ""
 
     private var homeType:String? = null
     private var rentForWhome:ThemedButton? = null
@@ -52,19 +57,31 @@ class AddAdsActivity : AppCompatActivity() {
      var mbil = ""
      var gbill = ""
      var wbill = ""
+    var property_address = ""
+    var property_road = ""
+    var property_house = ""
+    var property_section = ""
+    var property_city = ""
+    var property_thana = ""
+    var property_division = ""
 
+    private var firebaseUser : FirebaseUser? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_ads)
+
+
+        firebaseUser = FirebaseAuth.getInstance().currentUser
 
         var actionBar = getSupportActionBar()
         if(actionBar != null){
             actionBar.setTitle("Add New Ad")
         }
 
-        var select_flat = findViewById<AutoCompleteTextView>(R.id.select_flat_in_adPage)
 
+
+        var select_flat = findViewById<AutoCompleteTextView>(R.id.select_flat_in_adPage)
         flatList = ArrayList()
         flatAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_checked, flatList!!)
         select_flat.threshold = 1
@@ -184,16 +201,6 @@ class AddAdsActivity : AppCompatActivity() {
         addads_add_ad_button.setOnClickListener {
             var ad_title = addads_ad_title.text.toString()
             var ad_boutHome = addads_ad_about_home.text.toString()
-//            var homeType = homeType
-           // var selected_flat_name = selected_flat
-//            var rentForWhome = rentForWhome
-//            var security = security
-//            var gas = gas
-//            var lift = lift
-//            var generator = generator
-//            var religionName = religionName
-
-
 
             when{
                 TextUtils.isEmpty(ad_title) -> showToast("ad title should not be null")
@@ -215,9 +222,6 @@ class AddAdsActivity : AppCompatActivity() {
                     progressDialog.show()
 
 
-
-                    Log.d("babutnu rent ", rennt)
-
                    var addRef = FirebaseDatabase.getInstance().reference.child("Ads")
                    var adId = addRef.push().key
                    var AdMap = HashMap<String, Any>()
@@ -233,6 +237,7 @@ class AddAdsActivity : AppCompatActivity() {
                    AdMap["generator"] = generator!!
                    AdMap["religionName"] = religionName!!
 
+                    //====== from flat
                    AdMap["homeLordId"] = hlid
                    AdMap["flatId"] = flatid
                    AdMap["squareFeet"] = sf
@@ -250,12 +255,20 @@ class AddAdsActivity : AppCompatActivity() {
                    AdMap["gasBill"] = gbill
                    AdMap["waterBill"] = wbill
 
+                    //======== from property
+//                   AdMap["propertyAddress"] = property_address
+//                   AdMap["propertyRoad"] = property_road
+//                   AdMap["propertyHouse"] = property_house
+//                   AdMap["propertySection"] = property_section
+//                   AdMap["propertyCity"] = property_city
+//                   AdMap["propertyThana"] = property_thana
+//                   AdMap["propertyDivision"] = property_division
+
 
                    addRef.child(adId).setValue(AdMap).addOnCompleteListener { task->
                        if (task.isSuccessful){
                            progressDialog.dismiss()
                            showToast("New Ad has been added successfully")
-
                            finish()
                        }else{
                            progressDialog.dismiss()
@@ -271,6 +284,7 @@ class AddAdsActivity : AppCompatActivity() {
 
     }
 
+
     private fun retribeFlatObject(selectedFlatName: String) {
 
         var flatRef = FirebaseDatabase.getInstance().reference.child("Flats")
@@ -280,7 +294,6 @@ class AddAdsActivity : AppCompatActivity() {
                     for (flatItem in snapshot.children){
                         var flat = flatItem.getValue(Flat::class.java)
                         if(flat!!.getFlatName() == selectedFlatName){
-                            Log.d("babutnu", flat!!.getFlatId())
 
                             hlid = flat.getHomeLordId()
                             flatid = flat.getFlatId()
@@ -298,6 +311,8 @@ class AddAdsActivity : AppCompatActivity() {
                             mbil = flat.getMaintanenceBill()
                             gbill = flat.getGasBill()
                             wbill = flat.getWaterBill()
+
+                            //getFromPropertyByFlatID(flat.getPropertyId())
                         }
                     }
                 }
@@ -307,6 +322,32 @@ class AddAdsActivity : AppCompatActivity() {
 
             }
         })
+    }
+
+    private fun getFromPropertyByFlatID(propertyId: String) {
+        var propertyRef = FirebaseDatabase.getInstance().getReference().child("Properties")
+        propertyRef.addValueEventListener( object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for (property in snapshot.children){
+                        var propertyItem = property.getValue(Property::class.java)
+                        if(propertyItem!!.getHomeLordId().equals(firebaseUser!!.uid)){
+                           property_address = propertyItem.getAddress()
+                           property_road = propertyItem.getRoad()
+                           property_house = propertyItem.getHouse()
+                           property_section = propertyItem.getSection()
+                           property_city = propertyItem.getCity()
+                           property_thana = propertyItem.getThana()
+                           property_division = propertyItem.getDivision()
+                        }
+                    }
+                }
+            }
+        } )
     }
 
     private fun retribeAllAds() {
@@ -320,7 +361,9 @@ class AddAdsActivity : AppCompatActivity() {
                 if(snapshot.exists()){
                     for (flat in snapshot.children){
                         var flatItem = flat.getValue(Flat::class.java)
-                        flatList?.add(flatItem!!.getFlatName())
+                        if(flatItem!!.getHomeLordId().equals(firebaseUser!!.uid)){
+                            flatList?.add(flatItem.getFlatName())
+                        }
                     }
                     flatAdapter?.notifyDataSetChanged()
                 }

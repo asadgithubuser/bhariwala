@@ -129,6 +129,7 @@ class SendMessageActivity : AppCompatActivity() {
                     if(task.isSuccessful){
                         progressDialog.dismiss()
                         showTaost("Your message has been sent successfully")
+                        finish()
                     }else{
                         progressDialog.dismiss()
                         showTaost("Error: "+task.exception.toString())
@@ -163,7 +164,6 @@ class SendMessageActivity : AppCompatActivity() {
     }
 
     private fun retrieveAllFlats(selected_property: String) {
-        showTaost(selected_property_name)
         var bulidingRef = FirebaseDatabase.getInstance().reference.child("Properties")
         bulidingRef.addValueEventListener( object : ValueEventListener{
             override fun onCancelled(error: DatabaseError) {

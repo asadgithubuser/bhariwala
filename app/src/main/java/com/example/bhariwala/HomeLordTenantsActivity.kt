@@ -1,8 +1,10 @@
 package com.example.bhariwala
 
+import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bhariwala.Adapter.TenantsListHLAdapter
@@ -14,7 +16,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_ads_details.*
 
 class HomeLordTenantsActivity : AppCompatActivity() {
 
@@ -39,14 +40,40 @@ class HomeLordTenantsActivity : AppCompatActivity() {
 
 
 
+        checkHaveTenantOrNot()
 
+    }
 
+    private fun checkHaveTenantOrNot() {
+        var tenantRef = FirebaseDatabase.getInstance().reference.child("Tenants")
+                .orderByChild("homeLordId")
+                .equalTo(currentUser!!.uid)
+        tenantRef.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
 
+            }
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.childrenCount <= 0){
+                    //finish()
 
-        retrieveTenantForHomeLords()
+                    var alertDialog = AlertDialog.Builder(this@HomeLordTenantsActivity)
+                    alertDialog.setTitle("Tenant Add")
+                    alertDialog.setMessage("You have  not added tenant yet. please add tenant first.")
+                    alertDialog.setCancelable(false)
+                    alertDialog.setPositiveButton("OK", DialogInterface.OnClickListener{
+                        dialog, id ->  finish()
+                    })
+                    alertDialog.setNegativeButton("Cancel", DialogInterface.OnClickListener{
+                        dialog, id ->  dialog.cancel()
+                    })
+                    val alert = alertDialog.create()
+                    alert.show()
 
-
-
+                }else{
+                    retrieveTenantForHomeLords()
+                }
+            }
+        })
     }
 
     private fun retrieveTenantForHomeLords() {

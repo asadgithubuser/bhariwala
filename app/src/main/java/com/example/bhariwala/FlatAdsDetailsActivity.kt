@@ -3,21 +3,11 @@ package com.example.bhariwala
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.bhariwala.Models.Ad
-import com.example.bhariwala.Models.Flat
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_flat_ads_details.*
-import kotlinx.android.synthetic.main.activity_flat_ads_details.d_attached_bath
-import kotlinx.android.synthetic.main.activity_flat_ads_details.d_eletricity_bill
-import kotlinx.android.synthetic.main.activity_flat_ads_details.d_gas_bill
-import kotlinx.android.synthetic.main.activity_flat_ads_details.d_rent_month
-import kotlinx.android.synthetic.main.activity_flat_ads_details.d_service_bill
-import kotlinx.android.synthetic.main.activity_flat_ads_details.d_total_bath
-import kotlinx.android.synthetic.main.activity_flat_ads_details.d_total_room
-import kotlinx.android.synthetic.main.activity_flat_ads_details.d_water_bill
-import kotlinx.android.synthetic.main.activity_flat_details.*
 
 class FlatAdsDetailsActivity : AppCompatActivity() {
     private var flatId = ""
@@ -33,7 +23,7 @@ class FlatAdsDetailsActivity : AppCompatActivity() {
     }
 
     private fun retribeFlatData(flatId: String?) {
-        var flatRef = FirebaseDatabase.getInstance().reference.child("Ads").child(flatId!!)
+        var flatRef = FirebaseDatabase.getInstance().reference.child("Ads")
             flatRef.addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
 
@@ -41,19 +31,26 @@ class FlatAdsDetailsActivity : AppCompatActivity() {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.exists()){
-                        var flat = snapshot.getValue(Ad::class.java)
-
-                        flat_name_in_details.text = flat!!.getFlatName()
-                        d_rent_month.text = flat!!.getRentForMonth()
-                        d_total_room.text =  "Total rooms "+flat!!.getTotalRooms()
-                        d_total_bath.text =  "Total baths"+flat!!.getTotalBaths()
-                        d_attached_bath.text = "Attached bath"+flat!!.getAttachedBath()
-                        d_eletricity_bill.text = "Electricity - "+flat!!.getElectricityBill()
-                        d_water_bill.text = "Water - "+flat!!.getWaterBill()
-                        d_gas_bill.text = "Gas - "+flat!!.getGasBill()
-                        d_service_bill.text = "Maintanence - "+flat!!.getMaintanenceBill()
-
-
+                        for(item in snapshot.children){
+                            var ads = item.getValue(Ad::class.java)
+                            if(ads!!.getFlatId().equals(flatId)){
+                                fad_flat_title.text = ads!!.getAdTitle()
+                                fad_home_type.text = ads!!.getHomeType()+" Vara"
+                                fad_rent_available_for_month.text = ads!!.getRentForMonth()
+                                fad_total_rms.text = "Total Rooms: "+ads!!.getTotalRooms()
+                                fad_total_baths.text = "Total Baths: "+ads!!.getTotalBaths()
+                                fad_attached_bath.text = "Attached Bath: "+ads!!.getAttachedBath()
+                                fad_electricity_bill.text = "Electricity: "+ads!!.getElectricityBill()
+                                fad_water_bill.text = "Water: "+ads!!.getWaterBill()
+                                fad_gas_bill.text = "Gas: "+ads!!.getGasBill()
+                                fad_service_charge_bill.text = "Maitanence: "+ads!!.getMaintanenceBill()
+                                fad_about_home.text = ads!!.getAdBoutHome()
+                                fad_genarator_service.text = ads!!.getGenerator()
+                                fad_Lift_service.text = ads!!.getLift()
+                                fad_security_service.text = ads!!.getSecurity()
+                                fad_gas_service.text = ads!!.getGas()
+                            }
+                        }
                     }
                 }
             })

@@ -14,15 +14,24 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_tenant_msg_send.*
 import kotlinx.android.synthetic.main.fragment_tenant.*
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.util.*
+import kotlin.collections.HashMap
 
 class TenantMsgSendActivity : AppCompatActivity() {
 
     private var myHomeLordId: String? = null
 
+    var send_time = ""
+    var send_date = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tenant_msg_send)
-
 
         myHomeLordId = intent.getStringExtra("myHomeLordId")
         getHomeLordNameById(myHomeLordId)
@@ -30,6 +39,18 @@ class TenantMsgSendActivity : AppCompatActivity() {
         tsm_tenantSentMessage_btn.setOnClickListener {
             sentMsgToHomelord()
         }
+
+        var sdf_date = SimpleDateFormat("mm/DD/yyyy")
+        send_date = sdf_date.format(Date())
+
+        var current_time = LocalDateTime.now()
+        send_time = current_time.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM))
+
+
+
+
+
+
 
 
     }
@@ -63,11 +84,14 @@ class TenantMsgSendActivity : AppCompatActivity() {
                     tsmMap["homeLrdName"] = homeLrdName
                     tsmMap["msgSubject"] = msgSubject
                     tsmMap["msgText"] = msgText
+                    tsmMap["time"] = send_time
+                    tsmMap["date"] = send_date
 
                 tsmRef.child(tsmId).setValue(tsmMap).addOnCompleteListener { task ->
                     if(task.isSuccessful){
                         progressDialog.dismiss()
                         showToast("Your message has been sent successfully")
+                        finish()
                     }else{
                         progressDialog.dismiss()
                         showToast("Error: "+task.exception.toString())

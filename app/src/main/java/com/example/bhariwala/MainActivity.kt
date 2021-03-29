@@ -10,10 +10,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import com.example.bhariwala.Fragments.AddsFragment
-import com.example.bhariwala.Fragments.HomeLordFragment
-import com.example.bhariwala.Fragments.MessageFragment
-import com.example.bhariwala.Fragments.TenantFragment
+import com.example.bhariwala.Fragments.*
+import com.example.bhariwala.Interfaces.Communicator
 import com.example.bhariwala.Models.Tenant
 import com.example.bhariwala.Models.User
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -29,7 +27,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.drawer_menu_header.*
 import kotlinx.android.synthetic.main.fragment_tenant.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, Communicator {
     private var isFABopen : Boolean = false
     var selectFragment: Fragment? = null
     var mDrawerToggle: ActionBarDrawerToggle? = null
@@ -111,7 +109,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         showUserInformation()
 
         //=======
-
 
 
         getHomeLordNameById(firebaseUser!!.uid)
@@ -302,6 +299,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun passDataCom(ftof: String) {
+        var bundle = Bundle()
+        bundle.putString("message", ftof)
+
+        var fragment = ReceivedMessageFragment()
+        fragment.arguments = bundle
+        this.supportFragmentManager.beginTransaction().replace(R.id.main_container_frameLayout, fragment).commit()
     }
 
 }

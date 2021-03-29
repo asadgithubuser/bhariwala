@@ -74,6 +74,7 @@ class PropertyAcitivity : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                    mPropertyList!!.clear()
                     for (proItem in snapshot.children){
                         var property = proItem.getValue(Property::class.java)
                         if (property!!.getHomeLordId() == firebaseUser!!.uid){

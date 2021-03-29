@@ -8,10 +8,19 @@ import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bhariwala.Models.HomeLordSent
+import com.example.bhariwala.Models.Tenant
+import com.example.bhariwala.Models.User
 import com.example.bhariwala.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class HomeLordSentAdapter(private val mContext: Context, private val mHSMessages: List<HomeLordSent>)
     : RecyclerView.Adapter<HomeLordSentAdapter.ViewHolder>(){
+
     override fun onCreateViewHolder( parent: ViewGroup, viewType: Int ): HomeLordSentAdapter.ViewHolder {
         var view = LayoutInflater.from(mContext).inflate(R.layout.homelord_sent_msg_item, parent, false)
         return ViewHolder(view)
@@ -24,13 +33,18 @@ class HomeLordSentAdapter(private val mContext: Context, private val mHSMessages
     override fun onBindViewHolder(holder: HomeLordSentAdapter.ViewHolder, position: Int) {
         var sentMag = mHSMessages[position]
 
+
         holder.hl_sent_receiver_name.setText(sentMag!!.getHomeLordId())
         holder.hl_sent_building_name.setText(sentMag!!.getPropertyName())
         holder.hl_sent_flat_name.setText(sentMag!!.getFlatName())
         holder.hl_sent_msg_time.setText(sentMag!!.getTime())
         holder.hl_sent_msg_date.setText(sentMag!!.getDate())
         holder.hl_sent_msg_text.setText(sentMag!!.getMessage())
+
+
+
     }
+
 
     inner class ViewHolder(@NonNull itemView: View): RecyclerView.ViewHolder(itemView){
         var hl_sent_receiver_name: TextView = itemView.findViewById(R.id.hl_sent_receiver_name)
