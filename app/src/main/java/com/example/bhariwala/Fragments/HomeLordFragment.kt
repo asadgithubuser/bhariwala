@@ -26,6 +26,7 @@ class HomeLordFragment : Fragment() {
     // TODO: Rename and change types of parameters
 
     private var firebaseUser: FirebaseUser? = null
+    private var userStatus : String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,7 +57,9 @@ class HomeLordFragment : Fragment() {
             startActivity(Intent(context, MessageMainAcitivity::class.java))
         }
         view.homelord_bill.setOnClickListener {
-            startActivity(Intent(context, BillsActivity::class.java))
+            var intent = Intent(context, HomeLordBillsActivity::class.java)
+            intent.putExtra("currentUserStatus", userStatus)
+            startActivity(intent)
         }
         view.homelord_serviceman.setOnClickListener {
             startActivity(Intent(context, ServiceManActivity::class.java))
@@ -81,9 +84,10 @@ class HomeLordFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     var user = snapshot.getValue(User::class.java)
-                    view.hl_user_name.text = user!!.getName()
-                    view.hl_user_status.text = user!!.getUser()
-                    Picasso.get().load(user!!.getImage()).into(view.hl_user_image)
+                         userStatus = user!!.getUser()
+                        view.hl_user_name.text = user!!.getName()
+                        view.hl_user_status.text = user!!.getUser()
+                        Picasso.get().load(user!!.getImage()).into(view.hl_user_image)
                 }
             }
         })

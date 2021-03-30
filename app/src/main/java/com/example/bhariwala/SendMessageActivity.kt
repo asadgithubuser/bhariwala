@@ -79,7 +79,6 @@ class SendMessageActivity : AppCompatActivity() {
         }
 
 
-
         var sdtf = SimpleDateFormat("dd/MM/yyyy")
         date = sdtf.format(Date())
 
@@ -89,7 +88,6 @@ class SendMessageActivity : AppCompatActivity() {
         send_message_allFlat_or_SingleFlat.setOnClickListener {
             sendMessageTOFlat()
         }
-
 
 
        // showTaost(selected_property_name)

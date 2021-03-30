@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +18,7 @@ import com.example.bhariwala.HomeLordProfileActivity
 import com.example.bhariwala.Interfaces.Communicator
 import com.example.bhariwala.Models.*
 import com.example.bhariwala.R
+import com.example.bhariwala.TenantPayBillsMainAcitivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -54,6 +54,10 @@ class TenantFragment : Fragment() {
 
         view.tenanti_my_flat_main.setOnClickListener {
             getHomeLordNameByCurrentId(currentTenantId!!.uid)
+        }
+
+        view.tenanti_my_paybills_main.setOnClickListener {
+            startActivity(Intent(context, TenantPayBillsMainAcitivity::class.java))
         }
 
         showTenantInfo(view)

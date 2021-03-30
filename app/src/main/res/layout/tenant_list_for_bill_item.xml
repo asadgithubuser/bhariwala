@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="15dp"
+    android:backgroundTint="#EFF1F1"
+    android:layout_marginTop="20dp">
+
+    <LinearLayout
+        android:id="@+id/property_area_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="6dp"
+            android:layout_height="match_parent"
+            android:background="#9468E4"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginRight="15dp"
+                    android:src="@drawable/tenant2"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/payRent_tenant_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Phone : "
+                            android:textAllCaps="false"
+                            android:textSize="16dp"
+                            android:layout_marginVertical="6dp"
+                            android:textColor="#040404"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="01710 123 456"
+                            android:textAllCaps="false"
+                            android:textSize="16dp"
+                            android:layout_marginVertical="6dp"
+                            android:textColor="#292424"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Flat : "
+                            android:textAllCaps="false"
+                            android:textSize="16dp"
+                            android:layout_marginVertical="6dp"
+                            android:textColor="#040404"/>
+                        <TextView
+                            android:id="@+id/payRent_flat_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textAllCaps="false"
+                            android:textSize="16dp"
+                            android:layout_marginVertical="6dp"
+                            android:textColor="#292424"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Building : "
+                            android:textAllCaps="false"
+                            android:textSize="16dp"
+                            android:layout_marginVertical="6dp"
+                            android:textColor="#040404"/>
+                        <TextView
+                            android:id="@+id/payRent_building_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textAllCaps="false"
+                            android:textSize="16dp"
+                            android:layout_marginVertical="6dp"
+                            android:textColor="#685959"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Month (Aug 2021) :"
+                android:textAllCaps="false"
+                android:textSize="16dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginVertical="6dp"
+                android:textColor="#040404"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/property_flats_btn"
+                    android:layout_width="80dp"
+                    android:layout_height="33dp"
+                    android:text="Due"
+                    android:layout_marginRight="20dp"
+                    android:textAllCaps="false"
+                    android:textSize="17dp"
+                    android:textColor="#F4442C"
+                    android:paddingHorizontal="7dp"
+                    android:background="@drawable/button_outlinebox_style" />
+
+        </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/payRent_show_all_bills_list_for_tenant"
+                android:layout_width="170dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="15dp"
+                android:text="All Bills"
+                android:layout_gravity="center_horizontal"
+                android:textAllCaps="false"
+                android:textSize="18dp"
+                android:textColor="@color/teal_700"
+                android:background="@drawable/button_outlinebox_style"
+                android:paddingHorizontal="7dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -116,11 +116,11 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Rent From Month: "
+                                android:text="Rent Start Month: "
                                 android:layout_gravity="center_vertical"
                                 android:textStyle="bold"
                                 android:layout_marginRight="20dp"
-                                android:textSize="16dp"/>
+                                android:textSize="15dp"/>
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:layout_width="wrap_content"
