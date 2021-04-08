@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.CalendarContract
 import android.text.TextUtils
+import android.util.Log
 import android.widget.*
 import com.example.bhariwala.Models.Flat
 import com.example.bhariwala.Models.Tenant
@@ -23,7 +24,7 @@ import kotlin.collections.HashMap
 class AssignTenantActivity : AppCompatActivity() {
 
     var flatId :String? = null
-    var tenantId :String? = null
+    var tenantId = ""
     var todayDate :String? = null
     var tenantUserList: ArrayList<String>? = null
     var flaAdapter: ArrayAdapter<String>? = null
@@ -55,8 +56,11 @@ class AssignTenantActivity : AppCompatActivity() {
         ass_tnt_select_tenant.onItemClickListener = AdapterView.OnItemClickListener{parent, view, position, id ->
             selectedTenant = parent.getItemAtPosition(position).toString()
 
-           // getAlsoTenantId(selectedTenant)
+           //getAlsoTenantId(selectedTenant)
         }
+
+//        Log.d("ghg2", selectedTenant)
+//        Toast.makeText(this, selectedTenant, Toast.LENGTH_SHORT).show()
 
         flatId = intent.getStringExtra("flatId")
 
@@ -64,13 +68,14 @@ class AssignTenantActivity : AppCompatActivity() {
         retrieveTenantNames()
 
         ass_tnt_add_tenant_btn.setOnClickListener {
-            saveAssignedTenant()
+            getAlsoTenantId(flatId, selectedTenant)
         }
 
     }
 
-    private fun getAlsoTenantId(selectedTenant: String) {
-        var tenantRef = FirebaseDatabase.getInstance().reference.child("Tenants")
+    private fun getAlsoTenantId(flatId:String?, selectedTenant: String) {
+        Toast.makeText(this, "in -> "+selectedTenant, Toast.LENGTH_SHORT).show()
+        var tenantRef = FirebaseDatabase.getInstance().reference.child("Users")
         tenantRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -79,9 +84,11 @@ class AssignTenantActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     for(item in snapshot.children){
-                        var tenantUser = item.getValue(Tenant::class.java)
-                        if(tenantUser!!.getTenantUserName().equals(selectedTenant)){
-                            tenantId = tenantUser.getTenantId()
+                        var tenantUser = item.getValue(User::class.java)
+                        if(tenantUser!!.getName().equals(selectedTenant)){
+                            tenantId = tenantUser.getUid()
+
+                            saveAssignedTenant(flatId, tenantId)
                         }
                     }
                 }
@@ -89,8 +96,8 @@ class AssignTenantActivity : AppCompatActivity() {
         })
     }
 
-    private fun saveAssignedTenant() {
-        var flatName = ass_tnt_flat_name.text.toString()
+    private fun saveAssignedTenant(flatId: String?, tenantId2: String) {
+        //var flatName = ass_tnt_flat_name.text.toString()
         var propertyName = ass_tnt_building_name.text.toString()
         var rent = ass_tnt_rent.text.toString()
         var date = ass_tnt_rent_month.text.toString()
@@ -103,17 +110,17 @@ class AssignTenantActivity : AppCompatActivity() {
             TextUtils.isEmpty(selectedTenant) -> showToast("Please select a tenant")
             else -> {
                 var tenantRef = FirebaseDatabase.getInstance().reference.child("Tenants")
-                var tenantId = tenantRef.push().key
+                var tenantIdd = tenantRef.push().key
                 var tMap = HashMap<String, Any>()
-                tMap["tenantId"] = tenantId!!
-                tMap["tenantUserName"] = selectedTenant
+                tMap["tenantId"] = tenantId2
+                tMap["tenantUserName"] = ""
                 tMap["homeLordId"] = FirebaseAuth.getInstance().currentUser!!.uid
-                tMap["flatName"] = flatName
+                tMap["flatId"] = flatId!!
                 tMap["propertyName"] = propertyName
                 tMap["rent"] = rent
                 tMap["date"] = date
 
-                tenantRef.child(tenantId).setValue(tMap).addOnCompleteListener { task ->
+                tenantRef.child(tenantIdd!!).setValue(tMap).addOnCompleteListener { task ->
                     if(task.isSuccessful){
                         flatBookedUpdate(flatId.toString())
                         showToast("Tenant Added successfully")

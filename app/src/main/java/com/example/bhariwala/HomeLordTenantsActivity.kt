@@ -18,17 +18,23 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class HomeLordTenantsActivity : AppCompatActivity() {
-
     private var currentUser : FirebaseUser? = null
     private var tenantList: MutableList<Tenant>? = null
     private var tenatAdapter: TenantsListHLAdapter? = null
 
+    var isListForProperty : String? = null
+    var propertyId : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_lord_tenants)
 
         currentUser = FirebaseAuth.getInstance().currentUser
+
+        //came from PropertyAdapter
+        isListForProperty = intent?.getStringExtra("isListForProperty")
+        propertyId = intent?.getStringExtra("propertyName")
+
 
         var tenantRecyclerView = findViewById<RecyclerView>(R.id.tenantListForHL_recyclerView)
         tenantRecyclerView.setHasFixedSize(true)
@@ -38,10 +44,35 @@ class HomeLordTenantsActivity : AppCompatActivity() {
         tenatAdapter = TenantsListHLAdapter(this, tenantList as MutableList<Tenant>)
         tenantRecyclerView.adapter = tenatAdapter
 
+        if(isListForProperty == "1") {
+            onlyListForProperty()
+        }else{
+            checkHaveTenantOrNot()
+        }
 
 
-        checkHaveTenantOrNot()
 
+    }
+
+    private fun onlyListForProperty() {
+        var tenantRef = FirebaseDatabase.getInstance().reference.child("Tenants")
+        tenantRef.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    tenantList!!.clear()
+                    for(item in snapshot.children){
+                        val tenant = item.getValue(Tenant::class.java)
+                        if(tenant!!.getHomeLordId().equals(currentUser!!.uid) && tenant.getPropertyId().equals(propertyId)){
+                            tenantList!!.add(tenant)
+                        }
+                    }
+                    tenatAdapter!!.notifyDataSetChanged()
+                }
+            }
+        })
     }
 
     private fun checkHaveTenantOrNot() {
@@ -84,6 +115,7 @@ class HomeLordTenantsActivity : AppCompatActivity() {
             }
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                    tenantList!!.clear()
                     for(item in snapshot.children){
                         val tenant = item.getValue(Tenant::class.java)
                         if(tenant!!.getHomeLordId().equals(currentUser!!.uid)){

@@ -1,6 +1,7 @@
 package com.example.bhariwala.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +27,7 @@ import kotlinx.android.synthetic.main.fragment_sent_message.view.*
 
 class ReceivedMessageFragment : Fragment() {
     private var firebaseUser: FirebaseUser? = null
-    private var userStatus:String = ""
+
 
     private var homelordMsgList: MutableList<TenantSentMsg>? = null
     private var tenantMsgList: MutableList<HomeLordSent>? = null
@@ -34,7 +35,6 @@ class ReceivedMessageFragment : Fragment() {
     private var tenantMsgAdapter: TenantSendMsgAdapter? = null
     private var homelordMsgAdapter: HomeLordSentAdapter? = null
 
-    var passFromFragment : String? = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -42,39 +42,8 @@ class ReceivedMessageFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_received_message, container, false)
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
-        checkUserStatus()
 
-        passFromFragment = arguments?.getString("message")
-        Toast.makeText(context, passFromFragment, Toast.LENGTH_SHORT).show()
-
-        Toast.makeText(context, userStatus, Toast.LENGTH_SHORT).show()
-
-        if(userStatus == "Homelord"){
-            homelordMsgList = ArrayList()
-            tenantMsgAdapter = context?.let { TenantSendMsgAdapter(it, homelordMsgList as MutableList<TenantSentMsg>) }
-            view.homlordTenant_received_msg_recyclerView.setHasFixedSize(true)
-
-            view.homlordTenant_received_msg_recyclerView.layoutManager = LinearLayoutManager(context)
-            view.homlordTenant_received_msg_recyclerView.adapter = tenantMsgAdapter
-        }else{
-            tenantMsgList = ArrayList()
-            homelordMsgAdapter = context?.let { HomeLordSentAdapter(it, tenantMsgList as MutableList<HomeLordSent>) }
-            view.homlordTenant_received_msg_recyclerView.setHasFixedSize(true)
-
-            view.homlordTenant_received_msg_recyclerView.layoutManager = LinearLayoutManager(context)
-            view.homlordTenant_received_msg_recyclerView.adapter = homelordMsgAdapter
-        }
-
-
-
-
-        if(userStatus == "Homelord"){
-            fetchMessagesForHomeLord()
-        }else{
-            getTeantNameById()
-        }
-
-
+        checkUserStatus(view)
 
         return view
     }
@@ -89,13 +58,13 @@ class ReceivedMessageFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     var user = snapshot.getValue(User::class.java)
-                     getTenantByName(user!!.getName())
+                     getTenantByName(user!!.getUid())
                 }
             }
         })
     }
 
-    private fun getTenantByName(userName: String) {
+    private fun getTenantByName(userId: String) {
         var tenantRef = FirebaseDatabase.getInstance().reference.child("Tenants")
         tenantRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -106,8 +75,8 @@ class ReceivedMessageFragment : Fragment() {
                 if(snapshot.exists()){
                     for(item in snapshot.children){
                         var tenant = item.getValue(Tenant::class.java)
-                        if(tenant!!.getTenantUserName().equals(userName)){
-                            getHomeLordMsgByFlatName(tenant.getFlatName())
+                        if(tenant!!.getTenantId().equals(userId)){
+                            getHomeLordMsgByFlatName(tenant.getFlatId())
                         }
                     }
                 }
@@ -115,7 +84,7 @@ class ReceivedMessageFragment : Fragment() {
         })
     }
 
-    private fun getHomeLordMsgByFlatName(flatName: String) {
+    private fun getHomeLordMsgByFlatName(flatId: String) {
         var hlMsgRef = FirebaseDatabase.getInstance().reference.child("HomeLordSentMsg")
         hlMsgRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -124,9 +93,10 @@ class ReceivedMessageFragment : Fragment() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                   tenantMsgList!!.clear()
                     for(item in snapshot.children){
                         var hlSentMsg = item.getValue(HomeLordSent::class.java)
-                        if(hlSentMsg!!.getFlatName().equals(flatName)){
+                        if(hlSentMsg!!.getFlatId().equals(flatId)){
                             tenantMsgList!!.add(hlSentMsg)
                         }
                     }
@@ -145,6 +115,7 @@ class ReceivedMessageFragment : Fragment() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                   homelordMsgList!!.clear()
                     for(msgitem in snapshot.children){
                         var tenantMsg = msgitem.getValue(TenantSentMsg::class.java)
                         if(tenantMsg!!.getHomeLrdId().equals(firebaseUser!!.uid)){
@@ -157,7 +128,7 @@ class ReceivedMessageFragment : Fragment() {
         })
     }
 
-    private fun checkUserStatus() {
+    private fun checkUserStatus(view: View) {
         var userref = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUser!!.uid)
         userref.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -167,7 +138,27 @@ class ReceivedMessageFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     var user = snapshot.getValue(User::class.java)
-                    userStatus = user!!.getUser()
+
+                    if(user!!.getUser() == "Homelord"){
+                        homelordMsgList = ArrayList()
+                        tenantMsgAdapter = context?.let { TenantSendMsgAdapter(it, homelordMsgList as MutableList<TenantSentMsg>) }
+                        view.homlordTenant_received_msg_recyclerView.setHasFixedSize(true)
+
+                        view.homlordTenant_received_msg_recyclerView.layoutManager = LinearLayoutManager(context)
+                        view.homlordTenant_received_msg_recyclerView.adapter = tenantMsgAdapter
+
+
+                        fetchMessagesForHomeLord()
+                    }else if(user.getUser() == "Tenant"){
+                        tenantMsgList = ArrayList()
+                        homelordMsgAdapter = context?.let { HomeLordSentAdapter(it, tenantMsgList as MutableList<HomeLordSent>) }
+                        view.homlordTenant_received_msg_recyclerView.setHasFixedSize(true)
+
+                        view.homlordTenant_received_msg_recyclerView.layoutManager = LinearLayoutManager(context)
+                        view.homlordTenant_received_msg_recyclerView.adapter = homelordMsgAdapter
+
+                        getTeantNameById()
+                    }
                 }
             }
         })

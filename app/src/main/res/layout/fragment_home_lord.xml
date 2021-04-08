@@ -64,8 +64,8 @@
                     android:id="@+id/hl_user_image"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/profile"
-                    android:padding="6dp"/>
+                    android:padding="6dp"
+                    android:src="@drawable/profile" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -307,6 +307,7 @@
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/addServicemanToHomelord"
                         android:layout_width="120dp"
                         android:layout_height="100dp"
                         android:layout_gravity="fill"
@@ -327,7 +328,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Family"
+                                    android:text="Duty Helper"
                                     style="@style/cardHeading_text_style"/>
                                 <ImageView
                                     android:layout_width="wrap_content"

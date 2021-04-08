@@ -8,11 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bhariwala.*
 import com.example.bhariwala.Models.Property
-import kotlinx.android.synthetic.main.property_item.*
 import kotlinx.android.synthetic.main.property_item.view.*
 
 class PropertyAdapter (private var mContext: Context, private var mPropertyList: MutableList<Property>)
@@ -43,17 +41,22 @@ class PropertyAdapter (private var mContext: Context, private var mPropertyList:
             mContext.startActivity(intent)
         }
 
-//        holder.property_rentmanagemtn_btn.setOnClickListener {
-//            startActivity(Intent(this, RentManagementActivity::class.java))
-//        }
-//
-//        holder.property_tenants_btn.setOnClickListener {
-//            startActivity(Intent(this, TenantListActivity::class.java))
-//        }
-//
-//        holder.property_sendmessage_btn.setOnClickListener {
-//            startActivity(Intent(this, SendMessageActivity::class.java))
-//        }
+        holder.property_rentmanagemtn_btn.setOnClickListener {
+            var intent = Intent(mContext, RentMangementHomelordActivity::class.java)
+            intent.putExtra("propertyId", property.getPropertyId())
+            mContext.startActivity(intent)
+        }
+
+        holder.property_tenants_btn.setOnClickListener {
+            var intent = Intent(mContext, HomeLordTenantsActivity::class.java)
+            intent.putExtra("isListForProperty", "1")
+            intent.putExtra("propertyId", property.getPropertyId())
+            mContext.startActivity(intent)
+        }
+
+        holder.property_sendmessage_btn.setOnClickListener {
+            mContext.startActivity(Intent(mContext, SendMessageActivity::class.java))
+        }
 
 
     }

@@ -3,18 +3,18 @@ package com.example.bhariwala.Models
 class HomeLordSent {
     private var msgId = ""
     private var homeLordId = ""
-    private var propertyName = ""
-    private var flatName = ""
+    private var propertyId = ""
+    private var flatId = ""
     private var message = ""
     private var date = ""
     private var time = ""
 
     constructor()
-    constructor(msgId: String, homeLordId: String, propertyName: String, flatName: String, message: String, date:String, time:String) {
+    constructor(msgId: String, homeLordId: String, propertyId: String, flatId: String, message: String, date:String, time:String) {
         this.msgId = msgId
         this.homeLordId = homeLordId
-        this.propertyName = propertyName
-        this.flatName = flatName
+        this.propertyId = propertyId
+        this.flatId = flatId
         this.message = message
         this.date = date
         this.time = time
@@ -34,18 +34,18 @@ class HomeLordSent {
         this.homeLordId = homeLordId
     }
 
-    fun getPropertyName(): String {
-        return propertyName
+    fun getPropertyId(): String {
+        return propertyId
     }
-    fun setPropertyName(propertyName: String) {
-        this.propertyName = propertyName
+    fun setPropertyId(propertyId: String) {
+        this.propertyId = propertyId
     }
 
-    fun getFlatName(): String {
-        return flatName
+    fun getFlatId(): String {
+        return flatId
     }
-    fun setFlatName(flatName: String) {
-        this.flatName = flatName
+    fun setFlatId(flatId: String) {
+        this.flatId = flatId
     }
 
     fun getMessage(): String {

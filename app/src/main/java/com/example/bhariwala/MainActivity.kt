@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var firebaseUser: FirebaseUser? = null
     private var msgCount = 4
     private var currentUserStatus = ""
-    private var myHomeLordId: String? = null
+    private var myHomeLordId = ""
 
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -43,8 +43,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.home_nav_menu -> {
                 if(currentUserStatus == "Homelord"){
                     selectedFramnetItem(HomeLordFragment())
-                }else{
+                }else if(currentUserStatus == "Tenant"){
                     selectedFramnetItem(TenantFragment())
+                }else if(currentUserStatus == "Security Guard"){
+                    selectedFramnetItem(SecurityGuardFragment())
                 }
                 return@OnNavigationItemSelectedListener true
             }
@@ -68,7 +70,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 return@OnNavigationItemSelectedListener true
             }
             R.id.setting_nav_menu -> {
-                Toast.makeText(this, "Not yet set", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, currentUserStatus, Toast.LENGTH_LONG).show()
             }
         }
         if(selectFragment != null){
@@ -110,8 +112,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         //=======
 
-
-        getHomeLordNameById(firebaseUser!!.uid)
+        getHomeLordNameById()
 
         //======== bottom floating operation
 
@@ -134,8 +135,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     //=======find out homelord id
-    private fun getHomeLordNameById(currentTenantId: String?) {
-        var userRef = FirebaseDatabase.getInstance().reference.child("Users").child(currentTenantId!!)
+    private fun getHomeLordNameById() {
+        var userRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUser!!.uid)
         userRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -143,13 +144,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     var user = snapshot.getValue(User::class.java)
-                    getHomeLordByTenantName(user!!.getName())
+                    getHomeLordByTenantName(user!!.getUid())
                 }
             }
         })
     }
 
-    private fun getHomeLordByTenantName(tenantName: String?) {
+    private fun getHomeLordByTenantName(tenantId: String?) {
         var tenantRef = FirebaseDatabase.getInstance().reference.child("Tenants")
         tenantRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -160,7 +161,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 if(snapshot.exists()){
                     for (item in snapshot.children){
                         var tenant = item.getValue(Tenant::class.java)
-                        if(tenant!!.getTenantUserName().equals(tenantName)){
+                        if(tenant!!.getTenantId().equals(tenantId)){
                             getHomeLordDetails(tenant!!.getHomeLordId())
                         }
                     }
@@ -187,14 +188,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     //========= finout fomelord id
-
-
-
-
-
-
-
-
 
 
     private fun showUserInformation() {
@@ -240,10 +233,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         if(user!!.getUser() == "Homelord"){
                             currentUserStatus = "Homelord"
                             selectedFramnetItem(HomeLordFragment())
-                        }else{
+                        }else if(user!!.getUser() == "Tenant"){
                             currentUserStatus = "Tenant"
                             selectedFramnetItem(TenantFragment())
+                        }else if(user!!.getUser() == "Security Guard"){
+                            currentUserStatus = "Security Guard"
+                            selectedFramnetItem(SecurityGuardFragment())
                         }
+
                 }
             }
         })
@@ -281,14 +278,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when(item.itemId){
             R.id.home -> {
                 if(currentUserStatus == "Homelord"){
-                    startActivity(Intent(this, MainActivity::class.java))
-                }else{
-                    startActivity(Intent(this, TenantActivity::class.java))
-                }
+                      startActivity(Intent(this, MainActivity::class.java))
+                    }else if(currentUserStatus == "Tenant"){
+                        currentUserStatus = "Tenant"
+                        selectedFramnetItem(TenantFragment())
+                    }else if(currentUserStatus == "Security Guard"){
+                        currentUserStatus = "Security Guard"
+                        selectedFramnetItem(SecurityGuardFragment())
+                    }
 
             }
             R.id.drawer_message -> {
                 var intent = Intent(this, MessageMainAcitivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.drawer_update_account_mi -> {
+                var intent = Intent(this, UpdateAccountActivity::class.java)
                 startActivity(intent)
             }
             R.id.drawerSignOut -> {

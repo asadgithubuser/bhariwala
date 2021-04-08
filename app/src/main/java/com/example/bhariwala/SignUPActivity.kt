@@ -30,9 +30,11 @@ class SignUPActivity : AppCompatActivity() {
         signUp_select_type.onItemClickListener = AdapterView.OnItemClickListener{
                 parent,view,position,id ->
             val selectedItem = parent.getItemAtPosition(position).toString()
-            // Display the clicked item using toast
             user = selectedItem
-           // Toast.makeText(applicationContext,"Selected : $selectedItem",Toast.LENGTH_SHORT).show()
+        }
+
+        go_register_to_login_btn.setOnClickListener {
+            startActivity(Intent(this, SignInAcitvity::class.java))
         }
         // Set a dismiss listener for auto complete text view
 //        signUp_select_type.setOnDismissListener {

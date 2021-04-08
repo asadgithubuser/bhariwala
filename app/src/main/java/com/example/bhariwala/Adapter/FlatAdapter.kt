@@ -2,7 +2,6 @@ package com.example.bhariwala.Adapter
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,13 +47,12 @@ class FlatAdapter(private var mContext: Context, private var flatList: List<Flat
         updateAddTenantButtonStatus(holder, flat!!.getFlatId())
 
         holder.flat_add_OR_details.setOnClickListener {
-
             if(holder.flat_add_OR_details.text == "Add Tenant"){
                 var intent = Intent(mContext, AssignTenantActivity::class.java)
                 intent.putExtra("flatId", flat!!.getFlatId())
                 mContext.startActivity(intent)
             }else{
-                goToTenantDetails(flat!!.getFlatName())
+                goToTenantDetails(flat!!.getFlatId())
             }
 
         }
@@ -62,7 +60,7 @@ class FlatAdapter(private var mContext: Context, private var flatList: List<Flat
 
     }
 
-    private fun goToTenantDetails(flatName: String) {
+    private fun goToTenantDetails(flatId: String) {
         var tenantRef = FirebaseDatabase.getInstance().reference.child("Tenants")
         tenantRef.addValueEventListener( object : ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
@@ -73,9 +71,9 @@ class FlatAdapter(private var mContext: Context, private var flatList: List<Flat
                 if(snapshot.exists()){
                     for(item in snapshot.children){
                         var tenant = item.getValue(Tenant::class.java)
-                        if(tenant!!.getFlatName().equals(flatName)){
+                        if(tenant!!.getFlatId().equals(flatId)){
                             var intent = Intent(mContext, TenantDetailsActivity::class.java)
-                            intent.putExtra("tenantUserName", tenant!!.getTenantUserName())
+                            intent.putExtra("tenantUserId", tenant!!.getTenantId())
                             mContext.startActivity(intent)
                         }
                     }

@@ -4,19 +4,17 @@ class Tenant {
     private var tenantId = ""
     private var tenantUserName = ""
     private var homeLordId = ""
-    private var flatName = ""
-    private var propertyName = ""
-    private var rent = ""
+    private var flatId = ""
+    private var propertyId = ""
     private var date = ""
 
     constructor()
-    constructor(tenantId: String, tenantUserName: String, homeLordId: String, flatName: String, propertyName: String, rent: String, date: String) {
+    constructor(tenantId: String, tenantUserName: String, homeLordId: String, flatId: String, propertyId: String, date: String) {
         this.tenantId = tenantId
         this.tenantUserName = tenantUserName
         this.homeLordId = homeLordId
-        this.flatName = flatName
-        this.propertyName = propertyName
-        this.rent = rent
+        this.flatId = flatId
+        this.propertyId = propertyId
         this.date = date
     }
 
@@ -34,7 +32,6 @@ class Tenant {
         this.tenantUserName = tenantUserName
     }
 
-
     fun getHomeLordId():String{
         return homeLordId
     }
@@ -42,29 +39,19 @@ class Tenant {
         this.homeLordId = homeLordId
     }
 
-
-    fun getFlatName():String{
-        return flatName
+    fun getFlatId():String{
+        return flatId
     }
-    fun setFlatName(flatName :String){
-        this.flatName = flatName
-    }
-
-
-    fun getPropertyName():String{
-        return propertyName
-    }
-    fun setPropertyName( propertyName: String){
-        this.propertyName = propertyName
+    fun setFlatId(flatId :String){
+        this.flatId = flatId
     }
 
-    fun getRent():String{
-        return rent
+    fun getPropertyId():String{
+        return propertyId
     }
-    fun setRent( rent: String){
-        this.rent = rent
+    fun setPropertyId( propertyId: String){
+        this.propertyId = propertyId
     }
-
 
     fun getDate():String{
         return date
@@ -72,10 +59,5 @@ class Tenant {
     fun setDate( date: String){
         this.date = date
     }
-
-
-
-
-
 
 }

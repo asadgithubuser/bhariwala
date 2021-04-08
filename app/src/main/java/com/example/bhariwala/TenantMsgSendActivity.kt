@@ -33,7 +33,9 @@ class TenantMsgSendActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tenant_msg_send)
 
+        //came from
         myHomeLordId = intent.getStringExtra("myHomeLordId")
+
         getHomeLordNameById(myHomeLordId)
 
         tsm_tenantSentMessage_btn.setOnClickListener {
@@ -45,10 +47,6 @@ class TenantMsgSendActivity : AppCompatActivity() {
 
         var current_time = LocalDateTime.now()
         send_time = current_time.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM))
-
-
-
-
 
 
 
@@ -104,6 +102,7 @@ class TenantMsgSendActivity : AppCompatActivity() {
 
     private fun getHomeLordNameById(myHomeLordId: String?) {
         var myHomelordName = findViewById<AppCompatButton>(R.id.sm_myHomelordName)
+
         var userRef = FirebaseDatabase.getInstance().reference.child("Users").child(myHomeLordId!!)
         userRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {

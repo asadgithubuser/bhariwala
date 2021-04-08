@@ -103,12 +103,9 @@ class SignInAcitvity : AppCompatActivity() {
         var intent = Intent(this, MainActivity::class.java)
         intent.putExtra("uid", uid)
 
-
         startActivity(intent)
     }
-    private fun redirectActivity2(java: Class<TenantActivity>) {
-        startActivity(Intent(this, TenantActivity::class.java))
-    }
+
 
 
 }

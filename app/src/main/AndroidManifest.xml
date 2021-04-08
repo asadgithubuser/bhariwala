@@ -3,6 +3,8 @@
     package="com.example.bhariwala">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature android:name="android.hardware.type.watch" />
 
@@ -13,12 +15,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bhariwala">
-        <activity android:name=".TenantPayBillActivity"></activity>
+        <activity android:name=".UpdateAccountActivity"></activity>
+        <activity android:name=".classes.SignatureActivity" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+        <activity
+            android:name=".AddNewParkingCarActivity"
+            android:parentActivityName=".CarParkingListActivity"
+            android:theme="@style/ActionBarApptheme" />
+        <activity android:name=".CarParkingListActivity" />
+        <activity
+            android:name=".AssignServicemanToHomelordActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/ActionBarApptheme" />
+        <activity android:name=".ServicemanDetailsActivity" />
+        <activity android:name=".AddServiceManActivity" />
+        <activity android:name=".RentMangementHomelordActivity" />
+        <activity android:name=".PayRentBillsActivity" />
+        <activity android:name=".TenantPayBillActivity" />
         <activity android:name=".TenantPayBillsMainAcitivity" />
-        <activity android:name=".HomeLordBillsActivity" />
+        <activity android:name=".HomeLordBillTenantActivity" />
         <activity android:name=".AdsListByCategoryActivity" />
         <activity android:name=".TenantMsgSendActivity" />
-        <activity android:name=".TenantActivity" />
         <activity android:name=".HomeLordProfileActivity" />
         <activity android:name=".HomeLordTenantsActivity" />
         <activity android:name=".TenantDetailsActivity" />
@@ -40,9 +59,6 @@
         <activity android:name=".BillsActivity" />
         <activity android:name=".MessgeAcitivity" />
         <activity android:name=".TenantListActivity" />
-        <activity
-            android:name=".RentManagementActivity"
-            android:theme="@style/Theme.Design" />
         <activity
             android:name=".FlatActivity"
             android:parentActivityName=".PropertyAcitivity"

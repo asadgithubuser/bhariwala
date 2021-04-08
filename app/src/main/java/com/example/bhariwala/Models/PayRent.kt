@@ -5,6 +5,9 @@ class PayRent {
     private var tenantId = ""
     private var homeLordId = ""
     private var homeLordName = ""
+    private var time = ""
+    private var date = ""
+    private var isPending = ""
     private var flatName = ""
     private var buildingName = ""
     private var paidRentAmount = ""
@@ -12,11 +15,14 @@ class PayRent {
     private var payViaService = ""
 
     constructor()
-    constructor(payId: String, tenantId: String, homeLordId: String, homeLordName: String, flatName: String, buildingName: String, paidRentAmount: String, paidRentMonth: String, payViaService: String) {
+    constructor(payId: String, tenantId: String, homeLordId: String, homeLordName: String, time: String, date: String, isPending: String, flatName: String, buildingName: String, paidRentAmount: String, paidRentMonth: String, payViaService: String) {
         this.payId = payId
         this.tenantId = tenantId
         this.homeLordId = homeLordId
         this.homeLordName = homeLordName
+        this.time = time
+        this.date = date
+        this.isPending = isPending
         this.flatName = flatName
         this.buildingName = buildingName
         this.paidRentAmount = paidRentAmount
@@ -51,6 +57,27 @@ class PayRent {
     }
     fun setHomeLordName( homeLordName: String){
         this.homeLordName = homeLordName
+    }
+
+    fun getTime():String{
+        return time
+    }
+    fun setTime(time : String){
+        this.time = time
+    }
+    fun getDate():String{
+        return date
+    }
+    fun setDate(date : String){
+        this.date = date
+    }
+
+
+    fun getIsPending():String{
+        return isPending
+    }
+    fun setIsPending(isPending : String){
+        this.isPending = isPending
     }
 
     fun getFlatName():String{

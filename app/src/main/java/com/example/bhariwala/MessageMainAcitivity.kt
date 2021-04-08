@@ -20,7 +20,8 @@ import kotlinx.android.synthetic.main.activity_message_main.*
 class MessageMainAcitivity : AppCompatActivity() {
     //private var userCurrentStatus: String? = null
 
-    var userStatus = ""
+    var userStatus : String? = null
+    var myHomeLordId : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +33,10 @@ class MessageMainAcitivity : AppCompatActivity() {
             actinnBar.setHomeAsUpIndicator(R.drawable.back_icon)
             actinnBar.setDisplayHomeAsUpEnabled(true)
         }
-        //var userCurrentStatus = intent.getStringExtra("userStatus")
 
-        var myHomeLordId = intent.getStringExtra("myHomeLordId")
+        // came from mainAcitivity
+         myHomeLordId = intent.getStringExtra("myHomeLordId")
+        //userStatus = intent.getStringExtra("userStatus")
 
         var adapter = MessagesPageAdapter(supportFragmentManager)
         adapter.addFragment(SentMessageFragment(), "SENT MESSAGE")
@@ -42,7 +44,6 @@ class MessageMainAcitivity : AppCompatActivity() {
 
         message_tabs_viewPager.adapter = adapter
         message_tab_layout.setupWithViewPager(message_tabs_viewPager)
-
 
         // ====== send message fab
         fab_send_msg_from_ama.setOnClickListener {

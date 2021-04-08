@@ -1,13 +1,12 @@
 package com.example.bhariwala.Fragments
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.bhariwala.*
 import com.example.bhariwala.Models.User
 import com.google.firebase.auth.FirebaseAuth
@@ -17,13 +16,10 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.drawer_menu_header.*
-import kotlinx.android.synthetic.main.drawer_menu_header.view.*
-import kotlinx.android.synthetic.main.fragment_home_lord.*
 import kotlinx.android.synthetic.main.fragment_home_lord.view.*
+import kotlinx.android.synthetic.main.homelord_required_info_dialog.view.*
 
 class HomeLordFragment : Fragment() {
-    // TODO: Rename and change types of parameters
 
     private var firebaseUser: FirebaseUser? = null
     private var userStatus : String? = null
@@ -51,13 +47,13 @@ class HomeLordFragment : Fragment() {
             startActivity(intent)
         }
         view.parcel_btn.setOnClickListener {
-            startActivity(Intent(context, AddFlatActivity::class.java))
+           // startActivity(Intent(context, AddFlatActivity::class.java))
         }
         view.homelord_message.setOnClickListener {
             startActivity(Intent(context, MessageMainAcitivity::class.java))
         }
         view.homelord_bill.setOnClickListener {
-            var intent = Intent(context, HomeLordBillsActivity::class.java)
+            var intent = Intent(context, HomeLordBillTenantActivity::class.java)
             intent.putExtra("currentUserStatus", userStatus)
             startActivity(intent)
         }
@@ -68,10 +64,39 @@ class HomeLordFragment : Fragment() {
             startActivity(Intent(context, CarParkingActivity::class.java))
         }
 
+//        view.addServicemanToHomelord.setOnClickListener {
+//            var intent = Intent(context, AssignServicemanToHomelordActivity::class.java)
+//            startActivity(intent)
+//        }
+
         showUserInformation(view)
 
+        //showRequiredAccUpdateDialog()
 
         return view
+    }
+
+    private fun showRequiredAccUpdateDialog() {
+        var mDialogView = LayoutInflater.from(context).inflate(R.layout.homelord_required_info_dialog, null)
+
+        val mBuilder = AlertDialog.Builder(context)
+                .setView(mDialogView)
+                .setTitle("Update Form")
+                .setCancelable(false)
+        var mAlertDialog = mBuilder.show()
+
+
+        mDialogView.dialog_UpdateAcc_updateBtn.setOnClickListener {
+            mAlertDialog.dismiss()
+        }
+
+        mDialogView.dialog_UpdateAcc_CancelBtn.setOnClickListener {
+            mAlertDialog.dismiss()
+        }
+
+
+
+
     }
 
     private fun showUserInformation(view: View) {

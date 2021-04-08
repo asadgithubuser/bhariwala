@@ -9,7 +9,9 @@ import android.view.View
 import android.widget.*
 import com.example.bhariwala.Models.Flat
 import com.example.bhariwala.Models.Property
+import com.example.bhariwala.Models.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -26,7 +28,8 @@ import kotlin.collections.HashMap
 
 class SendMessageActivity : AppCompatActivity() {
     private var propertyList: MutableList<String>? = null
-     var flatList: ArrayList<String>? = null
+    private var flatList: ArrayList<String>? = null
+    private var firebaseUser: FirebaseUser? = null
 
 
     var selected_property_name = ""
@@ -34,10 +37,14 @@ class SendMessageActivity : AppCompatActivity() {
     var date = ""
     var time = ""
 
+    var flatId = ""
+    var propertyId = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_send_message)
 
+        firebaseUser = FirebaseAuth.getInstance().currentUser
 
         flatList = ArrayList()
         var actinBar = getSupportActionBar()
@@ -76,6 +83,8 @@ class SendMessageActivity : AppCompatActivity() {
         selectFlat.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             var selectedItem = parent.getItemAtPosition(position).toString()
             selected_flat_name = selectedItem
+
+            retrieveFlatId(selected_flat_name)
         }
 
 
@@ -94,6 +103,7 @@ class SendMessageActivity : AppCompatActivity() {
         retrieveAllBuildings()
 
     }
+
 
     private fun sendMessageTOFlat() {
       //  var propertyName = findViewById<AutoCompleteTextView>(R.id.select_properties)
@@ -117,8 +127,8 @@ class SendMessageActivity : AppCompatActivity() {
                 var messageMap = HashMap<String, Any>()
                 messageMap["msgId"] = messageId!!
                 messageMap["homeLordId"] = FirebaseAuth.getInstance().currentUser.uid
-                messageMap["propertyName"] = selected_property_name
-                messageMap["flatName"] = selected_flat_name
+                messageMap["propertyId"] = propertyId
+                messageMap["flatId"] = flatId
                 messageMap["message"] = txtMsg
                 messageMap["date"] = date
                 messageMap["time"] = time
@@ -154,13 +164,34 @@ class SendMessageActivity : AppCompatActivity() {
                 if(snapshot.exists()){
                     for(item in snapshot.children){
                         var property = item.getValue(Property::class.java)
-                        propertyList!!.add(property!!.getBuildingName())
+                        if(property!!.getHomeLordId().equals(firebaseUser!!.uid)){
+                            propertyList!!.add(property!!.getBuildingName())
+                        }
                     }
                 }
             }
         })
     }
 
+    private fun retrieveFlatId(selected_flat: String) {
+        var bulidingRef = FirebaseDatabase.getInstance().reference.child("Flats")
+        bulidingRef.addValueEventListener( object : ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for(item in snapshot.children){
+                        var flat = item.getValue(Flat::class.java)
+                        if(flat!!.getFlatName().equals(selected_flat)){
+                            flatId = flat.getFlatId()
+                       }
+                    }
+                }
+            }
+        })
+    }
     private fun retrieveAllFlats(selected_property: String) {
         var bulidingRef = FirebaseDatabase.getInstance().reference.child("Properties")
         bulidingRef.addValueEventListener( object : ValueEventListener{
@@ -172,7 +203,8 @@ class SendMessageActivity : AppCompatActivity() {
                 if(snapshot.exists()){
                     for(item in snapshot.children){
                         var property = item.getValue(Property::class.java)
-                        if(property!!.getBuildingName() == selected_property){
+                        if(property!!.getBuildingName().equals(selected_property)){
+                           propertyId = property.getPropertyId()
                            retrieveAllFlatName(property!!.getPropertyId())
                        }
                     }
@@ -194,7 +226,7 @@ class SendMessageActivity : AppCompatActivity() {
                     flatList!!.clear()
                     for(item in snapshot.children){
                         var flat = item.getValue(Flat::class.java)
-                        if(flat!!.getPropertyId() == propertyId){
+                        if(flat!!.getPropertyId().equals(propertyId) && flat.getIsBooked().equals("1") ){
                             flatList?.add(flat!!.getFlatName())
                         }
 

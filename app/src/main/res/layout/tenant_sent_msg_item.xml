@@ -39,7 +39,7 @@
                             android:id="@+id/tsm_receiver_homelord_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Md. Bellal Ahmed"
+                            android:text=""
                             android:textAllCaps="false"
                             android:textSize="18dp"
                             android:textColor="@color/black"
@@ -49,6 +49,7 @@
                             android:layout_marginLeft="15dp"
                             android:layout_height="28dp">
                             <TextView
+                                android:id="@+id/tsm_receiver_userStatus"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="HomeLord"

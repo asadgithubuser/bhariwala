@@ -22,6 +22,8 @@ import com.example.bhariwala.TenantPayBillsMainAcitivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_home_lord.view.*
 import kotlinx.android.synthetic.main.fragment_tenant.*
 import kotlinx.android.synthetic.main.fragment_tenant.view.*
 
@@ -49,11 +51,11 @@ class TenantFragment : Fragment() {
         currentTenantId = FirebaseAuth.getInstance().currentUser
 
         view.homeLord_btn_from_tenant.setOnClickListener {
-            getHomeLordNameById(currentTenantId!!.uid)
+            getHomeLordByTenantName(currentTenantId!!.uid)
         }
 
         view.tenanti_my_flat_main.setOnClickListener {
-            getHomeLordNameByCurrentId(currentTenantId!!.uid)
+            getHomeLordNameByCurrentId(view, currentTenantId!!.uid)
         }
 
         view.tenanti_my_paybills_main.setOnClickListener {
@@ -115,6 +117,7 @@ class TenantFragment : Fragment() {
                     var user = snapshot.getValue(User::class.java)
                     view.tntAct_name.text = user!!.getName()
                     view.tntAct_userStatus.text = user!!.getUser()
+                    Picasso.get().load(user.getImage()).into(view.tenant_fragment_profileImg)
                 }
             }
         })
@@ -206,7 +209,7 @@ class TenantFragment : Fragment() {
     }
 
 
-    private fun getHomeLordNameByCurrentId(currentTenantId: String?) {
+    private fun getHomeLordNameByCurrentId(view:View, currentTenantId: String?) {
         var userRef = FirebaseDatabase.getInstance().reference.child("Users").child(currentTenantId!!)
         userRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -216,36 +219,13 @@ class TenantFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     var user = snapshot.getValue(User::class.java)
-
-                    tntAct_name.text = user!!.getName()
-
-                    getTanantByUserName(user!!.getName())
+                    view.tntAct_name.text = user!!.getName()
+                    getTanantByUserName(user.getUid())
                 }
             }
         })
     }
-
-    private fun getHomeLordNameById(currentTenantId: String?) {
-        var userRef = FirebaseDatabase.getInstance().reference.child("Users").child(currentTenantId!!)
-        userRef.addValueEventListener( object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    var user = snapshot.getValue(User::class.java)
-
-                    tntAct_name.text = user!!.getName()
-                    tntAct_userStatus.text = user!!.getUser()
-
-                    getHomeLordByTenantName(user!!.getName())
-                }
-            }
-        })
-    }
-
-    private fun getTanantByUserName(tenantName: String?) {
+    private fun getTanantByUserName(tenantUserId: String?) {
         var tenantRef = FirebaseDatabase.getInstance().reference.child("Tenants")
         tenantRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -256,8 +236,8 @@ class TenantFragment : Fragment() {
                 if(snapshot.exists()){
                     for (item in snapshot.children){
                         var tenant = item.getValue(Tenant::class.java)
-                        if(tenant!!.getTenantUserName().equals(tenantName)){
-                            getFlatByFlatName(tenant!!.getFlatName())
+                        if(tenant!!.getTenantId().equals(tenantUserId)){
+                            getFlatAdsDetailsByFlatId(tenant!!.getFlatId())
                         }
                     }
                 }
@@ -265,7 +245,29 @@ class TenantFragment : Fragment() {
         })
     }
 
-    private fun getHomeLordByTenantName(tenantName: String?) {
+//    private fun getHomeLordNameById(currentTenantId: String?) {
+//        var userRef = FirebaseDatabase.getInstance().reference.child("Users").child(currentTenantId!!)
+//        userRef.addValueEventListener( object : ValueEventListener {
+//            override fun onCancelled(error: DatabaseError) {
+//
+//            }
+//
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                if(snapshot.exists()){
+//                    var user = snapshot.getValue(User::class.java)
+////
+////                    tntAct_name.text = user!!.getName()
+////                    tntAct_userStatus.text = user!!.getUser()
+//
+//                    getHomeLordByTenantName(user!!.getName())
+//                }
+//            }
+//        })
+//    }
+
+
+
+    private fun getHomeLordByTenantName(currentUserIdd: String?) {
         var tenantRef = FirebaseDatabase.getInstance().reference.child("Tenants")
         tenantRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -276,7 +278,7 @@ class TenantFragment : Fragment() {
                 if(snapshot.exists()){
                     for (item in snapshot.children){
                         var tenant = item.getValue(Tenant::class.java)
-                        if(tenant!!.getTenantUserName().equals(tenantName)){
+                        if(tenant!!.getTenantId().equals(currentUserIdd)){
                             getHomeLordDetails(tenant!!.getHomeLordId())
                         }
                     }
@@ -285,26 +287,27 @@ class TenantFragment : Fragment() {
         })
     }
 
-    private fun getFlatByFlatName(flatName: String) {
-        var flatRef = FirebaseDatabase.getInstance().reference.child("Flats")
-        flatRef.addValueEventListener( object : ValueEventListener {
+    private fun getHomeLordDetails(homeLordId: String) {
+        var userRef = FirebaseDatabase.getInstance().reference.child("Users").child(homeLordId)
+        userRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
-                    for (item in snapshot.children){
-                        var flat = item.getValue(Flat::class.java)
-                        if(flat!!.getFlatName().equals(flatName)){
-                            getFlatAdsDetailsByFlatId(flat!!.getFlatId())
-                            Log.d("ckecked", " one44")
-                        }
-                    }
+                    var user = snapshot.getValue(User::class.java)
+                    var intent = Intent(context, HomeLordProfileActivity::class.java)
+                    intent.putExtra("holeLordId", user!!.getUid())
+                    startActivity(intent)
+
+                  //  myHomeLordId = user!!.getUid()
                 }
             }
         })
     }
+
+
 
     private fun getFlatAdsDetailsByFlatId(flatId: String) {
         var flatRef = FirebaseDatabase.getInstance().reference.child("Flats").child(flatId)
@@ -325,25 +328,6 @@ class TenantFragment : Fragment() {
         })
     }
 
-    private fun getHomeLordDetails(homeLordId: String) {
-        var userRef = FirebaseDatabase.getInstance().reference.child("Users").child(homeLordId)
-        userRef.addValueEventListener( object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    var user = snapshot.getValue(User::class.java)
-                    myHomeLordId = user!!.getUid()
-                    var intent = Intent(context, HomeLordProfileActivity::class.java)
-                    intent.putExtra("holeLordId", user!!.getUid())
-                    startActivity(intent)
-
-                }
-            }
-        })
-    }
 
 
 

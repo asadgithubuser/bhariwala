@@ -21,7 +21,7 @@
         <item android:title="Account Setting">
             <menu>
                 <item
-                    android:id="@+id/hofdsme"
+                    android:id="@+id/drawer_update_account_mi"
                     android:title="Update Account"
                     android:icon="@drawable/update_acc_icon"/>
                 <item

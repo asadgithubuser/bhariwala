@@ -83,16 +83,10 @@ class AdsListByCategoryActivity : AppCompatActivity() {
                 if(snapshot.exists()){
                     var propertyItem = snapshot.getValue(Property::class.java)
 
-
                 }
             }
         } )
     }
-
-
-
-
-
 
 
 
@@ -105,6 +99,7 @@ class AdsListByCategoryActivity : AppCompatActivity() {
             }
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                    categoryAdsList!!.clear()
                     for (item in snapshot.children){
                         var item = item.getValue(Ad::class.java)
                         if(item!!.getRentForWhome().equals(rentForWhome)){

@@ -56,6 +56,7 @@ class FlatActivity : AppCompatActivity() {
         flatRef.addValueEventListener( object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                    flatList!!.clear()
                     for(flat in snapshot.children){
                         var flatItem = flat.getValue(Flat::class.java)
                         if(flatItem!!.getPropertyId() == propertyId){

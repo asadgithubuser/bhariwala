@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.bhariwala.Models.Flat
 import com.example.bhariwala.Models.Tenant
 import com.example.bhariwala.Models.User
 import com.google.firebase.auth.FirebaseAuth
@@ -21,6 +22,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_tenant_pay_bill.*
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -35,14 +40,8 @@ class TenantPayBillActivity : AppCompatActivity() {
     var mMonth = 0
     var mYear = 0
 
-     var year = 0
-    var month = 0
-    var dayOfMonth = 0
-
-
-     var yearNow = 0
-    var monthNow = 0
-    var dayNow = 0
+     var currentTime = ""
+    var currentDate = ""
 
 
     //var payViaList : ArrayList<String>? = null
@@ -63,15 +62,16 @@ class TenantPayBillActivity : AppCompatActivity() {
             selectedViaPay = parent.getItemAtPosition(position).toString()
         }
 
+
+        var cDate = SimpleDateFormat("dd/MM/yyyy")
+        currentDate = cDate.format(Date())
+
+        var cTime = LocalDateTime.now()
+        currentTime = cTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
+
         //======get current month
-        var sdf = SimpleDateFormat("dd/MM/yyyy")
-
-
-        var clnder = Calendar.getInstance()
-        var year = clnder.get(Calendar.YEAR)
-        var month = clnder.get(Calendar.MONTH)
-        var day = clnder.get(Calendar.DAY_OF_MONTH)
-
+        val myFormat = "MMMM yyyy"
+        val sdf = SimpleDateFormat(myFormat)
 
 
         addPay_bill_select_pay_month.setOnClickListener {
@@ -82,8 +82,7 @@ class TenantPayBillActivity : AppCompatActivity() {
 //            datePicker.show()
 
                 val mcurrentDate = Calendar.getInstance()
-                val myFormat = "MMMM yyyy"
-                val sdf = SimpleDateFormat(myFormat)
+
                // val monthDatePickerDialog: DatePickerDialog = object : DatePickerDialog(this,
                 val monthDatePickerDialog = DatePickerDialog(this,
                         AlertDialog.THEME_HOLO_LIGHT, OnDateSetListener { view, year, month, dayOfMonth ->
@@ -108,14 +107,14 @@ class TenantPayBillActivity : AppCompatActivity() {
 
         }
 
-
+        rentMonth = sdf.format(Date())
         addPay_bill_current_month.setOnClickListener {
             addPay_bill_select_month_area.visibility = View.GONE
             rentMonth = sdf.format(Date())
         }
         addPay_bill_others_month.setOnClickListener {
             addPay_bill_select_month_area.visibility = View.VISIBLE
-           // rentMonth = addPay_bill_select_pay_month.text.toString()
+           rentMonth = addPay_bill_select_pay_month.text.toString()
         }
 
 
@@ -136,12 +135,12 @@ class TenantPayBillActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     var user = snapshot.getValue(User::class.java)
-                    showFlatInfoAtStart(user!!.getName())
+                    showFlatInfoAtStart(user!!.getUid())
                 }
             }
         })
     }
-    private fun showFlatInfoAtStart(homeLordName: String) {
+    private fun showFlatInfoAtStart(homeLordId: String) {
         var tenantRef = FirebaseDatabase.getInstance().reference.child("Tenants")
         tenantRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -152,21 +151,37 @@ class TenantPayBillActivity : AppCompatActivity() {
                 if(snapshot.exists()){
                     for(item in snapshot.children){
                         var tenantUser = item.getValue(Tenant::class.java)
-                        if(tenantUser!!.getTenantUserName().equals(homeLordName)){
-                            addPay_bill_hlname.text = tenantUser.getTenantUserName()
-                            addPay_bill_flat_name.text = tenantUser.getFlatName()
-                            addPay_bill_building_name.text = tenantUser.getPropertyName()
-                            addPay_bill_tnt_rent.text = tenantUser.getRent()
-
-                            getHomelordName(tenantUser.getHomeLordId())
+                        if(tenantUser!!.getTenantId().equals(homeLordId)){
+                            getTenantDetails(tenantUser.getFlatId(), tenantUser.getHomeLordId())
                         }
                     }
                 }
             }
         })
     }
+
+    private fun getTenantDetails(flatId: String, homeLordId: String) {
+        var tenantRef = FirebaseDatabase.getInstance().reference.child("Flats").child(flatId)
+        tenantRef.addValueEventListener( object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    var flat = snapshot.getValue(Flat::class.java)
+                        addPay_bill_flat_name.text = flat!!.getFlatName()
+                        addPay_bill_building_name.text = flat.getPropertyName()
+                        addPay_bill_tnt_rent.text = flat.getRent()
+
+                       getHomelordName(homeLordId)
+                }
+            }
+        })
+    }
+
     private fun getHomelordName(homeLordId: String) {
-        var bulidingRef = FirebaseDatabase.getInstance().reference.child("Users")
+        var bulidingRef = FirebaseDatabase.getInstance().reference.child("Users").child(homeLordId)
         bulidingRef.addValueEventListener( object : ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
 
@@ -174,13 +189,9 @@ class TenantPayBillActivity : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
-                    for(item in snapshot.children){
-                        var user = item.getValue(User::class.java)
-                        if(user!!.getUid().equals(homeLordId)){
-                            addPay_bill_hlname.text = user.getName()
-                            homeLordId22 = user.getUid()
-                        }
-                    }
+                    var user = snapshot.getValue(User::class.java)
+                        addPay_bill_hlname.text = user!!.getName()
+                        homeLordId22 = user.getUid()
                 }
             }
         })
@@ -194,10 +205,10 @@ class TenantPayBillActivity : AppCompatActivity() {
         var bill_flat_name =  addPay_bill_flat_name.text.toString()
         var bill_building_name =  addPay_bill_building_name.text.toString()
         var bill_rent_amount =  addPay_bill_rent_amount.text.toString()
-        rentMonth = addPay_bill_select_pay_month.text.toString()
+        var rentForMOnth = rentMonth
         when{
             TextUtils.isEmpty(bill_rent_amount) -> showToast("Rent Amount NOT to be NULL")
-            TextUtils.isEmpty(rentMonth) -> showToast("Pay rent month NOT to be NULL")
+            TextUtils.isEmpty(rentForMOnth) -> showToast("Pay rent month NOT to be NULL")
             TextUtils.isEmpty(selectedViaPay) -> showToast("Please select pay via method")
 
             else -> {
@@ -208,10 +219,13 @@ class TenantPayBillActivity : AppCompatActivity() {
                 rentMap["tenantId"] = firebaseUser!!.uid
                 rentMap["homeLordId"] = homeLordId22!!
                 rentMap["homeLordName"] = bill_hlname
+                rentMap["time"] = currentTime
+                rentMap["date"] = currentDate
+                rentMap["isPending"] = "1"
                 rentMap["flatName"] = bill_flat_name
                 rentMap["buildingName"] = bill_building_name
                 rentMap["paidRentAmount"] = bill_rent_amount
-                rentMap["paidRentMonth"] = rentMonth
+                rentMap["paidRentMonth"] = rentForMOnth
                 rentMap["payViaService"] = selectedViaPay
 
                 rentRef.child(payId).setValue(rentMap).addOnCompleteListener { task ->

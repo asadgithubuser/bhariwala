@@ -21,8 +21,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_property.*
-import kotlinx.android.synthetic.main.activity_tenant.*
-import kotlinx.android.synthetic.main.property_item.*
 
 class PropertyAcitivity : AppCompatActivity() {
     private var mPropertyList: MutableList<Property>? = null
@@ -77,7 +75,7 @@ class PropertyAcitivity : AppCompatActivity() {
                     mPropertyList!!.clear()
                     for (proItem in snapshot.children){
                         var property = proItem.getValue(Property::class.java)
-                        if (property!!.getHomeLordId() == firebaseUser!!.uid){
+                        if (property!!.getHomeLordId().equals(firebaseUser!!.uid)){
                             mPropertyList!!.add(property!!)
                         }
                     }

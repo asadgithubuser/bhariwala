@@ -33,20 +33,20 @@ class TenantPayBillsAdapter(private val mContext: Context, private val mPayRentL
         holder.payRent_fname.text = "Flat: "+payRent.getFlatName()
         holder.payRent_bname.text = "Building: "+payRent.getBuildingName()
 
-//            holder.payRent_time.text = payRent.
-//            holder.payRent_date.text = payRent.
+        holder.payRent_time.text = payRent.getTime()
+        holder.payRent_date.text = payRent.getDate()
         holder.payRent_message.text = "You have sent to homelord ${payRent.getHomeLordName()} only ${payRent.getPaidRentAmount()} " +
                 "tk for monthly bill at ${payRent.getPaidRentMonth()}"
         holder.payRent_rantAmount.text = payRent.getPaidRentAmount()+" tk"
         holder.payRent_rentMOnth.text = payRent.getPaidRentMonth()
         holder.payRent_via_service.text = payRent.getPayViaService()
 
+        if(payRent.getIsPending() == "0"){
+            holder.tenant_sent_bill_button.text = "Receive Pending.."
+        }else{
+            holder.tenant_sent_bill_button.text = "Receive Confirmed"
+        }
 
-//        holder.tenant_details.setOnClickListener{
-//            var intent = Intent(mContext, HomeLordBillsListAdapter::class.java)
-//            intent.putExtra("tenantUserName", tenant!!.getTenantUserName())
-//            mContext.startActivity(intent)
-//        }
 
     }
 
@@ -60,6 +60,7 @@ class TenantPayBillsAdapter(private val mContext: Context, private val mPayRentL
         var payRent_rantAmount: TextView = itemView.findViewById(R.id.paidrent_rentAmount)
         var payRent_rentMOnth: TextView = itemView.findViewById(R.id.paidrent_rent_month)
         var payRent_via_service: TextView = itemView.findViewById(R.id.paidrent_via_service)
+        var tenant_sent_bill_button: TextView = itemView.findViewById(R.id.tenant_sent_bill_button)
     }
 
 }

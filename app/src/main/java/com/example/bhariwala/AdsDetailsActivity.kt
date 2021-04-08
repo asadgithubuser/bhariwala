@@ -18,8 +18,7 @@ class AdsDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ads_details)
 
-        var intent = intent
-        var adId = intent.getStringExtra("adId")
+        var adId = intent?.getStringExtra("adId")
 
         retribeFlatData(adId)
 

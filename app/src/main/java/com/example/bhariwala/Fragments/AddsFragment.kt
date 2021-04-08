@@ -36,7 +36,6 @@ class AddsFragment : Fragment() {
     private var mAdsList: MutableList<Ad>? = null
     private var currentUserId : FirebaseUser? = null
 
-    var status = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

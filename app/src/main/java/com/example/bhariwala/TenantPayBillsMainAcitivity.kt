@@ -51,6 +51,7 @@ class TenantPayBillsMainAcitivity : AppCompatActivity() {
             }
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                    payRentList!!.clear()
                     for(item in snapshot.children){
                         val prent = item.getValue(PayRent::class.java)
                         if(prent!!.getTenantId().equals(currentUser!!.uid)){

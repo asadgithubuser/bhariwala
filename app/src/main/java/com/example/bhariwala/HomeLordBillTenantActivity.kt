@@ -15,7 +15,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class HomeLordBillsActivity : AppCompatActivity() {
+class HomeLordBillTenantActivity : AppCompatActivity() {
 
     private var currentUser : FirebaseUser? = null
     private var homelordList: MutableList<Tenant>? = null
@@ -67,6 +67,7 @@ class HomeLordBillsActivity : AppCompatActivity() {
             }
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                    homelordList!!.clear()
                     for(item in snapshot.children){
                         val tenant = item.getValue(Tenant::class.java)
                         if(tenant!!.getHomeLordId().equals(currentUser!!.uid)){
@@ -88,6 +89,7 @@ class HomeLordBillsActivity : AppCompatActivity() {
             }
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                    tenantList!!.clear()
                     for(item in snapshot.children){
                         val tenant = item.getValue(Tenant::class.java)
                         if(tenant!!.getHomeLordId().equals(currentUser!!.uid)){
