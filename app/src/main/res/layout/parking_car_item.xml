@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:backgroundTint="#E6FAEC"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/property_area_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="6dp"
+                android:layout_height="match_parent"
+                android:background="#B616AE"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginRight="15dp"
+                            android:src="@drawable/tenant2"/>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Relative"
+                                android:elevation="1dp"
+                                android:textStyle="bold"
+                                android:layout_marginLeft="3dp"
+                                android:layout_centerVertical="true"
+                                android:textColor="@color/white"/>
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="50dp"
+                                android:textSize="14dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ribbon2"
+                                android:textColor="@color/teal_700"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Md. Khan Magmud"
+                            android:textAllCaps="false"
+                            android:textSize="18dp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Phone : "
+                                android:textAllCaps="false"
+                                android:textSize="16dp"
+                                android:layout_marginVertical="6dp"
+                                android:textColor="#040404"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="01710 123 456"
+                                android:textAllCaps="false"
+                                android:textSize="16dp"
+                                android:layout_marginVertical="6dp"
+                                android:textColor="#292424"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Came To : "
+                                android:textAllCaps="false"
+                                android:textSize="16dp"
+                                android:layout_marginVertical="6dp"
+                                android:textColor="#040404"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Md. Bellal Ahmed"
+                                android:textAllCaps="false"
+                                android:textSize="16dp"
+                                android:layout_marginVertical="6dp"
+                                android:textColor="@color/teal_700"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="IN : "
+                                android:textAllCaps="false"
+                                android:textSize="15dp"
+                                android:layout_marginVertical="6dp"
+                                android:textColor="@color/teal_700"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="9:50 Pm "
+                                android:textAllCaps="false"
+                                android:textSize="15dp"
+                                android:layout_marginVertical="6dp"
+                                android:textColor="#040404"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="11 Sep, 2020"
+                                android:textAllCaps="false"
+                                android:textSize="15dp"
+                                android:layout_marginVertical="6dp"
+                                android:textColor="#292424"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="OUT: "
+                                android:textAllCaps="false"
+                                android:textSize="15dp"
+                                android:layout_marginVertical="6dp"
+                                android:textColor="@color/teal_700"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="11:50 Pm "
+                                android:textAllCaps="false"
+                                android:textSize="15dp"
+                                android:layout_marginVertical="6dp"
+                                android:textColor="#040404"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="11 Sep, 2020"
+                                android:textAllCaps="false"
+                                android:textSize="15dp"
+                                android:layout_marginVertical="6dp"
+                                android:textColor="#292424"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="200dp"
+                                android:layout_height="80dp"
+                                android:layout_marginTop="10dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/signature"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/tenant_details_show_btn"
+                    android:layout_width="170dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Details"
+                    android:layout_gravity="center_horizontal"
+                    android:textAllCaps="false"
+                    android:textSize="18dp"
+                    android:textColor="@color/teal_700"
+                    android:background="@drawable/button_outlinebox_style"
+                    android:paddingHorizontal="7dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

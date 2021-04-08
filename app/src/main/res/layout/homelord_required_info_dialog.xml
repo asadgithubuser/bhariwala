@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="8dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:orientation="vertical">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="User Details :"
+                        android:textColor="@color/teal_700"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/UpdateAcc_add_take_photo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="52dp"
+                            android:text="Take Photo"
+                            android:layout_marginRight="7dp"
+                            android:textAllCaps="false"
+                            android:textSize="17dp"
+                            app:cornerRadius="2dp"
+                            android:drawableLeft="@drawable/add_photo"
+                            android:backgroundTint="#F4BCBC"
+                            android:textColor="@color/white"
+                            android:paddingHorizontal="70dp" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/UpdateAcc_add_parker_image_view"
+                            android:layout_width="170dp"
+                            android:layout_height="170dp"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/add_image"
+                            android:paddingHorizontal="7dp"
+                            android:background="@drawable/circle_area_style"/>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/UpdateAcc_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Name"
+                            android:textColorHint="@color/black"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/UpdateAcc_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Phone"
+                            android:textColorHint="@color/black"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <EditText
+                        android:id="@+id/UpdateAcc_about_user"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="About User"
+                        android:layout_marginTop="8dp"
+                        android:lines="3"
+                        android:maxLines="10"
+                        android:gravity="top|left"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginTop="30dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Address :"
+                        android:textColor="@color/teal_700"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"/>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="9dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/UpdateAcc_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Address"
+                            android:textColorHint="@color/black"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:layout_marginBottom="9dp"
+                        android:orientation="horizontal">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginRight="5dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/UpdateAcc_road_no"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Road/Village"
+                                android:textColorHint="@color/black"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="5dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/UpdateAcc_house_no"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="House/P. O."
+                                android:textColorHint="@color/black"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:layout_marginBottom="9dp"
+                        android:orientation="horizontal">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginRight="5dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/UpdateAcc_section"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Section / Area"
+                                android:textColorHint="@color/black"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="5dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/UpdateAcc_thana"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Thana"
+                                android:textColorHint="@color/black"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:layout_marginBottom="9dp"
+                        android:orientation="horizontal">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginRight="5dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                            <EditText
+                                android:id="@+id/UpdateAcc_postCode"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Post Code"
+                                android:inputType="numberDecimal"
+                                android:textColorHint="@color/black"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="5dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                            <EditText
+                                android:id="@+id/UpdateAcc_city"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="City"
+                                android:inputType="text"
+                                android:textColorHint="@color/black"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:layout_marginBottom="9dp"
+                        android:orientation="horizontal">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginRight="5dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+                            <AutoCompleteTextView
+                                android:id="@+id/UpdateAcc_divisions"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="select division"
+                                android:inputType="none"
+                                android:textSize="15dp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:layout_marginVertical="40dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/dialog_UpdateAcc_updateBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="37dp"
+                    android:layout_weight="1"
+                    android:text="Update Account"
+                    android:layout_marginRight="7dp"
+                    android:textAllCaps="false"
+                    android:textSize="17dp"
+                    android:backgroundTint="@color/teal_700"
+                    android:textColor="@color/white"
+                    android:background="@drawable/rounded_button_style"
+                    android:paddingHorizontal="7dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/dialog_UpdateAcc_CancelBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="37dp"
+                    android:layout_marginLeft="7dp"
+                    android:text="Cancel"
+                    android:layout_weight="1"
+                    android:textAllCaps="false"
+                    android:textSize="17dp"
+                    android:backgroundTint="@color/teal_700"
+                    android:textColor="@color/white"
+                    android:background="@drawable/rounded_button_style"
+                    android:paddingHorizontal="7dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
