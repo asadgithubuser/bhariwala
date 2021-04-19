@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    android:backgroundTint="#DFE1E1"
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="20dp">
+
+    <LinearLayout
+        android:id="@+id/property_area_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="6dp"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="7dp"
+            android:background="#CE78F3"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/expense_type_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="ব্যবসায়িক লাভ"
+                    android:textColor="#060909"
+                    android:textSize="19dp"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/expense_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="20dp"
+                        android:text="5 Jan 2020"
+                        android:textColor="#060909"
+                        android:textSize="16dp" />
+                    <TextView
+                        android:id="@+id/expense_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/teal_700"
+                        android:text="2:40 PM"
+                        android:textSize="15dp"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/expense_note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentRight="true"
+                    android:text="this amount i got from abdul baten vai for profit of my business"
+                    android:textColor="@color/teal_700"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:id="@+id/expense_afterMind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentRight="true"
+                    android:text=""
+                    android:textColor="#A163ED"
+                    android:textSize="15dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/expense_optionDots"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right"
+                    android:rotation="90"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/option_double"/>
+                <TextView
+                    android:id="@+id/expense_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="right"
+                    android:gravity="center_vertical"
+                    android:text="50,000 tk"
+                    android:textColor="@color/teal_700"
+                    android:textSize="18dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

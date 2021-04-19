@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bhariwala.Adapter.HomeLordBillsListAdapter
 import com.example.bhariwala.Adapter.TenantPayBillsAdapter
 import com.example.bhariwala.Models.PayRent
 import com.google.firebase.auth.FirebaseAuth
@@ -44,7 +43,7 @@ class TenantPayBillsMainAcitivity : AppCompatActivity() {
     }
 
     private fun retrieveTenantForHomeLords() {
-        var tenantRef = FirebaseDatabase.getInstance().reference.child("PayRents")
+        var tenantRef = FirebaseDatabase.getInstance().reference.child("PayRents").child(currentUser!!.uid)
         tenantRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 

@@ -16,50 +16,51 @@ class PayRentBillsActivity : AppCompatActivity() {
 
     private var payRentBillList: MutableList<PayRent>? = null
     private var payRentBillAdapter: HomelordReceivedRentBillAdapter? = null
-    private var gTenantName: String? = null
+    private var tenantID: String? = null
+    private var tenantName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pay_rent_bills)
 
 
-        gTenantName = intent?.getStringExtra("tenantName")
+        // values came from HomeLordBillsListAdapter
+        tenantID = intent?.getStringExtra("tenantID")
 
-        getTenantIdByTenantName(gTenantName!!)
+        getTenantIdByTenantName(tenantID!!)
 
 
         var recyclerView = findViewById<RecyclerView>(R.id.payRentBills_recycerview)
         recyclerView.setHasFixedSize(true)
 
         payRentBillList = ArrayList()
-        payRentBillAdapter = HomelordReceivedRentBillAdapter(this, payRentBillList as MutableList<PayRent>, gTenantName!!)
+        payRentBillAdapter = HomelordReceivedRentBillAdapter(this, payRentBillList as MutableList<PayRent>)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = payRentBillAdapter
 
 
     }
 
-    private fun getTenantIdByTenantName(tennantName : String) {
-        var tuserRef = FirebaseDatabase.getInstance().reference.child("Users")
+    private fun getTenantIdByTenantName(tenantID : String) {
+        var tuserRef = FirebaseDatabase.getInstance().reference.child("Users").child(tenantID)
         tuserRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
-                    for(item in snapshot.children){
-                        val usert = item.getValue(User::class.java)
-                        if(usert!!.getName().equals(tennantName)){
-                            getPayRentinTenantName(usert.getUid())
-                        }
+                    val usert = snapshot.getValue(User::class.java)
+                    if(usert!!.getUid().equals(tenantID)){
+                        getPayRentinTenantName(usert.getUid())
                     }
+
                 }
             }
         })
     }
 
     private fun getPayRentinTenantName(tenantUserId: String) {
-        var pRentRef = FirebaseDatabase.getInstance().reference.child("PayRents")
+        var pRentRef = FirebaseDatabase.getInstance().reference.child("PayRents").child(tenantUserId)
         pRentRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -69,9 +70,9 @@ class PayRentBillsActivity : AppCompatActivity() {
                     payRentBillList!!.clear()
                     for(item in snapshot.children){
                         val pRent = item.getValue(PayRent::class.java)
-                        if(pRent!!.getTenantId().equals(tenantUserId)){
-                            payRentBillList!!.add(pRent)
-                        }
+                        //if(pRent!!.getTenantId().equals(tenantUserId)){
+                            payRentBillList!!.add(pRent!!)
+                        //}
                     }
                     payRentBillAdapter!!.notifyDataSetChanged()
                 }

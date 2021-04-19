@@ -8,9 +8,10 @@ class User {
     private var image: String = ""
     private var uid: String = ""
     private var user: String = ""
+//    private var status: String = ""
 
     constructor()
-    constructor(name: String, email: String, password: String, profession: String, image:String, uid:String, user: String ){
+    constructor(name: String, email: String, password: String, profession: String, image:String, uid:String, user: String){
         this.name = name
         this.email = email
         this.password = password
@@ -63,6 +64,16 @@ class User {
     fun setUser(user: String){
         this.user = user
     }
+
+
+//    fun getStatus(): String{
+//        return status
+//    }
+//
+//    fun setStatus(status: String){
+//        this.status = status
+//    }
+
 
 
 }

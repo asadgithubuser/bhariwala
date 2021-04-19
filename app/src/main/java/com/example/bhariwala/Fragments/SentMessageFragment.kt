@@ -59,7 +59,7 @@ class SentMessageFragment : Fragment() {
                     for(item in snapshot.children){
                     var message = item.getValue(HomeLordSent::class.java)
                         if(message!!.getHomeLordId().equals(firebaseUser!!.uid)){
-                            homlordSentMsgList!!.add(message!!)
+                            homlordSentMsgList!!.add(message)
                         }
                     }
                     hlSentAdapter!!.notifyDataSetChanged()

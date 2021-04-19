@@ -49,8 +49,7 @@ class AddsFragment : Fragment() {
             startActivity(Intent(context, AddAdsActivity::class.java))
         }
 
-//        /// =============== adds fragment operations =============
-
+        /// =============== adds fragment operations =============
         recyclerView = view.findViewById(R.id.ads_list_recyclerView)
         recyclerView?.setHasFixedSize(true)
         recyclerView?.layoutManager = LinearLayoutManager(context)
@@ -67,9 +66,6 @@ class AddsFragment : Fragment() {
         }else{
             retribeAllAdsForTenants()
         }
-
-
-
 
         return view
     }

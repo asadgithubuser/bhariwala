@@ -14,23 +14,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <ImageView
+
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/flat_image_slider"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
-                android:src="@drawable/flat3"
-                android:scaleType="centerCrop"/>
+                app:iss_auto_cycle="true"
+                app:iss_period="1000"
+                app:iss_placeholder="@drawable/flat_placeholder"
+                app:iss_delay="0"/>
+
+<!--            <ImageView-->
+<!--                android:id="@+id/image_slider"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="230dp"/>-->
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="10dp"
                 android:padding="10dp"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="17dp"
-                    android:textStyle="bold"
-                    android:text="Flat rent for family. 3 rooms, 2 baths"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -70,7 +76,7 @@
                                 android:id="@+id/flat_name_in_details"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Flat Vara"
+                                android:text="type"
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -89,7 +95,7 @@
                                 android:id="@+id/d_rent_month"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Jan 5, 2020"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -152,7 +158,7 @@
                                 android:id="@+id/d_total_room"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Total rooms 3"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -171,7 +177,7 @@
                                 android:id="@+id/d_total_bath"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Total baths 2"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -190,7 +196,7 @@
                                 android:id="@+id/d_attached_bath"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Attached bath 1"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -251,7 +257,7 @@
                                 android:id="@+id/d_eletricity_bill"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Electricity - 900tk"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -270,7 +276,7 @@
                                 android:id="@+id/d_water_bill"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Water - 600 tk"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -297,7 +303,7 @@
                                 android:id="@+id/d_gas_bill"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Gas - 1200 tk"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -316,7 +322,7 @@
                                 android:id="@+id/d_service_bill"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Service Charge 500 tk"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:textColor="@color/black"/>
@@ -340,159 +346,15 @@
                         android:textSize="16dp"
                         android:textColor="#7C7C7C"/>
                     <TextView
+                        android:id="@+id/fdetails_aboutFlat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="This is the best resident for student, job holder and family
-. Because this area very quite and secure. This is the best resident for student, job holder and family
-. Because this area very quite and secure."
+                        android:text="about flat..."
                         android:layout_gravity="center_vertical"
                         android:textSize="16dp"
                         android:textColor="@color/black"/>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Others Facilites :"
-                        android:layout_marginBottom="7dp"
-                        android:layout_gravity="center_vertical"
-                        android:textStyle="bold"
-                        android:textSize="16dp"
-                        android:textColor="#656565"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="105dp"
-                            android:layout_height="100dp"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="10dp"
-                            android:layout_marginRight="15dp"
-                            app:cardBackgroundColor="#E7EAEA">
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:orientation="vertical">
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Generator"
-                                    android:layout_marginBottom="7dp"
-                                    android:gravity="center_horizontal"
-                                    android:textSize="15dp"
-                                    android:textColor="@color/teal_700"/>
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="YES"
-                                    android:gravity="center_horizontal"
-                                    android:textSize="15dp"
-                                    android:textColor="@color/black"/>
-                            </LinearLayout>
-                        </com.google.android.material.card.MaterialCardView>
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="105dp"
-                            android:layout_height="100dp"
-                            app:cardCornerRadius="10dp"
-                            android:layout_marginRight="15dp"
-                            android:layout_weight="1"
-                            app:cardBackgroundColor="#E7EAEA">
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:orientation="vertical">
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Lift"
-                                    android:layout_marginBottom="7dp"
-                                    android:gravity="center_horizontal"
-                                    android:textSize="15dp"
-                                    android:textColor="@color/teal_700"/>
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="YES"
-                                    android:gravity="center_horizontal"
-                                    android:textSize="15dp"
-                                    android:textColor="@color/black"/>
-                            </LinearLayout>
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="105dp"
-                            android:layout_height="100dp"
-                            app:cardCornerRadius="10dp"
-                            android:layout_marginRight="15dp"
-                            android:layout_weight="1"
-                            app:cardBackgroundColor="#E7EAEA">
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:orientation="vertical">
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Sequrity"
-                                    android:layout_marginBottom="7dp"
-                                    android:gravity="center_horizontal"
-                                    android:textSize="15dp"
-                                    android:textColor="@color/teal_700"/>
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="NO"
-                                    android:gravity="center_horizontal"
-                                    android:textSize="15dp"
-                                    android:textColor="#E91E63"/>
-                            </LinearLayout>
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="105dp"
-                            android:layout_height="100dp"
-                            app:cardCornerRadius="10dp"
-                            android:layout_marginRight="15dp"
-                            android:layout_weight="1"
-                            app:cardBackgroundColor="#E7EAEA">
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:orientation="vertical">
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Gas"
-                                    android:layout_marginBottom="7dp"
-                                    android:gravity="center_horizontal"
-                                    android:textSize="15dp"
-                                    android:textColor="@color/teal_700"/>
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="YES"
-                                    android:gravity="center_horizontal"
-                                    android:textSize="15dp"
-                                    android:textColor="@color/black"/>
-                            </LinearLayout>
-                        </com.google.android.material.card.MaterialCardView>
-
-                    </LinearLayout>
-                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -516,9 +378,9 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <ImageView
+                                android:id="@+id/fdetails_homelord_pic"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                android:src="@drawable/profile"
                                 android:padding="6dp"/>
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -526,16 +388,18 @@
                                 android:layout_marginTop="15dp"
                                 android:orientation="vertical">
                                 <TextView
+                                    android:id="@+id/fdetails_homelord_name"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Md. Khan Wbaidullah"
+                                    android:text=""
                                     android:layout_marginBottom="7dp"
                                     android:textSize="17dp"
                                     android:textColor="@color/teal_700"/>
                                 <TextView
+                                    android:id="@+id/fdetails_homelord_phone"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Phone: 01710 345 454"
+                                    android:text=""
                                     android:textSize="16dp"
                                     android:textColor="@color/black"/>
                             </LinearLayout>
@@ -543,37 +407,7 @@
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginVertical="30dp"
-                android:orientation="horizontal">
-                <Button
-                    android:layout_width="150dp"
-                    android:layout_height="45dp"
-                    android:drawableLeft="@drawable/send_ic_icon"
-                    android:text="MESSAGE"
-                    android:textSize="15dp"
-                    android:layout_marginRight="10dp"
-                    android:backgroundTint="#32559C"
-                    android:textColor="@color/white"
-                    android:paddingHorizontal="8dp"
-                    android:paddingVertical="4dp"/>
 
-                <Button
-                    android:layout_width="150dp"
-                    android:layout_height="45dp"
-                    android:drawableLeft="@drawable/add_call"
-                    android:text="PHONE CALL"
-                    android:textSize="15dp"
-                    android:layout_marginLeft="10dp"
-                    android:backgroundTint="#D84739"
-                    android:textColor="@color/white"
-                    android:paddingHorizontal="4dp"
-                    android:paddingVertical="4dp"/>
-
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

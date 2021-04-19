@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginVertical="55dp"
+    android:layout_marginVertical="50dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.AddsFragment">
 
@@ -47,8 +47,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ads_list_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="5dp"/>
+        android:paddingBottom="60dp"
+        android:clipToPadding="false"
+        android:layout_height="match_parent"/>
 
 
 </RelativeLayout>

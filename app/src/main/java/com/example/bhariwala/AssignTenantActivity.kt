@@ -12,6 +12,7 @@ import com.example.bhariwala.Models.Tenant
 import com.example.bhariwala.Models.User
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -23,16 +24,21 @@ import kotlin.collections.HashMap
 
 class AssignTenantActivity : AppCompatActivity() {
 
+   private var firebaseUser :FirebaseUser? = null
     var flatId :String? = null
     var tenantId = ""
-    var todayDate :String? = null
     var tenantUserList: ArrayList<String>? = null
-    var flaAdapter: ArrayAdapter<String>? = null
+    var tenantsIdList: ArrayList<String>? = null
+    var tenantNameAdapter: ArrayAdapter<String>? = null
     var selectedTenant = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_assign_tenant)
+
+        tenantUserList = ArrayList()
+        tenantsIdList = ArrayList()
+        firebaseUser = FirebaseAuth.getInstance().currentUser
 
         var actionBar = getSupportActionBar()
         if(actionBar != null){
@@ -50,22 +56,22 @@ class AssignTenantActivity : AppCompatActivity() {
             }, year, month, day )
             dtPicker.show()
         }
-        tenantUserList = ArrayList()
-        flaAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_checked, tenantUserList!!)
-        ass_tnt_select_tenant.setAdapter(flaAdapter)
+
+        tenantNameAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_checked, tenantUserList!!)
+        ass_tnt_select_tenant.setAdapter(tenantNameAdapter)
         ass_tnt_select_tenant.onItemClickListener = AdapterView.OnItemClickListener{parent, view, position, id ->
             selectedTenant = parent.getItemAtPosition(position).toString()
 
            //getAlsoTenantId(selectedTenant)
         }
 
-//        Log.d("ghg2", selectedTenant)
-//        Toast.makeText(this, selectedTenant, Toast.LENGTH_SHORT).show()
-
         flatId = intent.getStringExtra("flatId")
 
+
        retrieveFlatDetails(flatId)
-        retrieveTenantNames()
+
+        retrieveTenantName22()
+       // retrieveTenantNames()
 
         ass_tnt_add_tenant_btn.setOnClickListener {
             getAlsoTenantId(flatId, selectedTenant)
@@ -74,7 +80,6 @@ class AssignTenantActivity : AppCompatActivity() {
     }
 
     private fun getAlsoTenantId(flatId:String?, selectedTenant: String) {
-        Toast.makeText(this, "in -> "+selectedTenant, Toast.LENGTH_SHORT).show()
         var tenantRef = FirebaseDatabase.getInstance().reference.child("Users")
         tenantRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -103,9 +108,6 @@ class AssignTenantActivity : AppCompatActivity() {
         var date = ass_tnt_rent_month.text.toString()
 
         when{
-//            TextUtils.isEmpty(flatName.toString()) -> showToast("")
-//            TextUtils.isEmpty(propertyName.toString()) -> showToast("")
-//            TextUtils.isEmpty(rent.toString()) -> showToast("")
             TextUtils.isEmpty(date.toString()) -> showToast("Rent Date should not be null")
             TextUtils.isEmpty(selectedTenant) -> showToast("Please select a tenant")
             else -> {
@@ -134,21 +136,24 @@ class AssignTenantActivity : AppCompatActivity() {
 
     }
 
+
     private fun flatBookedUpdate(currentFlatId: String) {
         var flatRef = FirebaseDatabase.getInstance().reference.child("Flats").child(currentFlatId)
 
         var flatMap = HashMap<String, Any>()
         flatMap["isBooked"] = "1"
         flatRef.updateChildren(flatMap)
-
     }
 
     private fun showToast(s: String) {
         Toast.makeText(this, s, Toast.LENGTH_LONG).show()
     }
 
-    private fun retrieveTenantNames() {
-        var tenantRef = FirebaseDatabase.getInstance().reference.child("Users").orderByChild("name")
+
+
+    private fun retrieveTenantName22() {
+        retrieveTenantNames()
+        var tenantRef = FirebaseDatabase.getInstance().reference.child("Users")
         tenantRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -158,16 +163,40 @@ class AssignTenantActivity : AppCompatActivity() {
                 if(snapshot.exists()){
                     tenantUserList!!.clear()
                     for(item in snapshot.children){
-                        var tenantUser = item.getValue(User::class.java)
-                        if(tenantUser!!.getUser().equals("Tenant")){
-                            tenantUserList!!.add(tenantUser!!.getName())
+                        var user = item.getValue(User::class.java)
+                        if(user!!.getUser().equals("Tenant") && !tenantsIdList!!.contains(user.getUid())){
+                            tenantUserList!!.add(user.getName())
+                            Log.d("ggg","two")
                         }
                     }
-                    flaAdapter!!.notifyDataSetChanged()
+                    tenantNameAdapter!!.notifyDataSetChanged()
                 }
             }
         })
     }
+
+    private fun retrieveTenantNames() {
+        var tenantRef = FirebaseDatabase.getInstance().reference.child("Tenants")
+        tenantRef.addValueEventListener( object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    tenantsIdList!!.clear()
+                    for(item in snapshot.children){
+                        var tenant = item.getValue(Tenant::class.java)
+                        tenantsIdList!!.add(tenant!!.getTenantId())
+                        Log.d("ggg","one -> "+tenantsIdList.toString())
+                    }
+                }
+            }
+        })
+    }
+
+
+
 
     private fun retrieveFlatDetails(flatId: String?) {
         var flatRef = FirebaseDatabase.getInstance().reference.child("Flats").child(flatId!!)

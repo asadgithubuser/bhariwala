@@ -20,7 +20,7 @@
             android:layout_height="85dp"
             android:layout_gravity="center_vertical"
             android:scaleType="centerCrop"
-            android:src="@drawable/flat2"/>
+            android:src="@drawable/flat_placeholder"/>
         <View
             android:layout_width="4dp"
             android:layout_height="85dp"

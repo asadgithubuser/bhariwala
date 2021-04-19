@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="15dp"
+    android:backgroundTint="@color/white"
+    tools:context=".AddExpanseActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp"
+                    android:paddingLeft="5dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Add A Expense Note"
+                        android:textColor="@color/teal_700"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:layout_marginBottom="15dp"/>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Expense Type :"
+                        android:layout_marginTop="14dp"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:layout_marginBottom="3dp"/>
+
+                    <nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup
+                        android:id="@+id/expenseTypes_btn_groups"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:toggle_requiredAmount="1"
+                        app:toggle_horizontalSpacing="12dp"
+                        app:toggle_selectableAmount="1"
+                        app:flexWrap="wrap"
+                        app:justifyContent="flex_start">
+                        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                            android:id="@+id/add_expense_shopping"
+                            android:layout_width="wrap_content"
+                            android:layout_height="37dp"
+                            app:toggle_text="সপিং"
+                            app:toggle_backgroundColor="#C8C1C1"
+                            app:toggle_textSize="16dp"
+                            app:toggle_borderWidth="1dp"
+                            android:layout_marginTop="10dp"
+                            app:toggle_selectedBackgroundColor="@color/teal_700"
+                            app:toggle_selectedTextColor="@color/white"
+                            app:toggle_btnCornerRadius="6dp"
+                            app:toggle_textColor="@color/teal_700"
+                            app:toggle_borderColor="@color/teal_700"
+                            android:layout_marginRight="8dp"/>
+                        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                            android:id="@+id/add_expense_travel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="37dp"
+                            app:toggle_text="ট্রাভেল"
+                            app:toggle_backgroundColor="#C8C1C1"
+                            app:toggle_textSize="16dp"
+                            app:toggle_borderWidth="1dp"
+                            android:layout_marginTop="10dp"
+                            app:toggle_selectedBackgroundColor="@color/teal_700"
+                            app:toggle_selectedTextColor="@color/white"
+                            app:toggle_btnCornerRadius="6dp"
+                            app:toggle_textColor="@color/teal_700"
+                            app:toggle_borderColor="@color/teal_700"
+                            android:layout_marginRight="8dp"/>
+                        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                            android:id="@+id/add_expense_food"
+                            android:layout_width="wrap_content"
+                            android:layout_height="37dp"
+                            app:toggle_text="খাবার"
+                            app:toggle_backgroundColor="#C8C1C1"
+                            app:toggle_textSize="16dp"
+                            app:toggle_borderWidth="1dp"
+                            android:layout_marginTop="10dp"
+                            app:toggle_selectedBackgroundColor="@color/teal_700"
+                            app:toggle_selectedTextColor="@color/white"
+                            app:toggle_btnCornerRadius="6dp"
+                            app:toggle_textColor="@color/teal_700"
+                            app:toggle_borderColor="@color/teal_700"
+                            android:layout_marginRight="8dp"/>
+
+                        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                            android:id="@+id/add_expense_dhar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="37dp"
+                            app:toggle_text="ধার দিয়েছি"
+                            app:toggle_backgroundColor="#C8C1C1"
+                            app:toggle_textSize="16dp"
+                            app:toggle_borderWidth="1dp"
+                            app:toggle_selectedBackgroundColor="@color/teal_700"
+                            app:toggle_selectedTextColor="@color/white"
+                            app:toggle_btnCornerRadius="6dp"
+                            app:toggle_textColor="@color/teal_700"
+                            app:toggle_borderColor="@color/teal_700"
+                            android:layout_marginTop="10dp"/>
+
+                        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                            android:id="@+id/add_expense_lose"
+                            android:layout_width="wrap_content"
+                            android:layout_height="37dp"
+                            app:toggle_text="লস/হারিয়ে গিয়েছে"
+                            app:toggle_backgroundColor="#C8C1C1"
+                            app:toggle_textSize="16dp"
+                            app:toggle_borderWidth="1dp"
+                            app:toggle_selectedBackgroundColor="@color/teal_700"
+                            app:toggle_selectedTextColor="@color/white"
+                            app:toggle_btnCornerRadius="6dp"
+                            app:toggle_textColor="@color/teal_700"
+                            app:toggle_borderColor="@color/teal_700"
+                            android:layout_marginTop="10dp"/>
+
+                        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                            android:id="@+id/add_expense_familyCost"
+                            android:layout_width="wrap_content"
+                            android:layout_height="37dp"
+                            app:toggle_text="ফ্যামিলিকে দিয়েছি"
+                            app:toggle_backgroundColor="#C8C1C1"
+                            app:toggle_textSize="16dp"
+                            app:toggle_borderWidth="1dp"
+                            app:toggle_selectedBackgroundColor="@color/teal_700"
+                            app:toggle_selectedTextColor="@color/white"
+                            app:toggle_btnCornerRadius="6dp"
+                            app:toggle_textColor="@color/teal_700"
+                            app:toggle_borderColor="@color/teal_700"
+                            android:layout_marginTop="10dp"/>
+
+                        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                            android:id="@+id/add_expense_addaCost"
+                            android:layout_width="wrap_content"
+                            android:layout_height="37dp"
+                            app:toggle_text="আড্ডা খরচ"
+                            app:toggle_backgroundColor="#C8C1C1"
+                            app:toggle_textSize="16dp"
+                            app:toggle_borderWidth="1dp"
+                            app:toggle_selectedBackgroundColor="@color/teal_700"
+                            app:toggle_selectedTextColor="@color/white"
+                            app:toggle_btnCornerRadius="6dp"
+                            app:toggle_textColor="@color/teal_700"
+                            app:toggle_borderColor="@color/teal_700"
+                            android:layout_marginTop="10dp"/>
+
+
+
+                        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                            android:id="@+id/rfwh_singleSeatFemale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="37dp"
+                            app:toggle_text="+"
+                            app:toggle_backgroundColor="#C8C1C1"
+                            app:toggle_textSize="16dp"
+                            app:toggle_borderWidth="1dp"
+                            android:layout_marginTop="10dp"
+                            app:toggle_selectedBackgroundColor="@color/teal_700"
+                            app:toggle_selectedTextColor="@color/purple_700"
+                            app:toggle_btnCornerRadius="6dp"
+                            app:toggle_textColor="#DF1313"
+                            app:toggle_borderColor="@color/teal_700"
+                            android:layout_marginRight="8dp"/>
+
+                    </nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup>
+
+
+                    <EditText
+                        android:id="@+id/add_expense_note"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Expense Note"
+                        android:layout_marginTop="8dp"
+                        android:lines="3"
+                        android:maxLines="10"
+                        android:gravity="top|left"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/add_expense_amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Expense amount"
+                            android:inputType="numberDecimal"
+                            android:textColorHint="@color/black"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Your Mind After expense:"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginVertical="7dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup
+                            android:id="@+id/add_expense_afterMind"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:toggle_selectableAmount="1"
+                            app:toggle_requiredAmount="1">
+
+                            <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                                android:id="@+id/add_expense_important"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                app:toggle_text="গুরুত্বপূর্ন ছিল"
+                                app:toggle_backgroundColor="#C8C1C1"
+                                app:toggle_textSize="14dp"
+                                app:toggle_borderWidth="1dp"
+                                app:toggle_selectedBackgroundColor="@color/teal_700"
+                                app:toggle_selectedTextColor="@color/white"
+                                app:toggle_btnCornerRadius="1dp"
+                                app:toggle_textColor="@color/teal_700"
+                                app:toggle_borderColor="@color/teal_700"
+                                android:layout_marginTop="10dp"/>
+                            <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                                android:id="@+id/add_expense_some_important"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                app:toggle_text="মোটামুটি কাজের"
+                                app:toggle_backgroundColor="#C8C1C1"
+                                app:toggle_textSize="14dp"
+                                app:toggle_borderWidth="1dp"
+                                app:toggle_selectedBackgroundColor="@color/teal_700"
+                                app:toggle_selectedTextColor="@color/white"
+                                app:toggle_btnCornerRadius="1dp"
+                                app:toggle_textColor="@color/teal_700"
+                                app:toggle_borderColor="@color/teal_700"
+                                android:layout_marginTop="10dp"/>
+                            <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                                android:id="@+id/add_expense_valueless"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                app:toggle_text="বেহুদা খরচ"
+                                app:toggle_backgroundColor="#C8C1C1"
+                                app:toggle_textSize="14dp"
+                                app:toggle_borderWidth="1dp"
+                                app:toggle_selectedBackgroundColor="@color/teal_700"
+                                app:toggle_selectedTextColor="@color/white"
+                                app:toggle_btnCornerRadius="1dp"
+                                app:toggle_textColor="@color/teal_700"
+                                app:toggle_borderColor="@color/teal_700"
+                                android:layout_marginTop="10dp"/>
+
+                        </nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:layout_marginVertical="40dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addExpense_addBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="37dp"
+                    android:layout_weight="1"
+                    android:text="Add Expense"
+                    android:layout_marginRight="7dp"
+                    android:textAllCaps="false"
+                    android:textSize="17dp"
+                    android:backgroundTint="@color/teal_700"
+                    android:textColor="@color/white"
+                    android:background="@drawable/rounded_button_style"
+                    android:paddingHorizontal="7dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/add_teked_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="37dp"
+                    android:layout_marginLeft="7dp"
+                    android:text="Cancel"
+                    android:layout_weight="1"
+                    android:textAllCaps="false"
+                    android:textSize="17dp"
+                    android:backgroundTint="@color/teal_700"
+                    android:textColor="@color/white"
+                    android:background="@drawable/rounded_button_style"
+                    android:paddingHorizontal="7dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

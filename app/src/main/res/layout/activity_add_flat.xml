@@ -75,13 +75,79 @@
                        android:layout_height="wrap_content"
                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                        <com.google.android.material.textfield.TextInputEditText
-                          android:id="@+id/flat_name"
+                          android:id="@+id/flat_name_text"
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"
                            android:hint="Flat Name"
+                           android:text=""
                            android:textColorHint="@color/black"/>
                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:orientation="vertical">
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:gravity="center_horizontal"
+                           android:orientation="vertical">
+
+                           <com.google.android.material.button.MaterialButton
+                               android:id="@+id/uploadFlatImages_Btn"
+                               android:layout_width="wrap_content"
+                               android:layout_height="52dp"
+                               android:text="Upload Flat Images(Max 3)"
+                               android:layout_marginRight="7dp"
+                               android:textAllCaps="false"
+                               android:textSize="17dp"
+                               app:cornerRadius="2dp"
+                               android:drawableLeft="@drawable/add_photo"
+                               android:backgroundTint="#F4BCBC"
+                               android:textColor="@color/white"
+                               android:paddingHorizontal="20dp" />
+
+                           <LinearLayout
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="20dp"
+                               android:gravity="center_horizontal"
+                               android:orientation="vertical">
+
+<!--                               <ImageSwitcher-->
+<!--                                   android:id="@+id/flatImageSwitcher2"-->
+<!--                                   android:layout_width="match_parent"-->
+<!--                                   android:layout_height="190dp"/>-->
+
+                               <androidx.recyclerview.widget.RecyclerView
+                                   android:id="@+id/flatImgRecyclerview"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"/>
+
+
+                               <ImageView
+                                   android:id="@+id/flatImgViewPager"
+                                   android:layout_width="200dp"
+                                   android:layout_height="120dp"/>
+
+
+<!--                               <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                                   android:id="@+id/carPark_add_pfarker_image_view"-->
+<!--                                   android:layout_width="100dp"-->
+<!--                                   android:layout_height="90dp"-->
+<!--                                   android:src="@drawable/add_image"-->
+<!--                                   android:background="@drawable/rounded_button_style"/>-->
+
+                           </LinearLayout>
+
+                       </LinearLayout>
+                   </LinearLayout>
+
+
                </LinearLayout>
+
+
            </com.google.android.material.card.MaterialCardView>
 
            <com.google.android.material.card.MaterialCardView

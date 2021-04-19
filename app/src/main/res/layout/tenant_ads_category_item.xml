@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="170dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="fill"
         android:layout_margin="10dp"
         app:cardBackgroundColor="#F4F1F4">
@@ -29,8 +29,8 @@
                 <TextView
                     android:id="@+id/rfh_category_name"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fam"
+                    android:layout_height="match_parent"
+                    android:text=""
                     android:textStyle="bold"
                     android:gravity="left"
                     android:textSize="17dp"/>
@@ -43,7 +43,7 @@
                     android:textSize="16dp"
                     android:gravity="left"
                     android:textColor="@color/teal_700"
-                    android:text="125"/>
+                    android:text=""/>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

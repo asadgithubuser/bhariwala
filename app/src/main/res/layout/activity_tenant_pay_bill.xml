@@ -156,12 +156,12 @@
                             android:textSize="16dp"/>
 
                             <com.google.android.material.textfield.TextInputLayout
-                                android:layout_width="225dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="52dp"
                                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/addPay_bill_rent_amount"
-                                    android:layout_width="fill_parent"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:inputType="numberDecimal"
                                     android:hint="Enter amount"/>
@@ -256,10 +256,37 @@
                             android:id="@+id/addPay_bill_select_pay_via"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Search Tenant"
+                            android:hint="Select Via Payment"
                             android:inputType="none"
                             android:textSize="15dp"/>
                     </com.google.android.material.textfield.TextInputLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Trx ID: "
+                            android:layout_gravity="center_vertical"
+                            android:textStyle="bold"
+                            android:layout_marginRight="20dp"
+                            android:textSize="16dp"/>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/addPay_bill_TrxID"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textCapCharacters"
+                                android:hint="Enter TrxID"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 

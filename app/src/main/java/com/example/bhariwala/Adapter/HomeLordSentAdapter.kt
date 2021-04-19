@@ -37,10 +37,8 @@ class HomeLordSentAdapter(private val mContext: Context, private val mHSMessages
         holder.hl_sent_msg_date.setText(sentMag.getDate())
         holder.hl_sent_msg_text.setText(sentMag.getMessage())
 
-
         firebaseUser = FirebaseAuth.getInstance().currentUser
-        checkUserCurrentStatus(holder, sentMag)
-
+        checkUserCurrentStatus(holder, sentMag!!.getFlatId())
 
     }
 
@@ -55,9 +53,9 @@ class HomeLordSentAdapter(private val mContext: Context, private val mHSMessages
                 if(snapshot.exists()){
                     for(item in snapshot.children){
                         var hlsentmsg = item.getValue(HomeLordSent::class.java)
-                        if(hlsentmsg!!.getFlatId().equals(flatId)){
+                        if(hlsentmsg!!.getFlatId().equals(flatId) && hlsentmsg.getHomeLordId().equals(firebaseUser!!.uid)){
                             getFlatById(holder, hlsentmsg.getFlatId())
-                            getTenantByHomelordId(holder, hlsentmsg.getHomeLordId())
+                            getTenantByHomelordId(holder, hlsentmsg.getFlatId())
                         }
                     }
                 }
@@ -85,7 +83,7 @@ class HomeLordSentAdapter(private val mContext: Context, private val mHSMessages
         })
     }
 
-    private fun getTenantByHomelordId(holder: ViewHolder, hlordId: String) {
+    private fun getTenantByHomelordId(holder: ViewHolder, flatId: String) {
         var userRef = FirebaseDatabase.getInstance().reference.child("Tenants")
         userRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -96,7 +94,7 @@ class HomeLordSentAdapter(private val mContext: Context, private val mHSMessages
                 if(snapshot.exists()){
                     for(item in snapshot.children){
                         var hlsentmsg = item.getValue(Tenant::class.java)
-                        if(hlsentmsg!!.getHomeLordId().equals(hlordId) && hlsentmsg.getHomeLordId().equals(firebaseUser!!.uid)){
+                        if(hlsentmsg!!.getFlatId().equals(flatId)){
                             getTenantFromUser(holder, hlsentmsg.getTenantId())
                         }
                     }
@@ -114,9 +112,8 @@ class HomeLordSentAdapter(private val mContext: Context, private val mHSMessages
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     var user = snapshot.getValue(User::class.java)
-
-                    holder.hl_sent_receiver_name.setText(user!!.getName())
-                    holder.hl_sent_userStatus.setText(user!!.getUser())
+                        holder.hl_sent_receiver_name.setText(user!!.getName())
+                        holder.hl_sent_userStatus.setText(user!!.getUser())
                 }
             }
         })
@@ -207,7 +204,7 @@ class HomeLordSentAdapter(private val mContext: Context, private val mHSMessages
 
 
 
-    private fun checkUserCurrentStatus(holder: ViewHolder, sentMag_Obj: HomeLordSent) {
+    private fun checkUserCurrentStatus(holder: ViewHolder, flatId: String) {
         var userRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUser!!.uid)
         userRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -218,9 +215,9 @@ class HomeLordSentAdapter(private val mContext: Context, private val mHSMessages
                 if(snapshot.exists()){
                     var user = snapshot.getValue(User::class.java)
                     if(user!!.getUser().equals("Homelord")){
-                        getFlatPropertyNames(holder, sentMag_Obj.getFlatId())
+                        getFlatPropertyNames(holder, flatId)
                     }else if(user!!.getUser().equals("Tenant")){
-                        getFlatPropertyNamesTenant(holder, sentMag_Obj.getFlatId())
+                        getFlatPropertyNamesTenant(holder, flatId)
                     }
                 }
             }

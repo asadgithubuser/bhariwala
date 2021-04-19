@@ -1,11 +1,13 @@
 package com.example.bhariwala.Adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.NonNull
+import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bhariwala.Models.TenantSentMsg
 import com.example.bhariwala.Models.User
@@ -33,13 +35,14 @@ class TenantSendMsgAdapter(private val mContext:Context, private val mTenantMsgL
     override fun onBindViewHolder(holder: TenantSendMsgAdapter.ViewHolder, position: Int) {
         var tsm_Obj = mTenantMsgList[position]
 
+
         holder.tsm_sent_msg_time.text = tsm_Obj.getTime()
         holder.tsm_sent_msg_date.text = tsm_Obj.getDate()
         holder.tsm_sent_msg_text.text = tsm_Obj.getMsgText()
         holder.tsm_sent_msg_sbject.text = tsm_Obj.getMsgSubject()
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
-        checkUserCurrentStatus(holder, tsm_Obj)
+        checkUserCurrentStatus(holder, tsm_Obj.getHomeLrdId(), tsm_Obj.getTenatId())
 
     }
 
@@ -55,8 +58,9 @@ class TenantSendMsgAdapter(private val mContext:Context, private val mTenantMsgL
                 if(snapshot.exists()){
                     for (item in snapshot.children){
                         var tsm = item.getValue(TenantSentMsg::class.java)
-                        if(homeLrdId.equals(firebaseUser!!.uid)){
-                            getUserByUserIdHomelord(holder, tsm!!.getTenatId())
+                        if(tsm!!.getHomeLrdId().equals(homeLrdId)){
+                            getUserByUserIdHomelord(holder, tsm.getTenatId())
+                            Log.d("das", "two : "+tsm!!.getTenatId())
                         }
                     }
                 }
@@ -73,10 +77,14 @@ class TenantSendMsgAdapter(private val mContext:Context, private val mTenantMsgL
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
-                    var user = snapshot.getValue(User::class.java)
-
-                    holder.tsm_receiver_homelord_name.text = user!!.getName()
-                    holder.tsm_receiver_userStatus.text = user.getUser()
+                    //for(item in snapshot.children){
+                        var user = snapshot.getValue(User::class.java)
+                        if(user!!.getUid().equals(userId)){
+                            Log.d("das", "two33 : "+user!!.getName())
+                            holder.tsm_receiver_homelord_name.text = user!!.getName()+" test"
+                            holder.tsm_receiver_userStatus.text = user.getUser()
+                        }
+                  //  }
                 }
             }
         })
@@ -124,7 +132,7 @@ class TenantSendMsgAdapter(private val mContext:Context, private val mTenantMsgL
     }
 
 
-    private fun checkUserCurrentStatus(holder: ViewHolder, tsm_Obj: TenantSentMsg) {
+    private fun checkUserCurrentStatus(holder: ViewHolder, homeLrdId: String, tenantId: String) {
         var userRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUser!!.uid)
         userRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -134,10 +142,11 @@ class TenantSendMsgAdapter(private val mContext:Context, private val mTenantMsgL
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     var user = snapshot.getValue(User::class.java)
-                    if(user!!.getUser().equals("Homelord")){
-                        getUserFromTSMHomelord(holder, tsm_Obj.getHomeLrdId())
+                    if(user!!.getUser() == "Homelord" && homeLrdId == firebaseUser!!.uid){
+                        getUserFromTSMHomelord(holder, homeLrdId)
+                        Log.d("das", "one : "+homeLrdId)
                     }else if(user!!.getUser().equals("Tenant")){
-                        getUserFromTSM(holder, tsm_Obj.getTenatId())
+                        getUserFromTSM(holder, tenantId)
                     }
                 }
             }

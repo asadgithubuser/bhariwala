@@ -60,17 +60,26 @@
                 android:layout_marginTop="30dp"
                 android:orientation="horizontal">
 
+<!--                <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                    android:id="@+id/hl_user_image"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_marginRight="10dp"-->
+<!--                    android:src="@drawable/profile_placeholder"/>-->
+<!--                -->
+
                 <ImageView
                     android:id="@+id/hl_user_image"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:padding="6dp"
-                    android:src="@drawable/profile" />
+                    android:layout_alignParentLeft="true"
+                    android:src="@drawable/profile_placeholder" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentRight="true"
                     android:layout_toRightOf="@+id/hl_user_image"
                     android:layout_gravity="center_vertical"
                     android:orientation="vertical">
@@ -131,7 +140,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Features"
-                    android:paddingLeft="10dp"
                     android:layout_marginBottom="8dp"
                     style="@style/heading_text_style"/>
 
@@ -143,12 +151,13 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/hl_message_cardView"
-                        android:layout_width="120dp"
+                        android:layout_width="0dp"
                         android:layout_height="100dp"
                         android:layout_gravity="fill"
                         android:layout_weight="1"
                         app:cardCornerRadius="8dp"
-                        android:layout_margin="10dp"
+                        android:layout_marginVertical="10dp"
+                        android:layout_marginRight="10dp"
                         app:cardElevation="1dp">
                         <RelativeLayout
                             android:id="@+id/homelord_message"
@@ -176,7 +185,7 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/homelord_bill"
-                        android:layout_width="120dp"
+                        android:layout_width="0dp"
                         android:layout_height="100dp"
                         android:layout_gravity="fill"
                         android:layout_weight="1"
@@ -207,12 +216,13 @@
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
                         android:id="@+id/homelord_serviceman"
-                        android:layout_width="120dp"
+                        android:layout_width="0dp"
                         android:layout_height="100dp"
                         android:layout_gravity="fill"
                         android:layout_weight="1"
                         app:cardCornerRadius="8dp"
-                        android:layout_margin="10dp"
+                        android:layout_marginVertical="10dp"
+                        android:layout_marginLeft="10dp"
                         app:cardElevation="4dp">
                         <RelativeLayout
                             android:layout_width="wrap_content"
@@ -245,12 +255,13 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/properties_area_btn"
-                        android:layout_width="120dp"
+                        android:layout_width="0dp"
                         android:layout_height="100dp"
                         android:layout_gravity="fill"
                         android:layout_weight="1"
                         app:cardCornerRadius="8dp"
-                        android:layout_margin="10dp"
+                        android:layout_marginVertical="10dp"
+                        android:layout_marginRight="10dp"
                         app:cardElevation="4dp">
                         <RelativeLayout
                             android:layout_width="wrap_content"
@@ -277,7 +288,7 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/parcel_btn"
-                        android:layout_width="120dp"
+                        android:layout_width="0dp"
                         android:layout_height="100dp"
                         android:layout_gravity="fill"
                         android:layout_weight="1"
@@ -308,12 +319,13 @@
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
                         android:id="@+id/addServicemanToHomelord"
-                        android:layout_width="120dp"
+                        android:layout_width="0dp"
                         android:layout_height="100dp"
                         android:layout_gravity="fill"
                         android:layout_weight="1"
                         app:cardCornerRadius="8dp"
-                        android:layout_margin="10dp"
+                        android:layout_marginVertical="10dp"
+                        android:layout_marginLeft="10dp"
                         app:cardElevation="4dp">
                         <RelativeLayout
                             android:layout_width="wrap_content"
@@ -351,7 +363,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Activites"
-                    android:paddingLeft="10dp"
                     style="@style/heading_text_style"/>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -361,13 +372,14 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/homelord_car_parking"
-                        android:layout_width="120dp"
+                        android:layout_width="0dp"
                         android:layout_height="100dp"
                         android:layout_gravity="fill"
                         android:layout_weight="1"
                         android:clickable="true"
                         app:cardCornerRadius="8dp"
-                        android:layout_margin="10dp"
+                        android:layout_marginVertical="10dp"
+                        android:layout_marginRight="10dp"
                         app:cardElevation="4dp">
                         <RelativeLayout
                             android:layout_width="wrap_content"
@@ -393,7 +405,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="120dp"
+                        android:layout_width="0dp"
                         android:layout_height="100dp"
                         android:layout_gravity="fill"
                         android:layout_weight="1"
@@ -424,13 +436,14 @@
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
-                        android:layout_width="120dp"
+                        android:layout_width="0dp"
                         android:layout_height="100dp"
                         android:layout_gravity="fill"
                         android:layout_weight="1"
                         android:longClickable="true"
                         app:cardCornerRadius="8dp"
-                        android:layout_margin="10dp"
+                        android:layout_marginVertical="10dp"
+                        android:layout_marginLeft="10dp"
                         style="@style/click_custom_style"
                         app:cardElevation="4dp">
                         <RelativeLayout

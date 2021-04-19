@@ -1,7 +1,9 @@
 package com.example.bhariwala.Adapter
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +26,8 @@ import com.squareup.picasso.Picasso
 class HomeLordBillsListAdapter(private val mContext: Context, private val mPayRentList: List<Tenant>)
     : RecyclerView.Adapter<HomeLordBillsListAdapter.ViewHolder>(){
 
-
+    var tenantBillCount = 0
+    var tenantName : String? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -41,16 +44,45 @@ class HomeLordBillsListAdapter(private val mContext: Context, private val mPayRe
     override fun onBindViewHolder(holder: HomeLordBillsListAdapter.ViewHolder, position: Int) {
         var tenant = mPayRentList[position]
 
-        getTenantNameandImage(holder, tenant.getHomeLordId())
+        getTenantNameandImage(holder, tenant.getTenantId())
         getFlatNameDetails(holder, tenant.getFlatId())
 
 
-        holder.all_received_bills.setOnClickListener{
-           var  intent = Intent(mContext, PayRentBillsActivity::class.java)
-            intent.putExtra("tenantName", tenant.getTenantUserName())
-            mContext.startActivity(intent)
-        }
+        checkTenantBills(holder, tenant.getTenantId())
 
+
+    }
+
+    private fun checkTenantBills(holder: ViewHolder, tenantId: String) {
+        var tenantBillCount = 0
+        var tenantRef = FirebaseDatabase.getInstance().reference.child("PayRents").child(tenantId)
+        tenantRef.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+            override fun onDataChange(snapshot: DataSnapshot) {
+                    tenantBillCount = snapshot.childrenCount.toInt()
+
+                    holder.all_received_bills.setOnClickListener{
+                        if(tenantBillCount >= 1){
+                            var  intent = Intent(mContext, PayRentBillsActivity::class.java)
+                            intent.putExtra("tenantID", tenantId)
+                            mContext.startActivity(intent)
+                        }else if(tenantBillCount <= 0){
+                            var ddialog = AlertDialog.Builder(mContext)
+                            ddialog.setTitle("Tenant Bill")
+                            ddialog.setMessage("This tenant have not pay any bill yet.")
+                            ddialog.setCancelable(false)
+                            ddialog.setPositiveButton("Ok" , {
+                                dialog, id -> dialog.dismiss()
+                            })
+
+                            ddialog.create().show()
+                        }
+
+                }
+            }
+        })
     }
 
     private fun getTenantNameandImage(holder: ViewHolder, userId: String) {
@@ -62,8 +94,9 @@ class HomeLordBillsListAdapter(private val mContext: Context, private val mPayRe
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     val user = snapshot.getValue(User::class.java)
-                    holder.tenant_name.text = user!!.getName()
-                    Picasso.get().load(user!!.getImage()).into(holder.tenant_img)
+                    tenantName = user!!.getName()
+                    holder.tenant_name.text = user.getName()
+                    Picasso.get().load(user.getImage()).into(holder.tenant_img)
                 }
             }
         })
@@ -78,7 +111,7 @@ class HomeLordBillsListAdapter(private val mContext: Context, private val mPayRe
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     var flat = snapshot.getValue(Flat::class.java)
-                    holder.flat_name.text = "Flat: "+flat!!.getFlatId()
+                    holder.flat_name.text = "Flat: "+flat!!.getFlatName()
                     holder.building_name.text = "Building: "+flat.getPropertyName()
                 }
             }

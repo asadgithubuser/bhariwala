@@ -59,7 +59,7 @@
                             android:layout_width="170dp"
                             android:layout_height="170dp"
                             android:layout_marginTop="10dp"
-                            android:src="@drawable/add_image"
+                            android:src="@drawable/profile_placeholder"
                             android:paddingHorizontal="7dp"
                             android:background="@drawable/circle_area_style"/>
 

@@ -40,8 +40,9 @@ class TenantPayBillsAdapter(private val mContext: Context, private val mPayRentL
         holder.payRent_rantAmount.text = payRent.getPaidRentAmount()+" tk"
         holder.payRent_rentMOnth.text = payRent.getPaidRentMonth()
         holder.payRent_via_service.text = payRent.getPayViaService()
+        holder.via_service_trxId.text = payRent.getTrxID()
 
-        if(payRent.getIsPending() == "0"){
+        if(payRent.getIsPending() == "1"){
             holder.tenant_sent_bill_button.text = "Receive Pending.."
         }else{
             holder.tenant_sent_bill_button.text = "Receive Confirmed"
@@ -61,6 +62,7 @@ class TenantPayBillsAdapter(private val mContext: Context, private val mPayRentL
         var payRent_rentMOnth: TextView = itemView.findViewById(R.id.paidrent_rent_month)
         var payRent_via_service: TextView = itemView.findViewById(R.id.paidrent_via_service)
         var tenant_sent_bill_button: TextView = itemView.findViewById(R.id.tenant_sent_bill_button)
+        var via_service_trxId: TextView = itemView.findViewById(R.id.paidrent_via_service_trxId)
     }
 
 }

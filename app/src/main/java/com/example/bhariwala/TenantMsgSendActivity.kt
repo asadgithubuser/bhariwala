@@ -4,6 +4,8 @@ import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import com.example.bhariwala.Models.User
@@ -12,6 +14,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_tenant_msg_send.*
 import kotlinx.android.synthetic.main.fragment_tenant.*
 import java.text.SimpleDateFormat
@@ -101,7 +104,8 @@ class TenantMsgSendActivity : AppCompatActivity() {
     }
 
     private fun getHomeLordNameById(myHomeLordId: String?) {
-        var myHomelordName = findViewById<AppCompatButton>(R.id.sm_myHomelordName)
+        var myHomelordName = findViewById<TextView>(R.id.sm_myHomelordName)
+        var myHomelordImg = findViewById<ImageView>(R.id.sm_myHomelordImage)
 
         var userRef = FirebaseDatabase.getInstance().reference.child("Users").child(myHomeLordId!!)
         userRef.addValueEventListener( object : ValueEventListener {
@@ -113,6 +117,7 @@ class TenantMsgSendActivity : AppCompatActivity() {
                 if(snapshot.exists()){
                     var user = snapshot.getValue(User::class.java)
                     myHomelordName.text = user!!.getName()
+                    Picasso.get().load(user.getImage()).into(myHomelordImg)
                 }
             }
         })

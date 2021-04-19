@@ -14,11 +14,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <ImageView
+
+
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/flatAds_image_slider"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
-                android:src="@drawable/flat3"
-                android:scaleType="centerCrop"/>
+                app:iss_auto_cycle="true"
+                app:iss_period="1000"
+                app:iss_placeholder="@drawable/flat_placeholder"
+                app:iss_delay="0"/>
+
+<!--            <ImageView-->
+<!--                android:id="@+id/flatAds_singleImage_view"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="230dp"-->
+<!--                android:src="@drawable/flat3"-->
+<!--                android:scaleType="fitXY"/>-->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -363,7 +376,7 @@
                                 android:id="@+id/pp_address"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="kalshi, mirpur 11.5"
+                                android:text=""
                                 android:layout_gravity="center_vertical"
                                 android:textSize="15dp"
                                 android:layout_marginBottom="3dp"
@@ -382,7 +395,7 @@
                                         android:id="@+id/pp_section"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Section: kalshi"
+                                        android:text=""
                                         android:layout_marginBottom="3dp"
                                         android:layout_gravity="center_vertical"
                                         android:textSize="15dp"
@@ -391,7 +404,7 @@
                                         android:id="@+id/pp_thana"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Thana: kalshi"
+                                        android:text=""
                                         android:layout_gravity="center_vertical"
                                         android:textSize="15dp"
                                         android:textColor="@color/black"/>
@@ -406,7 +419,7 @@
                                         android:id="@+id/pp_city"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="City: Dhaka"
+                                        android:text=""
                                         android:layout_gravity="center_vertical"
                                         android:textSize="15dp"
                                         android:layout_marginBottom="3dp"
@@ -415,7 +428,7 @@
                                         android:id="@+id/pp_division"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Division: Dhaka"
+                                        android:text=""
                                         android:layout_gravity="center_vertical"
                                         android:textSize="15dp"
                                         android:textColor="@color/black"/>
@@ -448,7 +461,7 @@
                         android:id="@+id/flat_about_details"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="about..."
                         android:layout_gravity="center_vertical"
                         android:textSize="14dp"
                         android:textColor="@color/black"/>
@@ -500,7 +513,7 @@
                                     android:id="@+id/generator_service"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="YES"
+                                    android:text=""
                                     android:gravity="center_horizontal"
                                     android:textSize="14dp"
                                     android:textColor="@color/black"/>
@@ -530,7 +543,7 @@
                                     android:id="@+id/lift_service"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="YES"
+                                    android:text=""
                                     android:gravity="center_horizontal"
                                     android:textSize="14dp"
                                     android:textColor="@color/black"/>
@@ -561,10 +574,10 @@
                                     android:id="@+id/security_service"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="NO"
+                                    android:text=""
                                     android:gravity="center_horizontal"
                                     android:textSize="14dp"
-                                    android:textColor="#E91E63"/>
+                                    android:textColor="@color/black"/>
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
 
@@ -592,7 +605,7 @@
                                     android:id="@+id/gas_service"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="YES"
+                                    android:text=""
                                     android:gravity="center_horizontal"
                                     android:textSize="14dp"
                                     android:textColor="@color/black"/>
@@ -624,9 +637,10 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <ImageView
+                                android:id="@+id/addetails_homelord_pic"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                android:src="@drawable/profile"
+                                android:src="@drawable/profile_placeholder"
                                 android:padding="6dp"/>
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -634,20 +648,35 @@
                                 android:layout_marginTop="15dp"
                                 android:orientation="vertical">
                                 <TextView
-                                    android:id="@+id/homelord_name"
+                                    android:id="@+id/addetails_homelord_name"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Md. Khan Wbaidullah"
+                                    android:text=""
                                     android:layout_marginBottom="7dp"
                                     android:textSize="15dp"
-                                    android:textColor="@color/teal_700"/>
-                                <TextView
-                                    android:id="@+id/homelord_phone"
+                                    android:textColor="#038F8E"/>
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Phone: 01710 345 454"
-                                    android:textSize="14dp"
-                                    android:textColor="@color/black"/>
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:id="@+id/addetails_texxt_phone"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Phone: "
+                                        android:layout_marginRight="9dp"
+                                        android:textSize="14dp"
+                                        android:textColor="@color/black"/>
+
+                                    <TextView
+                                        android:id="@+id/addetails_homelord_phone"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text=""
+                                        android:textSize="14dp"
+                                        android:textColor="@color/black"/>
+
+                                </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
@@ -660,6 +689,7 @@
                 android:layout_marginVertical="30dp"
                 android:orientation="horizontal">
                 <Button
+                    android:id="@+id/tenantMsgToOther_homelord_adDetails"
                     android:layout_width="150dp"
                     android:layout_height="45dp"
                     android:drawableLeft="@drawable/send_ic_icon"
@@ -672,6 +702,7 @@
                     android:paddingVertical="4dp"/>
 
                 <Button
+                    android:id="@+id/tenantCallToOther_homelord_adDetails"
                     android:layout_width="150dp"
                     android:layout_height="45dp"
                     android:drawableLeft="@drawable/add_call"

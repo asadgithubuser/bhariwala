@@ -13,9 +13,11 @@ class PayRent {
     private var paidRentAmount = ""
     private var paidRentMonth = ""
     private var payViaService = ""
+    private var trxID = ""
 
     constructor()
-    constructor(payId: String, tenantId: String, homeLordId: String, homeLordName: String, time: String, date: String, isPending: String, flatName: String, buildingName: String, paidRentAmount: String, paidRentMonth: String, payViaService: String) {
+    constructor(payId: String, tenantId: String, homeLordId: String, homeLordName: String, time: String, date: String, isPending: String, flatName: String,
+                buildingName: String, paidRentAmount: String, paidRentMonth: String, payViaService: String, trxID: String) {
         this.payId = payId
         this.tenantId = tenantId
         this.homeLordId = homeLordId
@@ -28,6 +30,7 @@ class PayRent {
         this.paidRentAmount = paidRentAmount
         this.paidRentMonth = paidRentMonth
         this.payViaService = payViaService
+        this.trxID = trxID
     }
 
 
@@ -113,6 +116,13 @@ class PayRent {
     }
     fun setPayViaService( payViaService: String){
         this.payViaService =payViaService
+    }
+
+    fun getTrxID():String{
+        return trxID
+    }
+    fun setTrxID( trxID: String){
+        this.trxID =trxID
     }
 
 

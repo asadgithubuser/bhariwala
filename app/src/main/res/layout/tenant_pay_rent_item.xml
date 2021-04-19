@@ -130,7 +130,7 @@
                             android:id="@+id/paidrent_message"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Mr. Bellal Hossain sent 5,000 tk for monthly bill at Jan 5, 2021"
+                            android:text=""
                             android:textAllCaps="false"
                             android:textSize="15dp"
                             android:inputType="textMultiLine"
@@ -155,7 +155,7 @@
                             android:id="@+id/paidrent_rentAmount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="5,000 tk"
+                            android:text=""
                             android:textAllCaps="false"
                             android:textSize="16dp"
                             android:layout_marginVertical="6dp"
@@ -178,7 +178,7 @@
                             android:id="@+id/paidrent_rent_month"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Jan 5, 2021"
+                            android:text=""
                             android:textAllCaps="false"
                             android:textSize="16dp"
                             android:layout_marginVertical="6dp"
@@ -201,7 +201,30 @@
                             android:id="@+id/paidrent_via_service"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="BKash"
+                            android:text=""
+                            android:textAllCaps="false"
+                            android:textSize="16dp"
+                            android:layout_marginVertical="6dp"
+                            android:textColor="#292424"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="40dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Trx ID : "
+                            android:textAllCaps="false"
+                            android:textSize="16dp"
+                            android:layout_marginVertical="6dp"
+                            android:textColor="#040404"/>
+                        <TextView
+                            android:id="@+id/paidrent_via_service_trxId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
                             android:textAllCaps="false"
                             android:textSize="16dp"
                             android:layout_marginVertical="6dp"

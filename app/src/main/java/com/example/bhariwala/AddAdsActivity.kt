@@ -33,8 +33,6 @@ class AddAdsActivity : AppCompatActivity() {
     private var lift:String? = null
     private var generator:String? = null
 
-    var status = ""
-
     private var homeType:String? = null
     private var rentForWhome:ThemedButton? = null
 

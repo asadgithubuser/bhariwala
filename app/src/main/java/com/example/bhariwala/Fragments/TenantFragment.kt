@@ -10,15 +10,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bhariwala.*
 import com.example.bhariwala.Adapter.AdsCatAdapter
 import com.example.bhariwala.Adapter.AdsCatLocationAdapter
 import com.example.bhariwala.Adapter.HomeLordSentAdapter
-import com.example.bhariwala.FlatAdsDetailsActivity
-import com.example.bhariwala.HomeLordProfileActivity
 import com.example.bhariwala.Interfaces.Communicator
 import com.example.bhariwala.Models.*
 import com.example.bhariwala.R
-import com.example.bhariwala.TenantPayBillsMainAcitivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -29,9 +27,6 @@ import kotlinx.android.synthetic.main.fragment_tenant.view.*
 
 class TenantFragment : Fragment() {
     private var currentTenantId : FirebaseUser? = null
-    private var myHomeLordId : String? = null
-    private var tenantMsgList: MutableList<HomeLordSent>? = null
-    private var homelordMsgAdapter: HomeLordSentAdapter? = null
     private lateinit var communicator: Communicator
 
     private var catList: ArrayList<String>? = null
@@ -62,6 +57,10 @@ class TenantFragment : Fragment() {
             startActivity(Intent(context, TenantPayBillsMainAcitivity::class.java))
         }
 
+        view.tenanti_my_expense_main.setOnClickListener {
+            startActivity(Intent(context, ExpenseDepositMainAcitivity::class.java))
+        }
+
         showTenantInfo(view)
 
         //======= received notice
@@ -72,12 +71,12 @@ class TenantFragment : Fragment() {
         }
 
 
-        //======== ads categoryby hometype items
+        //======== ads category by hometype items
         var recyclerView = view.findViewById<RecyclerView>(R.id.ads_catgory_by_rentType_gridView)
         var categoryLayout: LinearLayoutManager = GridLayoutManager(context, 3)
         adsCategoryList = ArrayList()
 
-        recyclerView.setHasFixedSize(true)
+        //recyclerView.setHasFixedSize(true)
         adsCatAdapter = context?.let { AdsCatAdapter(it, adsCategoryList as MutableList<Ad>) }
         recyclerView.layoutManager = categoryLayout
         recyclerView.adapter = adsCatAdapter
@@ -90,7 +89,7 @@ class TenantFragment : Fragment() {
         var categoryLayoutLoc: LinearLayoutManager = GridLayoutManager(context, 3)
         adsCategoryLocationList = ArrayList()
 
-        recyclerViewLocation.setHasFixedSize(true)
+        //recyclerViewLocation.setHasFixedSize(true)
         adsCatLocationAdapter = context?.let { AdsCatLocationAdapter(it, adsCategoryLocationList as MutableList<Ad>) }
         recyclerViewLocation.layoutManager = categoryLayoutLoc
         recyclerViewLocation.adapter = adsCatLocationAdapter

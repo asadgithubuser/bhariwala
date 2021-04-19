@@ -11,7 +11,9 @@
         android:id="@+id/homlord_sent_msg_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="15dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="55dp"
+        android:clipToPadding="false"
         android:layout_marginHorizontal="13dp"/>
 
 </FrameLayout>

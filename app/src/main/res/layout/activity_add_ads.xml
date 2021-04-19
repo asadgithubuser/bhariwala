@@ -398,7 +398,7 @@
                                 android:id="@+id/gas_no_btn"
                                 android:layout_width="wrap_content"
                                 android:layout_height="34dp"
-                                app:toggle_text="No"
+                                app:toggle_text="NO"
                                 app:toggle_backgroundColor="#C8C1C1"
                                 app:toggle_textSize="15dp"
                                 app:toggle_borderWidth="1dp"

@@ -205,6 +205,7 @@ class TenantPayBillActivity : AppCompatActivity() {
         var bill_flat_name =  addPay_bill_flat_name.text.toString()
         var bill_building_name =  addPay_bill_building_name.text.toString()
         var bill_rent_amount =  addPay_bill_rent_amount.text.toString()
+        var trxID =  addPay_bill_TrxID.text.toString()
         var rentForMOnth = rentMonth
         when{
             TextUtils.isEmpty(bill_rent_amount) -> showToast("Rent Amount NOT to be NULL")
@@ -212,7 +213,7 @@ class TenantPayBillActivity : AppCompatActivity() {
             TextUtils.isEmpty(selectedViaPay) -> showToast("Please select pay via method")
 
             else -> {
-                var rentRef = FirebaseDatabase.getInstance().reference.child("PayRents")
+                var rentRef = FirebaseDatabase.getInstance().reference.child("PayRents").child(firebaseUser!!.uid)
                 var rentMap = HashMap<String, Any>()
                 var payId = rentRef.push().key
                 rentMap["payId"] = payId!!
@@ -227,6 +228,7 @@ class TenantPayBillActivity : AppCompatActivity() {
                 rentMap["paidRentAmount"] = bill_rent_amount
                 rentMap["paidRentMonth"] = rentForMOnth
                 rentMap["payViaService"] = selectedViaPay
+                rentMap["trxID"] = trxID
 
                 rentRef.child(payId).setValue(rentMap).addOnCompleteListener { task ->
                     if(task.isSuccessful){

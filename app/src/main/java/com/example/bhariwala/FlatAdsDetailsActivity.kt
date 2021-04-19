@@ -19,6 +19,7 @@ class FlatAdsDetailsActivity : AppCompatActivity() {
         var intent = intent
         var flatId = intent.getStringExtra("flatId")
 
+
         retribeFlatData(flatId)
     }
 

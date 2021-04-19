@@ -36,11 +36,15 @@ class UpdateAccountActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_account)
 
+
+
         UpdateAcc_add_take_photo.setOnClickListener {
             CropImage.activity()
                 .setAspectRatio(1,1)
                 .start(this);
         }
+
+
         var divisions = arrayOf("Dhaka", "Khulna", "Ragnpur", "Dinajpur", "Mymensingh")
 
         storage = FirebaseStorage.getInstance().reference.child("Update UserImages")
@@ -60,6 +64,10 @@ class UpdateAccountActivity : AppCompatActivity() {
         }
 
     }
+
+//    file:///data/user/0/com.example.bhariwala/cache/cropped2090736468475097766.jpg
+//    file:///storage/emulated/0/IMO/IMO images/G4nHErrDPDZlWTHtsCeUDJeZfgA.jpg
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -67,6 +75,7 @@ class UpdateAccountActivity : AppCompatActivity() {
             var resultUri = CropImage.getActivityResult(data)
             userImgUri = resultUri.uri
 
+            Log.d("crppp", userImgUri.toString())
             UpdateAcc_add_parker_image_view.setImageURI(userImgUri)
         }
     }
@@ -119,6 +128,8 @@ class UpdateAccountActivity : AppCompatActivity() {
                 }).addOnCompleteListener(OnCompleteListener{ task ->
                     if(task.isSuccessful){
                         userImgUri = task.result
+
+                        Log.d("ggg", userImgUri.toString())
 
                         var databaseRef = FirebaseDatabase.getInstance().reference.child("AccountDetails")
                         var AccMap = HashMap<String, Any>()

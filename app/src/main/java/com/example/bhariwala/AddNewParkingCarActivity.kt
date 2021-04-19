@@ -41,6 +41,12 @@ class AddNewParkingCarActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_new_parking_car)
 
 
+        var actionBar = getSupportActionBar()
+        if(actionBar != null){
+            actionBar.setTitle("Add Parking Vehicle")
+            actionBar.setDisplayHomeAsUpEnabled(true)
+        }
+
         storage = FirebaseStorage.getInstance().reference.child("Car Parker Image")
 
         homelordId = intent?.getStringExtra("homelordId")

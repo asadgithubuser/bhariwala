@@ -12,7 +12,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.bhariwala.Fragments.*
 import com.example.bhariwala.Interfaces.Communicator
+import com.example.bhariwala.Models.HomeLordSent
 import com.example.bhariwala.Models.Tenant
+import com.example.bhariwala.Models.TenantSentMsg
 import com.example.bhariwala.Models.User
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -33,7 +35,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var mDrawerToggle: ActionBarDrawerToggle? = null
     private var mAuth: FirebaseAuth? = null
     private var firebaseUser: FirebaseUser? = null
-    private var msgCount = 4
     private var currentUserStatus = ""
     private var myHomeLordId = ""
 
@@ -107,7 +108,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         //===== redirect homelord or tenant
-        redirectHomelordORTenant()
+        redirectHomelordORTenant(BottomNavView)
         showUserInformation()
 
         //=======
@@ -128,11 +129,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //                }
 //            }
 
+         if(currentUserStatus == "Security Guard"){
+            //  messageCountForServiceMans()
+        }
 
-        showMessageCountInNM(BottomNavView, msgCount)
+
 
 
     }
+
+
 
     //=======find out homelord id
     private fun getHomeLordNameById() {
@@ -220,7 +226,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 
-    private fun redirectHomelordORTenant() {
+    private fun redirectHomelordORTenant(BottomNavView: BottomNavigationView) {
         var userRef = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUser!!.uid)
         userRef.addValueEventListener( object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -233,20 +239,82 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         if(user!!.getUser() == "Homelord"){
                             currentUserStatus = "Homelord"
                             selectedFramnetItem(HomeLordFragment())
+                            messageCountForHomelord(BottomNavView)
                         }else if(user!!.getUser() == "Tenant"){
                             currentUserStatus = "Tenant"
                             selectedFramnetItem(TenantFragment())
+                            messageCountForTenant(BottomNavView)
                         }else if(user!!.getUser() == "Security Guard"){
                             currentUserStatus = "Security Guard"
                             selectedFramnetItem(SecurityGuardFragment())
                         }
+                }
+            }
+        })
+    }
 
+    private fun messageCountForHomelord(BottomNavView: BottomNavigationView ) {
+        var countt = 1
+        var msgRef = FirebaseDatabase.getInstance().reference.child("TenantSendMsg")
+        msgRef.addValueEventListener( object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for( item in snapshot.children){
+                        val msg = item.getValue(TenantSentMsg::class.java)
+                        if(msg!!.getHomeLrdId().equals(firebaseUser!!.uid)){
+                            var msgCount = countt ++
+                            showMessageCountInNM(BottomNavView, msgCount)
+                        }
+                    }
                 }
             }
         })
     }
 
 
+
+    private fun messageCountForTenant(BottomNavView: BottomNavigationView) {
+        var msgRef = FirebaseDatabase.getInstance().reference.child("Tenants")
+        msgRef.addValueEventListener( object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for(item in snapshot.children){
+                        val tenant = item.getValue(Tenant::class.java)
+                        if(tenant!!.getTenantId().equals(firebaseUser!!.uid)){
+                            showMessageCounttoGetmsg(BottomNavView, tenant.getFlatId())
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+    private fun showMessageCounttoGetmsg(BottomNavView: BottomNavigationView, flatId: String) {
+        var count = 1
+        var msgRef = FirebaseDatabase.getInstance().reference.child("HomeLordSentMsg")
+        msgRef.addValueEventListener( object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for(item in snapshot.children){
+                        val hlSentMsg = item.getValue(HomeLordSent::class.java)
+                        if(hlSentMsg!!.getFlatId().equals(flatId)){
+                             var msgCount = count ++
+                            showMessageCountInNM(BottomNavView, msgCount)
+                        }
+                    }
+                }
+            }
+        })
+    }
 
 
 //    private fun closeFABMenu() {
